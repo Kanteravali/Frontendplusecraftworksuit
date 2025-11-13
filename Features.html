@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Pulsecrafts WorkSuite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #eef2ff;
+            --primary-dark: #3a56d4;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --background: #ffffff;
+            --border: #e2e8f0;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .features-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .features-header p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--background);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(67, 97, 238, 0.08);
+            border-color: var(--primary-light);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-light);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .feature-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .feature-content p {
+            color: var(--text-light);
+            margin-bottom: 24px;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .feature-highlights {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .feature-highlights li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 28px;
+            color: var(--text-light);
+        }
+
+        .feature-highlights li:before {
+            content: "•";
+            position: absolute;
+            left: 12px;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .feature-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            color: var(--text-dark);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Professional layout enhancements */
+        .feature-card .feature-number {
+            position: absolute;
+            top: 32px;
+            right: 32px;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            background: none;
+            border: none;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .modal p {
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        /* Demo Video Styles */
+        .demo-video {
+            width: 100%;
+            height: 280px;
+            background: var(--primary-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-video::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(67, 97, 238, 0.2) 100%);
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: var(--primary-dark);
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #d1fae5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .features-container {
+                padding: 60px 20px;
+            }
+            
+            .features-header h1 {
+                font-size: 2.25rem;
+            }
+            
+            .features-header p {
+                font-size: 1.1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .feature-card {
+                padding: 32px;
+            }
+
+            .modal-content {
+                padding: 32px 24px;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .feature-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="features-container">
+        <div class="features-header">
+            <h1>Everything Your Team Needs</h1>
+            <p>Streamline your workflow with our comprehensive suite of integrated tools designed for modern businesses</p>
+        </div>
+
+        <div class="features-grid">
+            <!-- Collaboration Workspace -->
+            <div class="feature-card">
+                <span class="feature-number">01</span>
+                <div class="feature-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Collaboration Workspace</h3>
+                    <p>Connect your team with powerful communication and file sharing tools in a unified workspace designed for seamless collaboration.</p>
+                    <ul class="feature-highlights">
+                        <li>Real-time internal chat and messaging</li>
+                        <li>Shared documents with collaborative editing</li>
+                        <li>Secure cloud file storage and sharing</li>
+                        <li>Team channels and discussion threads</li>
+                    </ul>
+                    <div class="feature-actions">
+                        <button class="btn btn-primary view-demo-btn" data-feature="collaboration">
+                            <i class="fas fa-play-circle"></i>
+                            <span>View Demo</span>
+                        </button>
+                        <button class="btn btn-outline learn-more-btn" data-feature="collaboration">
+                            <i class="fas fa-book"></i>
+                            <span>Learn More</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project & Task Management -->
+            <div class="feature-card">
+                <span class="feature-number">02</span>
+                <div class="feature-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Project & Task Management</h3>
+                    <p>Organize, track, and deliver projects on time with intuitive task management tools that keep everyone aligned and productive.</p>
+                    <ul class="feature-highlights">
+                        <li>Visual task boards (Kanban, List, Timeline views)</li>
+                        <li>Smart deadlines and milestone tracking</li>
+                        <li>Real-time progress monitoring</li>
+                        <li>Automated task assignment and notifications</li>
+                    </ul>
+                    <div class="feature-actions">
+                        <button class="btn btn-primary view-demo-btn" data-feature="project-management">
+                            <i class="fas fa-play-circle"></i>
+                            <span>View Demo</span>
+                        </button>
+                        <button class="btn btn-outline learn-more-btn" data-feature="project-management">
+                            <i class="fas fa-book"></i>
+                            <span>Learn More</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CRM & Sales Management -->
+            <div class="feature-card">
+                <span class="feature-number">03</span>
+                <div class="feature-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>CRM & Sales Management</h3>
+                    <p>Streamline your sales process and build stronger customer relationships with intelligent CRM tools and automation.</p>
+                    <ul class="feature-highlights">
+                        <li>Automated lead capture from multiple sources</li>
+                        <li>Smart follow-up reminders and sequences</li>
+                        <li>Visual sales pipeline management</li>
+                        <li>Customer interaction history and notes</li>
+                    </ul>
+                    <div class="feature-actions">
+                        <button class="btn btn-primary view-demo-btn" data-feature="crm">
+                            <i class="fas fa-play-circle"></i>
+                            <span>View Demo</span>
+                        </button>
+                        <button class="btn btn-outline learn-more-btn" data-feature="crm">
+                            <i class="fas fa-book"></i>
+                            <span>Learn More</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-commerce Module -->
+            <div class="feature-card">
+                <span class="feature-number">04</span>
+                <div class="feature-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>E-commerce Module</h3>
+                    <p>Sell products and manage your online store directly from your workspace with seamless inventory and order management.</p>
+                    <ul class="feature-highlights">
+                        <li>Complete product catalog management</li>
+                        <li>Automated inventory sync with Shopify</li>
+                        <li>Order management and fulfillment tracking</li>
+                        <li>Customer account and purchase history</li>
+                    </ul>
+                    <div class="feature-actions">
+                        <button class="btn btn-primary view-demo-btn" data-feature="ecommerce">
+                            <i class="fas fa-play-circle"></i>
+                            <span>View Demo</span>
+                        </button>
+                        <button class="btn btn-outline learn-more-btn" data-feature="ecommerce">
+                            <i class="fas fa-book"></i>
+                            <span>Learn More</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HR & Workforce Tools -->
+            <div class="feature-card">
+                <span class="feature-number">05</span>
+                <div class="feature-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>HR & Workforce Tools</h3>
+                    <p>Manage your team efficiently with comprehensive HR and workforce management tools that simplify administrative tasks.</p>
+                    <ul class="feature-highlights">
+                        <li>Digital attendance and time tracking</li>
+                        <li>Leave management with approval workflows</li>
+                        <li>Automated payroll summaries and reports</li>
+                        <li>Employee directory and profile management</li>
+                    </ul>
+                    <div class="feature-actions">
+                        <button class="btn btn-primary view-demo-btn" data-feature="hr">
+                            <i class="fas fa-play-circle"></i>
+                            <span>View Demo</span>
+                        </button>
+                        <button class="btn btn-outline learn-more-btn" data-feature="hr">
+                            <i class="fas fa-book"></i>
+                            <span>Learn More</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics & Reports -->
+            <div class="feature-card">
+                <span class="feature-number">06</span>
+                <div class="feature-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Analytics & Reports</h3>
+                    <p>Make data-driven decisions with powerful analytics and customizable reports that provide insights across your entire business.</p>
+                    <ul class="feature-highlights">
+                        <li>Custom dashboards with drag-and-drop widgets</li>
+                        <li>Real-time business performance metrics</li>
+                        <li>Downloadable reports in multiple formats</li>
+                        <li>Automated report scheduling and delivery</li>
+                    </ul>
+                    <div class="feature-actions">
+                        <button class="btn btn-primary view-demo-btn" data-feature="analytics">
+                            <i class="fas fa-play-circle"></i>
+                            <span>View Demo</span>
+                        </button>
+                        <button class="btn btn-outline learn-more-btn" data-feature="analytics">
+                            <i class="fas fa-book"></i>
+                            <span>Learn More</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Modal -->
+    <div class="modal" id="demoModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 id="demoModalTitle">Feature Demo</h2>
+            <div class="demo-video">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+            <p id="demoModalDescription">Watch how this feature can transform your workflow and boost productivity.</p>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="scheduleDemoBtn">
+                    <i class="fas fa-calendar"></i>
+                    <span>Schedule Live Demo</span>
+                </button>
+                <button class="btn btn-outline close-modal-btn">
+                    <i class="fas fa-times"></i>
+                    <span>Close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learn More Modal -->
+    <div class="modal" id="learnMoreModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 id="learnMoreModalTitle">Feature Details</h2>
+            <p id="learnMoreModalDescription">Get detailed information about this feature and how it can benefit your business.</p>
+            
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" placeholder="Enter your company name">
+            </div>
+            <div class="form-group">
+                <label for="message">Specific Questions</label>
+                <textarea id="message" rows="3" placeholder="Any specific questions about this feature?"></textarea>
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i>
+                <span>Thank you! Our team will contact you shortly with more information.</span>
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="submitInfoBtn">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Get More Information</span>
+                </button>
+                <button class="btn btn-outline close-modal-btn">
+                    <i class="fas fa-times"></i>
+                    <span>Cancel</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Demo Modal -->
+    <div class="modal" id="scheduleModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2>Schedule a Live Demo</h2>
+            <p>Let us show you how <span id="scheduleFeatureName"></span> can transform your business operations.</p>
+            
+            <div class="form-group">
+                <label for="demoName">Full Name</label>
+                <input type="text" id="demoName" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="demoEmail">Work Email</label>
+                <input type="email" id="demoEmail" placeholder="Enter your work email">
+            </div>
+            <div class="form-group">
+                <label for="demoCompany">Company</label>
+                <input type="text" id="demoCompany" placeholder="Enter your company name">
+            </div>
+            <div class="form-group">
+                <label for="demoDate">Preferred Date</label>
+                <input type="date" id="demoDate">
+            </div>
+            <div class="form-group">
+                <label for="demoTime">Preferred Time</label>
+                <select id="demoTime">
+                    <option value="">Select a time</option>
+                    <option value="09:00">9:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="15:00">3:00 PM</option>
+                    <option value="16:00">4:00 PM</option>
+                </select>
+            </div>
+            
+            <div class="success-message" id="scheduleSuccessMessage">
+                <i class="fas fa-check-circle"></i>
+                <span>Demo scheduled successfully! We'll send a confirmation email shortly.</span>
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="confirmScheduleBtn">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Schedule Demo</span>
+                </button>
+                <button class="btn btn-outline close-modal-btn">
+                    <i class="fas fa-times"></i>
+                    <span>Cancel</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Feature data for modals
+        const featureData = {
+            'collaboration': {
+                title: 'Collaboration Workspace',
+                description: 'Experience real-time collaboration with team chat, document sharing, and seamless communication tools.',
+                demoDescription: 'Watch how teams collaborate in real-time with shared documents, instant messaging, and file sharing.'
+            },
+            'project-management': {
+                title: 'Project & Task Management',
+                description: 'Discover how to organize projects, assign tasks, and track progress with visual management tools.',
+                demoDescription: 'See how project managers visualize workflows, set deadlines, and monitor team progress.'
+            },
+            'crm': {
+                title: 'CRM & Sales Management',
+                description: 'Learn how to automate lead capture, manage sales pipelines, and build customer relationships.',
+                demoDescription: 'Watch the sales process automation from lead capture to deal closure.'
+            },
+            'ecommerce': {
+                title: 'E-commerce Module',
+                description: 'Explore product management, inventory sync, and order processing for your online store.',
+                demoDescription: 'See how businesses manage products, sync inventory, and process orders seamlessly.'
+            },
+            'hr': {
+                title: 'HR & Workforce Tools',
+                description: 'Understand how to manage attendance, leave, payroll, and employee profiles efficiently.',
+                demoDescription: 'Watch HR workflows for time tracking, leave management, and payroll processing.'
+            },
+            'analytics': {
+                title: 'Analytics & Reports',
+                description: 'Learn how to create custom dashboards and generate insightful business reports.',
+                demoDescription: 'See how businesses transform data into actionable insights with customizable dashboards.'
+            }
+        };
+
+        // Modal elements
+        const demoModal = document.getElementById('demoModal');
+        const learnMoreModal = document.getElementById('learnMoreModal');
+        const scheduleModal = document.getElementById('scheduleModal');
+        const closeButtons = document.querySelectorAll('.close-modal, .close-modal-btn');
+
+        // View Demo buttons
+        document.querySelectorAll('.view-demo-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const feature = this.getAttribute('data-feature');
+                const data = featureData[feature];
+                
+                document.getElementById('demoModalTitle').textContent = data.title;
+                document.getElementById('demoModalDescription').textContent = data.demoDescription;
+                demoModal.style.display = 'flex';
+            });
+        });
+
+        // Learn More buttons
+        document.querySelectorAll('.learn-more-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const feature = this.getAttribute('data-feature');
+                const data = featureData[feature];
+                
+                document.getElementById('learnMoreModalTitle').textContent = data.title;
+                document.getElementById('learnMoreModalDescription').textContent = data.description;
+                learnMoreModal.style.display = 'flex';
+            });
+        });
+
+        // Schedule Demo button in demo modal
+        document.getElementById('scheduleDemoBtn').addEventListener('click', function() {
+            const currentFeature = document.getElementById('demoModalTitle').textContent;
+            document.getElementById('scheduleFeatureName').textContent = currentFeature;
+            demoModal.style.display = 'none';
+            scheduleModal.style.display = 'flex';
+        });
+
+        // Submit information form
+        document.getElementById('submitInfoBtn').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            if (name && email) {
+                document.getElementById('successMessage').style.display = 'block';
+                setTimeout(() => {
+                    learnMoreModal.style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'none';
+                    // Reset form
+                    document.getElementById('name').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('company').value = '';
+                    document.getElementById('message').value = '';
+                }, 2000);
+            } else {
+                alert('Please fill in at least your name and email address.');
+            }
+        });
+
+        // Confirm schedule button
+        document.getElementById('confirmScheduleBtn').addEventListener('click', function() {
+            const name = document.getElementById('demoName').value;
+            const email = document.getElementById('demoEmail').value;
+            const date = document.getElementById('demoDate').value;
+            
+            if (name && email && date) {
+                document.getElementById('scheduleSuccessMessage').style.display = 'block';
+                setTimeout(() => {
+                    scheduleModal.style.display = 'none';
+                    document.getElementById('scheduleSuccessMessage').style.display = 'none';
+                    // Reset form
+                    document.getElementById('demoName').value = '';
+                    document.getElementById('demoEmail').value = '';
+                    document.getElementById('demoCompany').value = '';
+                    document.getElementById('demoDate').value = '';
+                    document.getElementById('demoTime').value = '';
+                }, 2000);
+            } else {
+                alert('Please fill in all required fields (Name, Email, and Date).');
+            }
+        });
+
+        // Close modals
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                demoModal.style.display = 'none';
+                learnMoreModal.style.display = 'none';
+                scheduleModal.style.display = 'none';
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === demoModal) demoModal.style.display = 'none';
+            if (e.target === learnMoreModal) learnMoreModal.style.display = 'none';
+            if (e.target === scheduleModal) scheduleModal.style.display = 'none';
+        });
+
+        // Play button functionality
+        document.querySelector('.play-button').addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-check"></i>';
+                this.style.background = '#10b981';
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-play"></i>';
+                    this.style.background = 'var(--primary)';
+                }, 1500);
+            }, 2000);
+        });
+
+        // Add subtle animations when cards come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.feature-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

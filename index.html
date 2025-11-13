@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulsecrafts WorkSuite - All-in-One Cloud Workspace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4bb543;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(67, 97, 238, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .btn-large {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f7ff 0%, #e6ecff 100%);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-graphic {
+            width: 100%;
+            max-width: 500px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 20px;
+            position: relative;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-graphic::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="white" opacity="0.1"/></svg>');
+            background-size: cover;
+        }
+
+        .graphic-element {
+            width: 80%;
+            height: 80%;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .graphic-header {
+            height: 40px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .graphic-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot:nth-child(1) {
+            background-color: #ff5f57;
+        }
+
+        .dot:nth-child(2) {
+            background-color: #ffbd2e;
+        }
+
+        .dot:nth-child(3) {
+            background-color: #28ca42;
+        }
+
+        .graphic-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
+        }
+
+        .graphic-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .graphic-item {
+            flex: 1;
+            height: 20px;
+            border-radius: 4px;
+            background-color: #f0f2f5;
+        }
+
+        .graphic-item:nth-child(1) {
+            background-color: rgba(67, 97, 238, 0.2);
+        }
+
+        .graphic-item:nth-child(2) {
+            background-color: rgba(114, 9, 183, 0.2);
+        }
+
+        .graphic-item:nth-child(3) {
+            background-color: rgba(76, 201, 240, 0.2);
+        }
+
+        /* About Section */
+        .about {
+            background-color: white;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        /* Features Section */
+        .features {
+            background-color: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        /* Interactive Feature Details */
+        .feature-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .feature-card:hover .feature-details {
+            max-height: 200px;
+        }
+
+        .feature-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Integrations Section */
+        .integrations {
+            background-color: white;
+        }
+
+        .integrations-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .integration-logo {
+            width: 120px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            font-size: 1.8rem;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .integration-logo:hover {
+            transform: scale(1.1);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            background-color: #f8f9fa;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .use-case-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .use-case-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Interactive Use Case Details */
+        .use-case-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .use-case-card:hover .use-case-details {
+            max-height: 200px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: white;
+        }
+
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .testimonial-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .testimonial-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--gray);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-role {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .cta .btn {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .cta .btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                margin-bottom: 50px;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-buttons {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .image-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.image-link {
+    display: block;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.image-link:hover {
+    transform: scale(1.02);
+}
+
+.featured-image {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+/* Alternative: Full-width image */
+.featured-image.full-width {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* For hero section style */
+.featured-image.hero-style {
+    width: 100%;
+    height: 70vh;
+    min-height: 500px;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .featured-image {
+        max-height: 400px;
+    }
+    
+    .featured-image.hero-style {
+        height: 50vh;
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-image {
+        max-height: 300px;
+        border-radius: 4px;
+    }
+    
+    .featured-image.hero-style {
+        height: 40vh;
+        min-height: 300px;
+    }
+}
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+    <img class="logo-img" src="assets/logo.png" alt="Pulsecrafts">
+    <span>Pulsecrafts</span>
+</a>
+                
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="About.html">About Us</a></li>
+                    <li><a href="Features.html">Features</a></li>
+                    <li><a href="#use-cases">Use Cases</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="nav-buttons">
+                    <a href="#" class="btn btn-secondary" id="loginBtn">Log In</a>
+                    <a href="#" class="btn btn-primary" id="trialBtn">Start Free Trial</a>
+                </div>
+                
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Work. Collaborate. Sell. All in One Workspace.</h1>
+                    <p>Streamline your team's workflow with our all-in-one cloud platform for task management, collaboration, CRM, and e-commerce.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary btn-large" id="demoBtn">Book Demo</a>
+                        <a href="#" class="btn btn-secondary btn-large" id="heroTrialBtn">Start Free Trial</a>
+                    </div>
+                </div>
+                <div class="image-container">
+    <a href="#" class="image-link">
+        <img class="featured-image" src="assets/image.png" alt="">
+    </a>
+</div>
+
+                
+                            
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">About WorkSuite</h2>
+                <p>Pulsecrafts WorkSuite is a comprehensive cloud workspace designed to help teams work more efficiently, collaborate seamlessly, manage customer relationships, and sell products or services—all from a single, integrated platform.</p>
+                <p>Our mission is to eliminate the need for multiple disconnected tools and provide businesses with a unified solution that enhances productivity and drives growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Task Management</h3>
+                    <p>Organize, assign, and track tasks with intuitive boards, lists, and timelines.</p>
+                    <div class="feature-details">
+                        <ul class="feature-list">
+                            <li>Kanban boards for visual workflow</li>
+                            <li>Automated task assignment</li>
+                            <li>Time tracking and reporting</li>
+                            <li>Priority and deadline management</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Team Collaboration</h3>
+                    <p>Real-time messaging, file sharing, and collaborative document editing.</p>
+                    <div class="feature-details">
+                        <ul class="feature-list">
+                            <li>Real-time chat and video calls</li>
+                            <li>Shared document editing</li>
+                            <li>File version history</li>
+                            <li>Comment threads on tasks</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>CRM</h3>
+                    <p>Manage customer relationships, track interactions, and automate follow-ups.</p>
+                    <div class="feature-details">
+                        <ul class="feature-list">
+                            <li>Contact and lead management</li>
+                            <li>Sales pipeline tracking</li>
+                            <li>Email integration and templates</li>
+                            <li>Customer support ticketing</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-commerce</h3>
+                    <p>Sell products and services directly from your workspace with integrated payments.</p>
+                    <div class="feature-details">
+                        <ul class="feature-list">
+                            <li>Product catalog management</li>
+                            <li>Secure payment processing</li>
+                            <li>Order and inventory tracking</li>
+                            <li>Customer account portals</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Analytics</h3>
+                    <p>Gain insights with comprehensive reports and customizable dashboards.</p>
+                    <div class="feature-details">
+                        <ul class="feature-list">
+                            <li>Customizable reporting dashboards</li>
+                            <li>Team performance metrics</li>
+                            <li>Sales and revenue analytics</li>
+                            <li>Exportable reports in multiple formats</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security</h3>
+                    <p>Enterprise-grade security with encryption, access controls, and compliance.</p>
+                    <div class="feature-details">
+                        <ul class="feature-list">
+                            <li>End-to-end encryption</li>
+                            <li>Role-based access controls</li>
+                            <li>Two-factor authentication</li>
+                            <li>GDPR and SOC2 compliance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations Section -->
+    <section class="integrations">
+        <div class="container">
+            <h2 class="section-title">Integrations</h2>
+            <p class="text-center">WorkSuite seamlessly connects with the tools you already use</p>
+            <div class="integrations-logos">
+                <div class="integration-logo">
+                    <i class="fab fa-google"></i>
+                </div>
+                <div class="integration-logo">
+                    <i class="fab fa-shopify"></i>
+                </div>
+                <div class="integration-logo">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="integration-logo">
+                    <i class="fab fa-stripe"></i>
+                </div>
+                <div class="integration-logo">
+                    <i class="fab fa-slack"></i>
+                </div>
+                <div class="integration-logo">
+                    <i class="fab fa-dropbox"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases" id="use-cases">
+        <div class="container">
+            <h2 class="section-title">Use Cases</h2>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Small & Medium Businesses</h3>
+                    <p>Streamline operations and grow your business with an all-in-one solution.</p>
+                    <div class="use-case-details">
+                        <ul class="feature-list">
+                            <li>Centralize customer data and communications</li>
+                            <li>Automate repetitive tasks and workflows</li>
+                            <li>Track sales and business performance</li>
+                            <li>Collaborate across departments</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="use-case-card">
+                    <div class="use-case-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Agencies</h3>
+                    <p>Manage clients, projects, and teams efficiently in one centralized platform.</p>
+                    <div class="use-case-details">
+                        <ul class="feature-list">
+                            <li>Client portal for project collaboration</li>
+                            <li>Time tracking and billing integration</li>
+                            <li>Resource allocation and scheduling</li>
+                            <li>Project milestone tracking</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="use-case-card">
+                    <div class="use-case-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>E-commerce</h3>
+                    <p>Sell online, manage inventory, and provide excellent customer service.</p>
+                    <div class="use-case-details">
+                        <ul class="feature-list">
+                            <li>Unified product and order management</li>
+                            <li>Customer service ticketing system</li>
+                            <li>Inventory and supplier management</li>
+                            <li>Marketing automation and analytics</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="use-case-card">
+                    <div class="use-case-icon">
+                        <i class="fas fa-laptop-house"></i>
+                    </div>
+                    <h3>Remote Teams</h3>
+                    <p>Collaborate effectively from anywhere with our cloud-based workspace.</p>
+                    <div class="use-case-details">
+                        <ul class="feature-list">
+                            <li>Virtual workspace for team collaboration</li>
+                            <li>Video conferencing and screen sharing</li>
+                            <li>Document sharing and co-editing</li>
+                            <li>Project visibility and progress tracking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-item">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Sarah Johnson">
+                        </div>
+                        <p class="testimonial-text">"WorkSuite has transformed how our team collaborates. We've eliminated 5 different tools and increased productivity by 40%. The ability to manage projects, communicate with clients, and track sales all in one platform has been a game-changer for our agency."</p>
+                        <p class="testimonial-author">Sarah Johnson</p>
+                        <p class="testimonial-role">CEO, TechSolutions Inc.</p>
+                    </div>
+                    
+                    <div class="testimonial-item">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Michael Chen">
+                        </div>
+                        <p class="testimonial-text">"As an e-commerce business, we needed a solution that could handle our inventory, customer service, and marketing. WorkSuite delivered on all fronts. The integration with Shopify was seamless, and our team can now access all customer data in one place."</p>
+                        <p class="testimonial-author">Michael Chen</p>
+                        <p class="testimonial-role">Operations Manager, StyleCart</p>
+                    </div>
+                    
+                    <div class="testimonial-item">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Jessica Williams">
+                        </div>
+                        <p class="testimonial-text">"The transition to remote work was challenging until we implemented WorkSuite. Now our distributed team collaborates more effectively than when we were in the same office. The real-time collaboration features and project visibility have been invaluable."</p>
+                        <p class="testimonial-author">Jessica Williams</p>
+                        <p class="testimonial-role">Team Lead, Global Innovations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="pricing">
+        <div class="container">
+            <h2>Ready to Transform Your Workflow?</h2>
+            <p>Join thousands of teams already using WorkSuite to work smarter, collaborate better, and grow faster.</p>
+            <a href="#" class="btn btn-large" id="pricingBtn">View Pricing Plans</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Pulsecrafts</h3>
+                    <p>Building tools that empower teams to work better together.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#use-cases">Use Cases</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">Integrations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023 Pulsecrafts WorkSuite. All rights reserved.</p>
+                <p>123 Business Ave, Suite 100, San Francisco, CA 94107 | support@pulsecrafts.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Demo Modal -->
+    <div class="modal" id="demoModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Book a Demo</h2>
+            <p>Schedule a personalized demo to see how WorkSuite can transform your business.</p>
+            <form id="demoForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" required>
+                </div>
+                <div class="form-group">
+                    <label for="employees">Number of Employees</label>
+                    <select id="employees" required>
+                        <option value="">Select</option>
+                        <option value="1-10">1-10</option>
+                        <option value="11-50">11-50</option>
+                        <option value="51-200">51-200</option>
+                        <option value="201-500">201-500</option>
+                        <option value="501+">501+</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Schedule Demo</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Trial Modal -->
+    <div class="modal" id="trialModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Start Your Free Trial</h2>
+            <p>Get full access to all WorkSuite features for 14 days. No credit card required.</p>
+            <form id="trialForm">
+                <div class="form-group">
+                    <label for="trialName">Full Name</label>
+                    <input type="text" id="trialName" required>
+                </div>
+                <div class="form-group">
+                    <label for="trialEmail">Work Email</label>
+                    <input type="email" id="trialEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="trialCompany">Company Name</label>
+                    <input type="text" id="trialCompany" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Create Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Start Free Trial</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            const navButtons = document.querySelector('.nav-buttons');
+            
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+                navButtons.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navButtons.style.display = 'flex';
+                
+                // Adjust for mobile
+                if (window.innerWidth <= 768) {
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '80px';
+                    navLinks.style.left = '0';
+                    navLinks.style.width = '100%';
+                    navLinks.style.backgroundColor = 'white';
+                    navLinks.style.padding = '20px';
+                    navLinks.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+                    
+                    navButtons.style.flexDirection = 'column';
+                    navButtons.style.position = 'absolute';
+                    navButtons.style.top = '280px';
+                    navButtons.style.left = '0';
+                    navButtons.style.width = '100%';
+                    navButtons.style.padding = '0 20px';
+                    navButtons.style.gap = '10px';
+                }
+            }
+        });
+
+        // Add scroll effect to hero graphic
+        const graphicContent = document.querySelector('.graphic-content');
+        if (graphicContent) {
+            setInterval(() => {
+                graphicContent.scrollTop += 1;
+                if (graphicContent.scrollTop >= graphicContent.scrollHeight - graphicContent.clientHeight) {
+                    graphicContent.scrollTop = 0;
+                }
+            }, 50);
+        }
+
+        // Modal functionality
+        const demoModal = document.getElementById('demoModal');
+        const trialModal = document.getElementById('trialModal');
+        const demoBtn = document.getElementById('demoBtn');
+        const heroTrialBtn = document.getElementById('heroTrialBtn');
+        const trialBtn = document.getElementById('trialBtn');
+        const pricingBtn = document.getElementById('pricingBtn');
+        const loginBtn = document.getElementById('loginBtn');
+        const closeButtons = document.querySelectorAll('.close-modal');
+
+        // Open demo modal
+        demoBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            demoModal.style.display = 'flex';
+        });
+
+        // Open trial modal
+        heroTrialBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            trialModal.style.display = 'flex';
+        });
+
+        trialBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            trialModal.style.display = 'flex';
+        });
+
+        // Close modals
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                demoModal.style.display = 'none';
+                trialModal.style.display = 'none';
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === demoModal) {
+                demoModal.style.display = 'none';
+            }
+            if (e.target === trialModal) {
+                trialModal.style.display = 'none';
+            }
+        });
+
+        // Form submissions
+        document.getElementById('demoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Our team will contact you shortly to schedule your demo.');
+            demoModal.style.display = 'none';
+            this.reset();
+        });
+
+        document.getElementById('trialForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Your free trial has been activated! Check your email for login instructions.');
+            trialModal.style.display = 'none';
+            this.reset();
+        });
+
+        // Pricing button functionality
+        pricingBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Redirecting to pricing page...');
+            // In a real implementation, this would navigate to the pricing page
+        });
+
+        // Login button functionality
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Redirecting to login page...');
+            // In a real implementation, this would navigate to the login page
+        });
+    </script>
+</body>
+</html>
