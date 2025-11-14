@@ -20,9 +20,13 @@
             --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
         }
+        html{
+            scroll-behavior: smooth;
+        }
 
         * {
             margin: 0;
+               scroll-behavior: smooth;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -44,6 +48,11 @@
 
         section {
             padding: 80px 0;
+        }
+        .image-container{
+            width: 40%;
+            margin-right: -300px;
+        
         }
 
         h1, h2, h3, h4 {
@@ -802,7 +811,7 @@
 
 /* For hero section style */
 .featured-image.hero-style {
-    width: 100%;
+    width: 40%;
     height: 70vh;
     min-height: 500px;
     object-fit: cover;
@@ -882,9 +891,9 @@
                         <a href="#" class="btn btn-secondary btn-large" id="heroTrialBtn">Start Free Trial</a>
                     </div>
                 </div>
-                <div class="image-container" style="width: 40%;">
+                <div class="image-container">
     <a href="#" class="image-link">
-        <img class="featured-image" src="assets/happy-employee-sitting-office.jpg" alt="" style="width: 70%; height: 70%;">
+        <img class="featured-image" src="assets/kk.png" alt="" style="width: 70%; height: 70%;">
     </a>
 </div>
 

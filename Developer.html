@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Developer Dashboard - Complete Guide</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Developer & Hybrid Dashboard — UI Template</title>
   <style>
     :root {
-      --bg: #0f1724;
-      --card: #0b1220;
-      --muted: #9aa4b2;
-      --accent: #4f8ef7;
+      --bg: #0f1724; 
+      --card: #0b1220; 
+      --muted: #9aa4b2; 
+      --accent: #4f8ef7; 
       --glass: rgba(255,255,255,0.04);
-      --radius: 14px;
+      --radius: 14px; 
       --pad: 16px;
       --shadow: 0 6px 20px rgba(2,6,23,0.6);
       --success: #10b981;
@@ -20,54 +20,67 @@
       --transition: all 0.2s ease;
     }
     
-    [data-theme="light"] {
-      --bg: #f6f8fb;
-      --card: #fff;
-      --muted: #64748b;
-      --accent: #2563eb;
-      --glass: rgba(2,6,23,0.03);
+    [data-theme="light"] { 
+      --bg: #f6f8fb; 
+      --card: #fff; 
+      --muted: #64748b; 
+      --accent: #2563eb; 
+      --glass: rgba(2,6,23,0.03); 
       --shadow: 0 6px 20px rgba(20,20,40,0.06);
-    }
+    } 
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
+    * { box-sizing: border-box; }
+    
+    html, body {
+      height: 100%; 
+      margin: 0; 
+      font-family: 'Inter', ui-sans-serif, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
+      background: linear-gradient(180deg, var(--bg), #071023 60%); 
       color: var(--muted);
-      line-height: 1.6;
-      padding: 20px;
-      min-height: 100vh;
+      line-height: 1.5;
+    }
+    
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Layout */
+    .app {
+      display: grid; 
+      grid-template-columns: 260px 1fr 340px; 
+      gap: 20px; 
+      padding: 28px; 
+      max-width: 1300px; 
+      margin: 28px auto;
+      transition: var(--transition);
+    }
+    
+    @media (max-width: 1100px) { 
+      .app {
+        grid-template-columns: 1fr; 
+        padding: 16px;
+      } 
+      .right-col { order: 3; } 
+      .main-col { order: 2; } 
+      .left-col { order: 1; } 
     }
 
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
+    /* Sidebar */
+    .sidebar {
+      background: var(--card); 
+      border-radius: var(--radius); 
+      padding: 18px; 
+      box-shadow: var(--shadow);
+      height: fit-content;
     }
-
-    header {
+    
+    .brand {
       display: flex;
-      justify-content: space-between;
+      gap: 10px;
       align-items: center;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      margin-bottom: 30px;
+      margin-bottom: 12px;
     }
-
+    
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .logo-icon {
       width: 40px;
       height: 40px;
       border-radius: 10px;
@@ -76,397 +89,406 @@
       align-items: center;
       justify-content: center;
       color: white;
-      font-weight: bold;
+      font-weight: 700;
     }
-
-    .controls {
+    
+    .brand h2 {
+      margin: 0;
+      font-size: 16px;
+      color: var(--muted);
+    }
+    
+    .nav {
       display: flex;
-      gap: 15px;
-      align-items: center;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
     }
-
-    .role-selector {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-
-    .role-btn {
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
+    
+    .nav button {
+      background: transparent;
+      border: 0;
+      color: var(--muted);
+      text-align: left;
+      padding: 10px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: var(--transition);
       display: flex;
       align-items: center;
       gap: 8px;
-      box-shadow: var(--shadow);
+    }
+    
+    .nav button:hover {
+      background: var(--glass);
+    }
+    
+    .nav button.active {
+      background: var(--glass);
+      color: var(--accent);
+    }
+    
+    .nav-icon {
+      width: 16px;
+      height: 16px;
     }
 
-    .role-btn.active {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .role-btn.dev {
-      background-color: #4361ee;
-      color: white;
-    }
-
-    .role-btn.designer {
-      background-color: #e63946;
-      color: white;
-    }
-
-    .role-btn.qa {
-      background-color: #2a9d8f;
-      color: white;
-    }
-
-    .role-btn.manager {
-      background-color: #7209b7;
-      color: white;
-    }
-
-    .dashboard-container {
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
-
-    .dashboard-container.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .dashboard-header {
+    /* Top controls */
+    .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 25px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
-
-    .dashboard-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--muted);
+    
+    .controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
     }
-
-    .dashboard-subtitle {
-      color: var(--muted);
-      margin-bottom: 10px;
-      opacity: 0.8;
-    }
-
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-    }
-
-    .card {
+    
+    .search {
       background: var(--card);
-      border-radius: var(--radius);
-      padding: var(--pad);
+      padding: 8px 12px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .search:focus-within {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    
+    input.search-in {
+      border: 0;
+      background: transparent;
+      outline: none;
+      color: var(--muted);
+      width: 220px;
+    }
+
+    /* Cards */
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent); 
+      padding: var(--pad); 
+      border-radius: var(--radius); 
       box-shadow: var(--shadow);
       transition: var(--transition);
     }
-
+    
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 25px rgba(2,6,23,0.7);
     }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .card-title {
-      font-size: 1.2rem;
-      font-weight: 600;
+    
+    h3 {
+      margin: 0 0 10px 0;
       color: var(--muted);
+      font-weight: 600;
     }
 
-    .card-icon {
-      width: 40px;
-      height: 40px;
+    /* Dashboard grid */
+    .main {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+    
+    @media (max-width: 900px) { 
+      .main {
+        grid-template-columns: 1fr;
+      } 
+    }
+
+    .pipeline {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    
+    .pipeline .step {
+      min-width: 170px;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      transition: var(--transition);
+    }
+    
+    .pipeline .step.drop-zone {
+      background: rgba(79, 142, 247, 0.1);
+      border: 1px dashed var(--accent);
+    }
+    
+    .task {
+      background: rgba(255,255,255,0.03);
+      padding: 10px;
+      border-radius: 8px;
+      margin: 8px 0;
+      cursor: grab;
+      transition: var(--transition);
+      border-left: 3px solid transparent;
+    }
+    
+    .task:hover {
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-1px);
+    }
+    
+    .task.dragging {
+      opacity: 0.5;
+      transform: rotate(3deg);
+    }
+    
+    .task.todo { border-left-color: var(--warning); }
+    .task.inprogress { border-left-color: var(--accent); }
+    .task.review { border-left-color: #f59e0b; }
+    .task.done { border-left-color: var(--success); }
+
+    /* Right column */
+    .right-col .card {
+      margin-bottom: 12px;
+    }
+    
+    .presence {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    
+    .dot {
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
+    }
+    
+    .dot.online { background: var(--success); }
+    .dot.offline { background: var(--danger); }
+    .dot.away { background: var(--warning); }
+
+    /* Toggle */
+    .toggle {
+      display: inline-flex;
+      background: var(--glass);
+      padding: 6px;
+      border-radius: 999px;
+    }
+    
+    .toggle button {
+      border: 0;
+      background: transparent;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .toggle button.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* Theme controls */
+    .themes {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    
+    .swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid rgba(255,255,255,0.04);
+      transition: var(--transition);
+    }
+    
+    .swatch:hover {
+      transform: scale(1.1);
+    }
+    
+    .swatch.active {
+      border-color: var(--accent);
+    }
+
+    /* Onboarding modal */
+    .modal {
+      position: fixed;
+      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-    }
-
-    .dev .card-icon {
-      background-color: #4361ee;
-    }
-
-    .designer .card-icon {
-      background-color: #e63946;
-    }
-
-    .qa .card-icon {
-      background-color: #2a9d8f;
-    }
-
-    .manager .card-icon {
-      background-color: #7209b7;
-    }
-
-    .pipeline-item, .task-item, .bug-item, .design-item, .report-item {
-      display: flex;
-      align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .pipeline-item:last-child, .task-item:last-child, .bug-item:last-child, 
-    .design-item:last-child, .report-item:last-child {
-      border-bottom: none;
-    }
-
-    .status {
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-left: auto;
-    }
-
-    .status.success {
-      background-color: rgba(16, 185, 129, 0.2);
-      color: var(--success);
-    }
-
-    .status.failed {
-      background-color: rgba(239, 68, 68, 0.2);
-      color: var(--danger);
-    }
-
-    .status.running {
-      background-color: rgba(59, 130, 246, 0.2);
-      color: #3b82f6;
-    }
-
-    .status.pending {
-      background-color: rgba(245, 158, 11, 0.2);
-      color: var(--warning);
-    }
-
-    .status.review {
-      background-color: rgba(168, 85, 247, 0.2);
-      color: #a855f7;
-    }
-
-    .btn {
-      padding: 10px 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-primary {
-      background-color: var(--accent);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background-color: color-mix(in srgb, var(--accent) 80%, white);
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background-color: rgba(255,255,255,0.1);
-      color: var(--muted);
-    }
-
-    .btn-secondary:hover {
-      background-color: rgba(255,255,255,0.15);
-    }
-
-    .toggle-switch {
-      position: relative;
-      display: inline-block;
-      width: 50px;
-      height: 24px;
-    }
-
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: .4s;
-      border-radius: 24px;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 16px;
-      width: 16px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
-
-    input:checked + .slider {
-      background-color: var(--success);
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(26px);
-    }
-
-    .feature-flag {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .feature-flag:last-child {
-      border-bottom: none;
-    }
-
-    .progress-bar {
-      height: 8px;
-      background-color: rgba(255,255,255,0.1);
-      border-radius: 4px;
-      margin: 10px 0;
-      overflow: hidden;
-    }
-
-    .progress {
-      height: 100%;
-      border-radius: 4px;
-      transition: width 0.5s ease;
-    }
-
-    .dev .progress {
-      background-color: #4361ee;
-    }
-
-    .designer .progress {
-      background-color: #e63946;
-    }
-
-    .qa .progress {
-      background-color: #2a9d8f;
-    }
-
-    .manager .progress {
-      background-color: #7209b7;
-    }
-
-    .stats {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
-
-    .stat-label {
-      font-size: 0.9rem;
-      color: var(--muted);
-      opacity: 0.8;
-    }
-
-    .guide-panel {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 320px;
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: var(--shadow);
+      background: rgba(2,6,23,0.5);
+      backdrop-filter: blur(4px);
       z-index: 1000;
-      max-height: 80vh;
-      overflow-y: auto;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
     }
-
-    .guide-panel h3 {
-      margin-top: 0;
-      color: var(--accent);
-      margin-bottom: 15px;
+    
+    .modal.show {
+      opacity: 1;
+      visibility: visible;
     }
-
-    .guide-section {
-      margin-bottom: 16px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+    
+    .wizard {
+      width: 920px;
+      max-width: 95%;
+      background: var(--card);
+      padding: 22px;
+      border-radius: 14px;
+      color: var(--muted);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
     }
-
-    .guide-section:last-child {
-      border-bottom: none;
+    
+    .modal.show .wizard {
+      transform: translateY(0);
     }
-
-    .guide-item {
-      margin: 8px 0;
-      padding: 8px;
-      background: rgba(255,255,255,0.03);
-      border-radius: 6px;
-      font-size: 13px;
-    }
-
-    .guide-item .action {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .guide-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1001;
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 10px 15px;
-      cursor: pointer;
-      font-weight: 500;
+    
+    .steps {
       display: flex;
-      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    
+    .wizard-steps {
+      display: flex;
+      flex-direction: column;
       gap: 8px;
     }
 
+    /* Docs */
+    .docs {
+      height: 420px;
+      overflow: auto;
+    }
+    
+    pre {
+      background: rgba(0,0,0,0.25);
+      padding: 12px;
+      border-radius: 8px;
+      color: #e6eefc;
+      overflow: auto;
+      font-size: 13px;
+    }
+
+    /* Small helpers */
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    
+    .btn {
+      background: var(--accent);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 0;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+    }
+    
+    .btn:hover {
+      background: color-mix(in srgb, var(--accent) 80%, white);
+      transform: translateY(-1px);
+    }
+    
+    .ghost {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 8px 10px;
+      border-radius: 10px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .ghost:hover {
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* Responsive header for mobile */
+    .mobile-header {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+    }
+    
+    @media (max-width: 1100px) { 
+      .mobile-header {
+        display: flex;
+      } 
+      .app {
+        margin-top: 56px;
+      } 
+    }
+
+    /* Drag placeholder */
+    .placeholder {
+      height: 48px;
+      border-radius: 8px;
+      border: 2px dashed rgba(255,255,255,0.06);
+      margin: 8px 0;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 24px;
+    }
+    
+    /* Stats cards */
+    .stats-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    .stat-card {
+      flex: 1;
+      min-width: 220px;
+      padding: 16px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
+      transition: var(--transition);
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-2px);
+    }
+    
+    /* Progress bar */
+    .progress {
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+      transition: width 0.5s ease;
+    }
+    
+    /* Notification */
     .notification {
       position: fixed;
       bottom: 20px;
@@ -482,773 +504,373 @@
       transform: translateX(150%);
       transition: transform 0.3s ease;
     }
-
+    
     .notification.show {
       transform: translateX(0);
     }
-
-    .notification.success {
-      border-left: 3px solid var(--success);
+    
+    .notification.success { border-left: 3px solid var(--success); }
+    .notification.error { border-left: 3px solid var(--danger); }
+    .notification.info { border-left: 3px solid var(--accent); }
+    
+    /* Loading spinner */
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      border-top-color: var(--accent);
+      animation: spin 1s linear infinite;
+      display: inline-block;
     }
-
-    .notification.error {
-      border-left: 3px solid var(--danger);
-    }
-
-    .notification.info {
-      border-left: 3px solid var(--accent);
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      padding: 20px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    @media (max-width: 768px) {
-      .dashboard-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .role-selector {
-        justify-content: center;
-      }
-      
-      .guide-panel {
-        width: calc(100% - 40px);
-      }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">
-        <div class="logo-icon">DH</div>
-        <span>DevHybrid Dashboard</span>
-      </div>
-      <div class="controls">
-        <button id="toggleTheme" class="btn btn-secondary">
-          <i class="fas fa-moon"></i> Light Mode
-        </button>
-        <button id="guideToggle" class="btn btn-primary">
-          <i class="fas fa-book"></i> Show Guide
-        </button>
-      </div>
-    </header>
-
-    <div class="role-selector">
-      <button class="role-btn dev active" data-role="dev">
-        <i class="fas fa-code"></i> Developer
-      </button>
-      <button class="role-btn designer" data-role="designer">
-        <i class="fas fa-palette"></i> Designer
-      </button>
-      <button class="role-btn qa" data-role="qa">
-        <i class="fas fa-vial"></i> QA Tester
-      </button>
-      <button class="role-btn manager" data-role="manager">
-        <i class="fas fa-chart-line"></i> Manager
-      </button>
+  <div class="mobile-header card" style="position:fixed;left:12px;right:12px;top:10px;z-index:50">
+    <div style="display:flex;gap:10px;align-items:center">
+      <div class="logo">DH</div>
+      <strong style="color:var(--muted)">Dev Hybrid UI</strong>
     </div>
-
-    <!-- Developer Dashboard -->
-    <div id="dev-dashboard" class="dashboard-container active dev">
-      <div class="dashboard-header">
-        <div>
-          <h1 class="dashboard-title">Developer Dashboard</h1>
-          <p class="dashboard-subtitle">CI/CD pipelines, merge requests, environment toggles, and dev task boards</p>
-        </div>
-        <button class="btn btn-primary" id="new-task-btn">
-          <i class="fas fa-plus"></i> New Task
-        </button>
-      </div>
-
-      <div class="dashboard-grid">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">CI/CD Pipelines</h3>
-            <div class="card-icon">
-              <i class="fas fa-stream"></i>
-            </div>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Frontend Build</div>
-              <small>Updated 5 min ago</small>
-            </div>
-            <span class="status success">Success</span>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Backend Deployment</div>
-              <small>Updated 12 min ago</small>
-            </div>
-            <span class="status running">Running</span>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Database Migration</div>
-              <small>Updated 1 hour ago</small>
-            </div>
-            <span class="status failed">Failed</span>
-          </div>
-          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="view-pipelines-btn">
-            View All Pipelines
-          </button>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Merge Requests</h3>
-            <div class="card-icon">
-              <i class="fas fa-code-branch"></i>
-            </div>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>User Authentication</div>
-              <small>By: Sarah Johnson</small>
-            </div>
-            <span class="status review">Review</span>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Payment Integration</div>
-              <small>By: Mike Chen</small>
-            </div>
-            <span class="status pending">Pending</span>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Mobile Responsive</div>
-              <small>By: Alex Rodriguez</small>
-            </div>
-            <span class="status success">Approved</span>
-          </div>
-          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="review-requests-btn">
-            Review Requests
-          </button>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Environment Toggles</h3>
-            <div class="card-icon">
-              <i class="fas fa-sliders-h"></i>
-            </div>
-          </div>
-          <div class="feature-flag">
-            <span>Dark Mode</span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="dark-mode-toggle" checked>
-              <span class="slider"></span>
-            </label>
-          </div>
-          <div class="feature-flag">
-            <span>New Dashboard UI</span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="new-ui-toggle">
-              <span class="slider"></span>
-            </label>
-          </div>
-          <div class="feature-flag">
-            <span>Experimental API</span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="experimental-api-toggle" checked>
-              <span class="slider"></span>
-            </label>
-          </div>
-          <div class="feature-flag">
-            <span>Beta Features</span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="beta-features-toggle">
-              <span class="slider"></span>
-            </label>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Dev Task Board</h3>
-            <div class="card-icon">
-              <i class="fas fa-tasks"></i>
-            </div>
-          </div>
-          <div class="task-item">
-            <div>
-              <div>Fix Login Bug</div>
-              <small>High Priority</small>
-            </div>
-            <span class="status pending">To Do</span>
-          </div>
-          <div class="task-item">
-            <div>
-              <div>Implement Search</div>
-              <small>Due: Tomorrow</small>
-            </div>
-            <span class="status running">In Progress</span>
-          </div>
-          <div class="task-item">
-            <div>
-              <div>Write API Tests</div>
-              <small>Assigned to you</small>
-            </div>
-            <span class="status pending">To Do</span>
-          </div>
-          <div class="task-item">
-            <div>
-              <div>Refactor Code</div>
-              <small>Low Priority</small>
-            </div>
-            <span class="status review">Review</span>
-          </div>
-          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="view-all-tasks-btn">
-            View All Tasks
-          </button>
-        </div>
-      </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button id="open-wizard" class="ghost">Onboard</button>
+      <button id="open-custom" class="ghost">Customize</button>
     </div>
-
-    <!-- Designer Dashboard -->
-    <div id="designer-dashboard" class="dashboard-container designer">
-      <div class="dashboard-header">
-        <div>
-          <h1 class="dashboard-title">Designer Dashboard</h1>
-          <p class="dashboard-subtitle">UI components, design system, Figma links, and design tasks</p>
-        </div>
-        <button class="btn btn-primary" id="new-design-btn">
-          <i class="fas fa-plus"></i> New Design
-        </button>
-      </div>
-
-      <div class="dashboard-grid">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Design System</h3>
-            <div class="card-icon">
-              <i class="fas fa-palette"></i>
-            </div>
-          </div>
-          <div class="design-item">
-            <div>
-              <div>Color Palette Update</div>
-              <small>In Progress</small>
-            </div>
-            <span class="status running">75%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" style="width: 75%"></div>
-          </div>
-          <div class="design-item">
-            <div>
-              <div>Typography Scale</div>
-              <small>Completed</small>
-            </div>
-            <span class="status success">100%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" style="width: 100%"></div>
-          </div>
-          <div class="design-item">
-            <div>
-              <div>Icon Library</div>
-              <small>Not Started</small>
-            </div>
-            <span class="status pending">0%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" style="width: 0%"></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Figma Links</h3>
-            <div class="card-icon">
-              <i class="fab fa-figma"></i>
-            </div>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Mobile App Design</div>
-              <small>Updated yesterday</small>
-            </div>
-            <i class="fas fa-external-link-alt"></i>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Website Redesign</div>
-              <small>Updated 3 days ago</small>
-            </div>
-            <i class="fas fa-external-link-alt"></i>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Admin Dashboard</div>
-              <small>In review</small>
-            </div>
-            <i class="fas fa-external-link-alt"></i>
-          </div>
-          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="open-figma-btn">
-            Open Figma
-          </button>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Design Tasks</h3>
-            <div class="card-icon">
-              <i class="fas fa-tasks"></i>
-            </div>
-          </div>
-          <div class="task-item">
-            <div>
-              <div>Create Login Mockup</div>
-              <small>Due: Today</small>
-            </div>
-            <span class="status running">In Progress</span>
-          </div>
-          <div class="task-item">
-            <div>
-              <div>Update Icons</div>
-              <small>Due: Friday</small>
-            </div>
-            <span class="status pending">To Do</span>
-          </div>
-          <div class="task-item">
-            <div>
-              <div>Style Guide Documentation</div>
-              <small>Assigned to you</small>
-            </div>
-            <span class="status pending">To Do</span>
-          </div>
-          <div class="task-item">
-            <div>
-              <div>User Profile Redesign</div>
-              <small>In review</small>
-            </div>
-            <span class="status review">Review</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">User Feedback</h3>
-            <div class="card-icon">
-              <i class="fas fa-comment-alt"></i>
-            </div>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Navigation is confusing</div>
-              <small>From 5 users</small>
-            </div>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Love the new color scheme!</div>
-              <small>From 12 users</small>
-            </div>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Buttons are too small on mobile</div>
-              <small>From 8 users</small>
-            </div>
-          </div>
-          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="view-feedback-btn">
-            View All Feedback
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- QA Dashboard -->
-    <div id="qa-dashboard" class="dashboard-container qa">
-      <div class="dashboard-header">
-        <div>
-          <h1 class="dashboard-title">QA Dashboard</h1>
-          <p class="dashboard-subtitle">Bug tracking, test cases, and testing progress</p>
-        </div>
-        <button class="btn btn-primary" id="new-test-btn">
-          <i class="fas fa-plus"></i> New Test
-        </button>
-      </div>
-
-      <div class="dashboard-grid">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Bug Tracking</h3>
-            <div class="card-icon">
-              <i class="fas fa-bug"></i>
-            </div>
-          </div>
-          <div class="bug-item">
-            <div>
-              <div>Login fails on Safari</div>
-              <small>High Priority</small>
-            </div>
-            <span class="status failed">Open</span>
-          </div>
-          <div class="bug-item">
-            <div>
-              <div>Payment button not working</div>
-              <small>Critical</small>
-            </div>
-            <span class="status failed">Open</span>
-          </div>
-          <div class="bug-item">
-            <div>
-              <div>Image upload slow</div>
-              <small>Medium Priority</small>
-            </div>
-            <span class="status running">In Progress</span>
-          </div>
-          <div class="bug-item">
-            <div>
-              <div>Typography inconsistency</div>
-              <small>Low Priority</small>
-            </div>
-            <span class="status success">Fixed</span>
-          </div>
-          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="view-all-bugs-btn">
-            View All Bugs
-          </button>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Test Cases</h3>
-            <div class="card-icon">
-              <i class="fas fa-vial"></i>
-            </div>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>User Registration Flow</div>
-              <small>15 test cases</small>
-            </div>
-            <span class="status success">Passed</span>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Payment Processing</div>
-              <small>22 test cases</small>
-            </div>
-            <span class="status running">In Progress</span>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Mobile Responsiveness</div>
-              <small>18 test cases</small>
-            </div>
-            <span class="status pending">Not Started</span>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>API Endpoints</div>
-              <small>30 test cases</small>
-            </div>
-            <span class="status success">Passed</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Test Progress</h3>
-            <div class="card-icon">
-              <i class="fas fa-chart-pie"></i>
-            </div>
-          </div>
-          <div class="stats">
-            <div class="stat">
-              <div class="stat-value">78%</div>
-              <div class="stat-label">Test Coverage</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">92%</div>
-              <div class="stat-label">Pass Rate</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">15</div>
-              <div class="stat-label">Open Bugs</div>
-            </div>
-          </div>
-          <div class="progress-bar" style="margin-top: 20px;">
-            <div class="progress" style="width: 78%"></div>
-          </div>
-          <div style="text-align: center; margin-top: 10px; font-size: 0.9rem;">
-            Overall Testing Progress
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Build Status</h3>
-            <div class="card-icon">
-              <i class="fas fa-server"></i>
-            </div>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Staging Environment</div>
-              <small>Version 2.1.5</small>
-            </div>
-            <span class="status success">Stable</span>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Production Environment</div>
-              <small>Version 2.1.4</small>
-            </div>
-            <span class="status success">Stable</span>
-          </div>
-          <div class="pipeline-item">
-            <div>
-              <div>Development Build</div>
-              <small>Latest commit</small>
-            </div>
-            <span class="status running">Testing</span>
-          </div>
-          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="deploy-staging-btn">
-            Deploy to Staging
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Manager Dashboard -->
-    <div id="manager-dashboard" class="dashboard-container manager">
-      <div class="dashboard-header">
-        <div>
-          <h1 class="dashboard-title">Manager Dashboard</h1>
-          <p class="dashboard-subtitle">Team performance, project progress, and reports</p>
-        </div>
-        <button class="btn btn-primary" id="export-report-btn">
-          <i class="fas fa-download"></i> Export Report
-        </button>
-      </div>
-
-      <div class="dashboard-grid">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Team Performance</h3>
-            <div class="card-icon">
-              <i class="fas fa-users"></i>
-            </div>
-          </div>
-          <div class="stats">
-            <div class="stat">
-              <div class="stat-value">92%</div>
-              <div class="stat-label">Productivity</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">15</div>
-              <div class="stat-label">Tasks Completed</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">3</div>
-              <div class="stat-label">Tasks Behind</div>
-            </div>
-          </div>
-          <div class="progress-bar" style="margin-top: 20px;">
-            <div class="progress" style="width: 92%"></div>
-          </div>
-          <div style="text-align: center; margin-top: 10px; font-size: 0.9rem;">
-            This Week's Performance
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Project Timeline</h3>
-            <div class="card-icon">
-              <i class="fas fa-calendar-alt"></i>
-            </div>
-          </div>
-          <div class="report-item">
-            <div>
-              <div>Phase 1: Planning</div>
-              <small>Completed</small>
-            </div>
-            <span class="status success">100%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" style="width: 100%"></div>
-          </div>
-          <div class="report-item">
-            <div>
-              <div>Phase 2: Development</div>
-              <small>In Progress</small>
-            </div>
-            <span class="status running">75%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" style="width: 75%"></div>
-          </div>
-          <div class="report-item">
-            <div>
-              <div>Phase 3: Testing</div>
-              <small>Not Started</small>
-            </div>
-            <span class="status pending">0%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" style="width: 0%"></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Sprint Progress</h3>
-            <div class="card-icon">
-              <i class="fas fa-tachometer-alt"></i>
-            </div>
-          </div>
-          <div class="stats">
-            <div class="stat">
-              <div class="stat-value">18/24</div>
-              <div class="stat-label">Tasks Done</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">5</div>
-              <div class="stat-label">Days Left</div>
-            </div>
-          </div>
-          <div class="progress-bar" style="margin-top: 20px;">
-            <div class="progress" style="width: 75%"></div>
-          </div>
-          <div style="text-align: center; margin-top: 10px; font-size: 0.9rem;">
-            Sprint 12 Progress
-          </div>
-          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="view-sprint-details-btn">
-            View Sprint Details
-          </button>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Workload Distribution</h3>
-            <div class="card-icon">
-              <i class="fas fa-chart-bar"></i>
-            </div>
-          </div>
-          <div class="report-item">
-            <div>
-              <div>Development Team</div>
-              <small>8 members</small>
-            </div>
-            <span class="status running">85%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" style="width: 85%"></div>
-          </div>
-          <div class="report-item">
-            <div>
-              <div>Design Team</div>
-              <small>3 members</small>
-            </div>
-            <span class="status running">70%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" style="width: 70%"></div>
-          </div>
-          <div class="report-item">
-            <div>
-              <div>QA Team</div>
-              <small>4 members</small>
-            </div>
-            <span class="status running">65%</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress" style="width: 65%"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <footer>
-      <p>DevHybrid Dashboard &copy; 2023 | Role-Specific Dashboard System</p>
-    </footer>
   </div>
 
-  <!-- Guide Panel -->
-  <div class="guide-panel" id="guidePanel">
-    <h3>Dashboard Guide</h3>
-    
-    <div class="guide-section">
-      <h4>🏠 Navigation</h4>
-      <div class="guide-item">
-        <span class="action">Click role buttons</span> - Switch between Developer, Designer, QA, and Manager dashboards
+  <div class="app">
+    <!-- LEFT: Sidebar -->
+    <aside class="sidebar left-col">
+      <div class="brand">
+        <div class="logo">DH</div>
+        <div>
+          <h2>DevHybrid</h2>
+          <div class="muted">Build & collaborate • Hybrid-ready</div>
+        </div>
+      </div>
+
+      <div class="nav" role="navigation">
+        <button class="active" data-view="overview">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          Overview
+        </button>
+        <button data-view="developer">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          Developer
+        </button>
+        <button data-view="qa">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          QA
+        </button>
+        <button data-view="design">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
+            <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
+          </svg>
+          Design
+        </button>
+        <button data-view="docs">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          Docs
+        </button>
+      </div>
+
+      <div style="margin-top:18px;" class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div class="muted">Your Role</div>
+            <select id="roleSelect" style="margin-top:8px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:var(--muted);width:100%">
+              <option>Developer</option>
+              <option>Manager</option>
+              <option>Designer</option>
+              <option>QA</option>
+            </select>
+          </div>
+          <div style="text-align:right">
+            <div class="muted">Mode</div>
+            <div class="toggle" style="margin-top:8px">
+              <button id="btnRemote" class="active">Remote</button>
+              <button id="btnOffice">Office</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;text-align:center">
+        <button id="open-wizard-2" class="btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="16"></line>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+          Start 5-min Setup
+        </button>
+      </div>
+
+      <div style="margin-top:12px" class="card">
+        <h3>My Quick Links</h3>
+        <div class="muted">Favorites & recent</div>
+        <div id="favorites" style="margin-top:10px;display:flex;flex-direction:column;gap:8px"></div>
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <input id="favInput" placeholder="Add favorite..." style="flex:1;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:var(--muted)">
+          <button id="addFav" class="ghost">Add</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-col">
+      <div class="topbar">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div class="search card">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+              <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.6"></circle>
+            </svg>
+            <input class="search-in" placeholder="Search projects, tasks, docs..." />
+          </div>
+
+          <div style="display:flex;gap:8px;align-items:center">
+            <div class="muted">View:</div>
+            <div class="toggle" id="viewToggle">
+              <button class="active" data-viewtype="kanban">Kanban</button>
+              <button data-viewtype="list">List</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="muted">Theme</div>
+          <div class="themes">
+            <div class="swatch active" title="Blue" data-color="#4f8ef7" style="background:linear-gradient(135deg,#4f8ef7,#6dd3ff)"></div>
+            <div class="swatch" title="Purple" data-color="#7c3aed" style="background:linear-gradient(135deg,#7c3aed,#b58eff)"></div>
+            <div class="swatch" title="Green" data-color="#10b981" style="background:linear-gradient(135deg,#10b981,#7ef7c3)"></div>
+          </div>
+          <button id="toggleTheme" class="ghost">Light</button>
+          <button id="open-custom" class="ghost">Customize</button>
+        </div>
+      </div>
+
+      <div class="main">
+        <section class="card overview">
+          <h3>Overview</h3>
+          <div class="muted" style="margin-bottom:12px">A quick glance at your workspace.</div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="muted">Active Pipelines</div>
+              <div style="font-size:18px;margin-top:8px;color:var(--accent)">3 running</div>
+              <div class="progress">
+                <div class="progress-bar" style="width: 60%"></div>
+              </div>
+              <div style="margin-top:12px"><button class="ghost">View Pipelines</button></div>
+            </div>
+
+            <div class="stat-card">
+              <div class="muted">Open PRs</div>
+              <div style="font-size:18px;margin-top:8px;color:#ffd166">5 awaiting review</div>
+              <div class="progress">
+                <div class="progress-bar" style="width: 30%; background: #ffd166"></div>
+              </div>
+              <div style="margin-top:12px"><button class="ghost">Open PRs</button></div>
+            </div>
+
+            <div class="stat-card">
+              <div class="muted">On-site Today</div>
+              <div style="font-size:18px;margin-top:8px;color:#8be9fd">2 desks booked</div>
+              <div class="progress">
+                <div class="progress-bar" style="width: 20%; background: #8be9fd"></div>
+              </div>
+              <div style="margin-top:12px"><button class="ghost">Manage Desks</button></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h3>Developer Board</h3>
+          <div class="muted">Kanban with drag & drop. (Front-end only demo)</div>
+
+          <div class="pipeline" id="board">
+            <div class="step" data-col="todo">
+              <strong class="muted">To do</strong>
+              <div class="task todo" draggable="true">Implement login page</div>
+              <div class="task todo" draggable="true">Connect CI to repo</div>
+            </div>
+            <div class="step" data-col="inprogress">
+              <strong class="muted">In progress</strong>
+              <div class="task inprogress" draggable="true">Design API spec</div>
+            </div>
+            <div class="step" data-col="review">
+              <strong class="muted">Review</strong>
+              <div class="task review" draggable="true">Refactor auth module</div>
+            </div>
+            <div class="step" data-col="done">
+              <strong class="muted">Done</strong>
+              <div class="task done" draggable="true">Create project scaffold</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+            <button id="addCard" class="btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Add Task
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <footer>Prototype UI built with HTML • CSS • JavaScript — Frontend-only</footer>
+    </main>
+
+    <!-- RIGHT: Controls & Docs -->
+    <aside class="right-col">
+      <div class="card">
+        <h3>Presence</h3>
+        <div class="presence" style="margin-top:8px">
+          <div class="dot online"></div>
+          <div class="muted">You (Remote)</div>
+        </div>
+        <div style="margin-top:8px">
+          <small class="muted">Switch to Office to see desk booking and map.</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Desk Booking (Demo)</h3>
+        <div class="muted">Select a date to book desk (frontend only)</div>
+        <input id="deskDate" type="date" style="margin-top:10px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:var(--muted);width:100%">
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <button id="bookDesk" class="btn">Book</button>
+          <button id="clearDesk" class="ghost">Clear</button>
+        </div>
+        <div id="deskMsg" class="muted" style="margin-top:8px"></div>
+      </div>
+
+      <div class="card docs">
+        <h3>Docs & API Preview</h3>
+        <div class="muted">Code sample & quick API snippet</div>
+        <pre><code>GET /api/projects
+Authorization: Bearer &lt;token&gt;
+
+Response 200 {
+  id, name, status, owner
+}
+
+// Try code samples in your environment
+</code></pre>
+        <div style="margin-top:8px;display:flex;gap:8px">
+          <button class="ghost">Open API Console</button>
+          <button class="ghost">Copy Snippet</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Onboarding Modal (hidden) -->
+  <div id="wizard" class="modal">
+    <div class="wizard">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Welcome — Quick Setup</h3>
+        <button id="closeWizard" class="ghost">Close</button>
+      </div>
+      <div class="steps">
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:250px" class="card">
+            <div class="muted">Step 1</div>
+            <h4>Connect Repository</h4>
+            <div class="muted">Connect GitHub / GitLab (demo)</div>
+            <div style="margin-top:12px">
+              <button class="btn" id="connectRepo">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                Connect
+              </button>
+            </div>
+          </div>
+          <div style="flex:1;min-width:250px" class="card">
+            <div class="muted">Step 2</div>
+            <h4>Pick Template</h4>
+            <div class="muted">Select a starter template</div>
+            <div style="margin-top:12px">
+              <select id="templatePick" style="padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:var(--muted);width:100%">
+                <option>Web App</option>
+                <option>API Service</option>
+                <option>Static Site</option>
+              </select>
+            </div>
+          </div>
+          <div style="flex:1;min-width:250px" class="card">
+            <div class="muted">Step 3</div>
+            <h4>Deploy Preview</h4>
+            <div class="muted">Run demo pipeline (frontend simulation)</div>
+            <div style="margin-top:12px">
+              <button id="runDemo" class="btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Run Demo
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
+          <div class="muted">Status: <span id="wizardStatus">Not started</span></div>
+          <div><button id="finishWizard" class="btn">Finish Setup</button></div>
+        </div>
       </div>
     </div>
-    
-    <div class="guide-section">
-      <h4>👨‍💻 Developer Dashboard</h4>
-      <div class="guide-item">
-        <span class="action">View Pipelines button</span> - Shows all CI/CD pipelines with status
+  </div>
+
+  <!-- Customization Drawer (simple) -->
+  <div id="customDrawer" class="modal">
+    <div class="wizard">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Customize</h3>
+        <button id="closeCustom" class="ghost">Close</button>
       </div>
-      <div class="guide-item">
-        <span class="action">Review Requests button</span> - Opens merge requests for review
-      </div>
-      <div class="guide-item">
-        <span class="action">Environment toggles</span> - Enable/disable features (Dark Mode, New UI, etc.)
-      </div>
-      <div class="guide-item">
-        <span class="action">New Task button</span> - Creates a new development task
-      </div>
-      <div class="guide-item">
-        <span class="action">View All Tasks button</span> - Shows complete task list
-      </div>
-    </div>
-    
-    <div class="guide-section">
-      <h4>🎨 Designer Dashboard</h4>
-      <div class="guide-item">
-        <span class="action">Open Figma button</span> - Opens Figma design files
-      </div>
-      <div class="guide-item">
-        <span class="action">View Feedback button</span> - Shows user feedback on designs
-      </div>
-      <div class="guide-item">
-        <span class="action">New Design button</span> - Creates a new design task
-      </div>
-    </div>
-    
-    <div class="guide-section">
-      <h4>🧪 QA Dashboard</h4>
-      <div class="guide-item">
-        <span class="action">View All Bugs button</span> - Shows complete bug list
-      </div>
-      <div class="guide-item">
-        <span class="action">Deploy to Staging button</span> - Deploys latest build to staging
-      </div>
-      <div class="guide-item">
-        <span class="action">New Test button</span> - Creates a new test case
-      </div>
-    </div>
-    
-    <div class="guide-section">
-      <h4>👔 Manager Dashboard</h4>
-      <div class="guide-item">
-        <span class="action">Export Report button</span> - Exports team performance report
-      </div>
-      <div class="guide-item">
-        <span class="action">View Sprint Details button</span> - Shows detailed sprint information
-      </div>
-    </div>
-    
-    <div class="guide-section">
-      <h4>🎨 Global Controls</h4>
-      <div class="guide-item">
-        <span class="action">Light/Dark Mode button</span> - Toggles between light and dark themes
-      </div>
-      <div class="guide-item">
-        <span class="action">Show Guide button</span> - Opens/closes this guide panel
+      <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:250px" class="card">
+          <h4>Theme color</h4>
+          <div class="themes" style="margin-top:8px">
+            <div class="swatch active" data-color="#4f8ef7" style="background:linear-gradient(135deg,#4f8ef7,#6dd3ff)"></div>
+            <div class="swatch" data-color="#7c3aed" style="background:linear-gradient(135deg,#7c3aed,#b58eff)"></div>
+            <div class="swatch" data-color="#10b981" style="background:linear-gradient(135deg,#10b981,#7ef7c3)"></div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:250px" class="card">
+          <h4>Layout</h4>
+          <div style="margin-top:8px" class="muted">Choose a compact or spacious layout</div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button id="compact" class="ghost">Compact</button>
+            <button id="spacious" class="ghost">Spacious</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1260,168 +882,385 @@
   </div>
 
   <script>
-    // Dashboard functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      // Elements
-      const roleButtons = document.querySelectorAll('.role-btn');
-      const dashboards = document.querySelectorAll('.dashboard-container');
-      const toggleThemeBtn = document.getElementById('toggleTheme');
-      const guideToggle = document.getElementById('guideToggle');
-      const guidePanel = document.getElementById('guidePanel');
-      const notification = document.getElementById('notification');
-      const notificationIcon = document.getElementById('notificationIcon');
-      const notificationText = document.getElementById('notificationText');
-      
-      // Role switching
-      roleButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const role = this.getAttribute('data-role');
-          
-          // Update active button
-          roleButtons.forEach(btn => btn.classList.remove('active'));
-          this.classList.add('active');
-          
-          // Show corresponding dashboard
-          dashboards.forEach(dashboard => {
-            dashboard.classList.remove('active');
-            if (dashboard.id === `${role}-dashboard`) {
-              dashboard.classList.add('active');
+    // Dashboard App
+    const Dashboard = {
+      // DOM Elements
+      elements: {
+        app: document.documentElement,
+        toggleThemeBtn: document.getElementById('toggleTheme'),
+        swatches: document.querySelectorAll('.swatch'),
+        roleSelect: document.getElementById('roleSelect'),
+        btnRemote: document.getElementById('btnRemote'),
+        btnOffice: document.getElementById('btnOffice'),
+        favoritesEl: document.getElementById('favorites'),
+        wizard: document.getElementById('wizard'),
+        customDrawer: document.getElementById('customDrawer'),
+        notification: document.getElementById('notification'),
+        notificationIcon: document.getElementById('notificationIcon'),
+        notificationText: document.getElementById('notificationText')
+      },
+
+      // Initialize the dashboard
+      init() {
+        this.loadSettings();
+        this.bindEvents();
+        this.renderFavorites();
+        this.updateDeskStatus();
+      },
+
+      // Load saved settings from localStorage
+      loadSettings() {
+        // Theme
+        const savedTheme = localStorage.getItem('dh-theme') || 'dark';
+        if (savedTheme === 'light') {
+          this.elements.app.setAttribute('data-theme', 'light');
+          this.elements.toggleThemeBtn.textContent = 'Dark';
+        } else {
+          this.elements.app.setAttribute('data-theme', 'dark');
+          this.elements.toggleThemeBtn.textContent = 'Light';
+        }
+
+        // Accent color
+        const savedAccent = localStorage.getItem('dh-accent');
+        if (savedAccent) {
+          document.documentElement.style.setProperty('--accent', savedAccent);
+          // Update active swatch
+          this.elements.swatches.forEach(s => {
+            if (s.dataset.color === savedAccent) {
+              s.classList.add('active');
+            } else {
+              s.classList.remove('active');
             }
           });
-          
-          showNotification(`Switched to ${role} dashboard`, 'info');
-        });
-      });
-      
-      // Theme toggle
-      toggleThemeBtn.addEventListener('click', function() {
-        const isDark = document.body.style.getPropertyValue('--bg') === '#0f1724' || 
-                      !document.body.style.getPropertyValue('--bg');
-        
-        if (isDark) {
-          document.documentElement.setAttribute('data-theme', 'light');
-          this.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
-          showNotification('Switched to light theme', 'success');
-        } else {
-          document.documentElement.setAttribute('data-theme', 'dark');
-          this.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
-          showNotification('Switched to dark theme', 'success');
         }
-      });
-      
-      // Guide toggle
-      guideToggle.addEventListener('click', function() {
-        if (guidePanel.style.display === 'block') {
-          guidePanel.style.display = 'none';
-          this.innerHTML = '<i class="fas fa-book"></i> Show Guide';
-        } else {
-          guidePanel.style.display = 'block';
-          this.innerHTML = '<i class="fas fa-times"></i> Hide Guide';
-        }
-      });
-      
-      // Developer dashboard buttons
-      document.getElementById('new-task-btn').addEventListener('click', function() {
-        const taskName = prompt('Enter new task name:');
-        if (taskName) {
-          showNotification(`Created new task: ${taskName}`, 'success');
-        }
-      });
-      
-      document.getElementById('view-pipelines-btn').addEventListener('click', function() {
-        showNotification('Opening all pipelines...', 'info');
-      });
-      
-      document.getElementById('review-requests-btn').addEventListener('click', function() {
-        showNotification('Opening merge requests for review...', 'info');
-      });
-      
-      document.getElementById('view-all-tasks-btn').addEventListener('click', function() {
-        showNotification('Loading all tasks...', 'info');
-      });
-      
-      // Designer dashboard buttons
-      document.getElementById('new-design-btn').addEventListener('click', function() {
-        const designName = prompt('Enter new design task:');
-        if (designName) {
-          showNotification(`Created new design: ${designName}`, 'success');
-        }
-      });
-      
-      document.getElementById('open-figma-btn').addEventListener('click', function() {
-        showNotification('Opening Figma...', 'info');
-      });
-      
-      document.getElementById('view-feedback-btn').addEventListener('click', function() {
-        showNotification('Loading user feedback...', 'info');
-      });
-      
-      // QA dashboard buttons
-      document.getElementById('new-test-btn').addEventListener('click', function() {
-        const testName = prompt('Enter new test case:');
-        if (testName) {
-          showNotification(`Created new test: ${testName}`, 'success');
-        }
-      });
-      
-      document.getElementById('view-all-bugs-btn').addEventListener('click', function() {
-        showNotification('Loading all bugs...', 'info');
-      });
-      
-      document.getElementById('deploy-staging-btn').addEventListener('click', function() {
-        showNotification('Deploying to staging environment...', 'info');
-        // Simulate deployment process
-        setTimeout(() => {
-          showNotification('Deployment to staging completed successfully', 'success');
-        }, 2000);
-      });
-      
-      // Manager dashboard buttons
-      document.getElementById('export-report-btn').addEventListener('click', function() {
-        showNotification('Exporting team performance report...', 'info');
-        // Simulate export process
-        setTimeout(() => {
-          showNotification('Report exported successfully', 'success');
-        }, 1500);
-      });
-      
-      document.getElementById('view-sprint-details-btn').addEventListener('click', function() {
-        showNotification('Opening sprint details...', 'info');
-      });
-      
-      // Environment toggles
-      const toggles = document.querySelectorAll('.toggle-switch input');
-      toggles.forEach(toggle => {
-        toggle.addEventListener('change', function() {
-          const label = this.parentElement.previousElementSibling.textContent;
-          if (this.checked) {
-            showNotification(`Enabled: ${label}`, 'success');
+
+        // Role
+        this.elements.roleSelect.value = localStorage.getItem('dh-role') || 'Developer';
+      },
+
+      // Bind event listeners
+      bindEvents() {
+        // Theme toggle
+        this.elements.toggleThemeBtn.addEventListener('click', () => {
+          if (this.elements.app.getAttribute('data-theme') === 'light') {
+            this.elements.app.setAttribute('data-theme', 'dark');
+            localStorage.setItem('dh-theme', 'dark');
+            this.elements.toggleThemeBtn.textContent = 'Light';
           } else {
-            showNotification(`Disabled: ${label}`, 'info');
+            this.elements.app.setAttribute('data-theme', 'light');
+            localStorage.setItem('dh-theme', 'light');
+            this.elements.toggleThemeBtn.textContent = 'Dark';
           }
         });
-      });
-      
-      // Notification function
-      function showNotification(message, type = 'info') {
+
+        // Accent color selection
+        this.elements.swatches.forEach(s => {
+          s.addEventListener('click', () => {
+            const color = s.dataset.color;
+            document.documentElement.style.setProperty('--accent', color);
+            localStorage.setItem('dh-accent', color);
+            
+            // Update active swatch
+            this.elements.swatches.forEach(sw => sw.classList.remove('active'));
+            s.classList.add('active');
+            
+            this.showNotification('Theme color updated', 'success');
+          });
+        });
+
+        // Role change
+        this.elements.roleSelect.addEventListener('change', () => {
+          localStorage.setItem('dh-role', this.elements.roleSelect.value);
+          this.showNotification(`Role set to ${this.elements.roleSelect.value}`, 'info');
+        });
+
+        // Mode toggle
+        this.elements.btnRemote.addEventListener('click', () => {
+          this.setMode('Remote');
+          this.showNotification('Switched to Remote mode', 'info');
+        });
+        
+        this.elements.btnOffice.addEventListener('click', () => {
+          this.setMode('Office');
+          this.showNotification('Switched to Office mode', 'info');
+        });
+
+        // Favorites
+        const favInput = document.getElementById('favInput');
+        const addFav = document.getElementById('addFav');
+        
+        addFav.addEventListener('click', () => {
+          const value = favInput.value.trim();
+          if (!value) return;
+          
+          const favorites = JSON.parse(localStorage.getItem('dh-favs') || '[]');
+          favorites.unshift(value);
+          localStorage.setItem('dh-favs', JSON.stringify(favorites.slice(0, 8)));
+          favInput.value = '';
+          this.renderFavorites();
+          this.showNotification('Favorite added', 'success');
+        });
+
+        // Desk booking
+        const deskDate = document.getElementById('deskDate');
+        const bookDesk = document.getElementById('bookDesk');
+        const deskMsg = document.getElementById('deskMsg');
+        const clearDesk = document.getElementById('clearDesk');
+        
+        bookDesk.addEventListener('click', () => {
+          if (!deskDate.value) {
+            deskMsg.textContent = 'Pick a date first';
+            return;
+          }
+          
+          localStorage.setItem('dh-desk', deskDate.value);
+          deskMsg.textContent = 'Desk booked for ' + deskDate.value;
+          this.showNotification('Desk booked successfully', 'success');
+        });
+        
+        clearDesk.addEventListener('click', () => {
+          localStorage.removeItem('dh-desk');
+          deskMsg.textContent = 'Booking cleared';
+          deskDate.value = '';
+          this.showNotification('Desk booking cleared', 'info');
+        });
+
+        // Onboarding wizard
+        document.getElementById('open-wizard').addEventListener('click', () => this.showModal(this.elements.wizard));
+        document.getElementById('open-wizard-2').addEventListener('click', () => this.showModal(this.elements.wizard));
+        document.getElementById('closeWizard').addEventListener('click', () => this.hideModal(this.elements.wizard));
+        
+        document.getElementById('connectRepo').addEventListener('click', () => {
+          document.getElementById('wizardStatus').textContent = 'Repository connected';
+          this.showNotification('Repository connected', 'success');
+        });
+        
+        document.getElementById('runDemo').addEventListener('click', () => {
+          document.getElementById('wizardStatus').textContent = 'Demo pipeline started';
+          this.showNotification('Demo pipeline started', 'info');
+          
+          setTimeout(() => {
+            document.getElementById('wizardStatus').textContent = 'Demo pipeline finished (pass)';
+            this.showNotification('Demo pipeline finished', 'success');
+          }, 1600);
+        });
+        
+        document.getElementById('finishWizard').addEventListener('click', () => {
+          this.hideModal(this.elements.wizard);
+          this.showNotification('Setup completed successfully', 'success');
+        });
+
+        // Customization drawer
+        document.getElementById('open-custom').addEventListener('click', () => this.showModal(this.elements.customDrawer));
+        document.getElementById('closeCustom').addEventListener('click', () => this.hideModal(this.elements.customDrawer));
+        
+        document.getElementById('compact').addEventListener('click', () => {
+          document.documentElement.style.setProperty('--radius', '8px');
+          this.showNotification('Compact layout applied', 'success');
+        });
+        
+        document.getElementById('spacious').addEventListener('click', () => {
+          document.documentElement.style.setProperty('--radius', '18px');
+          this.showNotification('Spacious layout applied', 'success');
+        });
+
+        // Kanban board
+        this.initKanban();
+
+        // View toggle
+        document.getElementById('viewToggle').addEventListener('click', e => {
+          if (e.target.dataset.viewtype) {
+            document.querySelectorAll('#viewToggle button').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            this.showNotification(`Switched to ${e.target.dataset.viewtype} view`, 'info');
+          }
+        });
+
+        // Navigation
+        document.querySelectorAll('.nav button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            this.showNotification(`Switched to ${btn.textContent.trim()} view`, 'info');
+          });
+        });
+      },
+
+      // Set user mode (Remote/Office)
+      setMode(mode) {
+        if (mode === 'Remote') {
+          this.elements.btnRemote.classList.add('active');
+          this.elements.btnOffice.classList.remove('active');
+          document.querySelector('.dot').className = 'dot online';
+          document.querySelector('.dot').nextElementSibling.textContent = 'You (Remote)';
+        } else {
+          this.elements.btnOffice.classList.add('active');
+          this.elements.btnRemote.classList.remove('active');
+          document.querySelector('.dot').className = 'dot offline';
+          document.querySelector('.dot').nextElementSibling.textContent = 'You (Office)';
+        }
+      },
+
+      // Render favorites list
+      renderFavorites() {
+        this.elements.favoritesEl.innerHTML = '';
+        const favorites = JSON.parse(localStorage.getItem('dh-favs') || '[]');
+        
+        if (favorites.length === 0) {
+          this.elements.favoritesEl.innerHTML = '<div class="muted">No favorites yet</div>';
+          return;
+        }
+        
+        favorites.forEach((favorite, index) => {
+          const item = document.createElement('div');
+          item.style.display = 'flex';
+          item.style.justifyContent = 'space-between';
+          item.style.alignItems = 'center';
+          item.innerHTML = `
+            <div class="muted">${favorite}</div>
+            <div style="display:flex;gap:6px">
+              <button data-index="${index}" class="ghost open-fav">Open</button>
+              <button data-index="${index}" class="ghost remove-fav">Remove</button>
+            </div>
+          `;
+          this.elements.favoritesEl.appendChild(item);
+        });
+        
+        // Add event listeners to new buttons
+        document.querySelectorAll('.remove-fav').forEach(btn => {
+          btn.addEventListener('click', e => {
+            const index = parseInt(e.target.dataset.index);
+            const favorites = JSON.parse(localStorage.getItem('dh-favs') || '[]');
+            favorites.splice(index, 1);
+            localStorage.setItem('dh-favs', JSON.stringify(favorites));
+            this.renderFavorites();
+            this.showNotification('Favorite removed', 'info');
+          });
+        });
+        
+        document.querySelectorAll('.open-fav').forEach(btn => {
+          btn.addEventListener('click', e => {
+            const index = parseInt(e.target.dataset.index);
+            const favorites = JSON.parse(localStorage.getItem('dh-favs') || '[]');
+            this.showNotification(`Opening ${favorites[index]}`, 'info');
+          });
+        });
+      },
+
+      // Update desk booking status
+      updateDeskStatus() {
+        const deskMsg = document.getElementById('deskMsg');
+        const savedDesk = localStorage.getItem('dh-desk');
+        
+        if (savedDesk) {
+          deskMsg.textContent = 'Booked: ' + savedDesk;
+        }
+      },
+
+      // Initialize Kanban board with drag & drop
+      initKanban() {
+        let dragEl = null;
+        
+        // Add drag events to existing tasks
+        document.querySelectorAll('.task').forEach(task => {
+          task.addEventListener('dragstart', e => {
+            dragEl = task;
+            task.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+          });
+          
+          task.addEventListener('dragend', () => {
+            dragEl = null;
+            task.classList.remove('dragging');
+          });
+        });
+        
+        // Add drop zones to columns
+        document.querySelectorAll('.step').forEach(column => {
+          column.addEventListener('dragover', e => {
+            e.preventDefault();
+            column.classList.add('drop-zone');
+          });
+          
+          column.addEventListener('dragleave', () => {
+            column.classList.remove('drop-zone');
+          });
+          
+          column.addEventListener('drop', e => {
+            e.preventDefault();
+            column.classList.remove('drop-zone');
+            
+            if (dragEl) {
+              column.appendChild(dragEl);
+              
+              // Update task status class based on column
+              const status = column.dataset.col;
+              dragEl.className = `task ${status}`;
+              
+              this.showNotification(`Task moved to ${column.querySelector('strong').textContent}`, 'success');
+            }
+          });
+        });
+        
+        // Add new task
+        document.getElementById('addCard').addEventListener('click', () => {
+          const title = prompt('Enter task title:') || 'New task';
+          if (!title.trim()) return;
+          
+          const task = document.createElement('div');
+          task.className = 'task todo';
+          task.draggable = true;
+          task.textContent = title;
+          
+          // Add drag events to new task
+          task.addEventListener('dragstart', e => {
+            dragEl = task;
+            task.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+          });
+          
+          task.addEventListener('dragend', () => {
+            dragEl = null;
+            task.classList.remove('dragging');
+          });
+          
+          document.querySelector('[data-col="todo"]').appendChild(task);
+          this.showNotification('Task added', 'success');
+        });
+      },
+
+      // Show modal
+      showModal(modal) {
+        modal.classList.add('show');
+      },
+
+      // Hide modal
+      hideModal(modal) {
+        modal.classList.remove('show');
+      },
+
+      // Show notification
+      showNotification(message, type = 'info') {
+        const { notification, notificationIcon, notificationText } = this.elements;
+        
         // Set notification content
         notificationText.textContent = message;
         notification.className = `notification ${type}`;
         
         // Set icon based on type
-        let icon = '';
+        let iconSvg = '';
         switch(type) {
           case 'success':
-            icon = '✓';
+            iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>';
             break;
           case 'error':
-            icon = '✗';
+            iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
             break;
           default:
-            icon = 'ℹ';
+            iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>';
         }
         
-        notificationIcon.textContent = icon;
+        notificationIcon.innerHTML = iconSvg;
         
         // Show notification
         notification.classList.add('show');
@@ -1431,13 +1270,12 @@
           notification.classList.remove('show');
         }, 3000);
       }
-      
-      // Initialize with developer dashboard active
-      showNotification('Welcome to DevHybrid Dashboard!', 'info');
+    };
+
+    // Initialize the dashboard when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      Dashboard.init();
     });
   </script>
-  
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </body>
 </html>
