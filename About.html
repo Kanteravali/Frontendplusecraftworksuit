@@ -343,159 +343,136 @@
         }
 
         /* Team Section */
-      
-.team-section {
-    text-align: center;
-    margin-bottom: 80px;
-}
+        .team-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
 
-.team-section h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 50px;
-    color: var(--text-dark);
-}
+        .team-section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 50px;
+            color: var(--text-dark);
+        }
 
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
-    max-width: 900px;
-    margin: 0 auto;
-}
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-.team-member {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    background: transparent;
-    border: none;
-    transition: var(--transition);
-}
+        .team-member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            background: transparent;
+            border: none;
+            transition: var(--transition);
+        }
 
-.team-member:hover {
-    transform: translateY(-3px);
-}
+        .team-member:hover {
+            transform: translateY(-3px);
+        }
 
-.member-image-container {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 20px;
-    position: relative;
-}
+        .member-image-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
 
-.member-image {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #4361ee 0%, #3a56d4 100%);
-    position: relative;
-    overflow: hidden;
-    border: 3px solid var(--primary-light);
-}
+        .member-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4361ee 0%, #3a56d4 100%);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid var(--primary-light);
+        }
 
-.member-image::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    border-radius: 50%;
-}
+        .member-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+        }
 
-.member-1 .member-image::before {
-    background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');
-}
+        .member-1 .member-image::before {
+            background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');
+        }
 
-.member-2 .member-image::before {
-    background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');
-}
+        .member-2 .member-image::before {
+            background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');
+        }
 
-.member-3 .member-image::before {
-    background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');
-}
+        .member-3 .member-image::before {
+            background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');
+        }
 
-.member-4 .member-image::before {
-    background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');
-}
+        .member-content {
+            text-align: center;
+        }
 
-.member-content {
-    text-align: center;
-}
+        .member-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
 
-.member-content h4 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: var(--text-dark);
-}
+        .member-content .role {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
 
-.member-content .role {
-    color: var(--primary);
-    font-weight: 500;
-    font-size: 0.85rem;
-}
+        .member-content p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
 
-/* Compact version with smaller images */
-.team-grid.compact {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 30px;
-    max-width: 700px;
-}
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .company-story {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
 
-.team-grid.compact .member-image-container {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 15px;
-}
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
 
-.team-grid.compact .member-content h4 {
-    font-size: 1rem;
-}
+            .story-stats {
+                grid-template-columns: 1fr;
+            }
 
-.team-grid.compact .member-content .role {
-    font-size: 0.8rem;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .team-section h2 {
-        font-size: 1.75rem;
-        margin-bottom: 40px;
-    }
-    
-    .team-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-    
-    .member-image-container {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .team-section h2 {
-        font-size: 1.5rem;
-    }
-    
-    .team-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-        max-width: 300px;
-    }
-    
-    .member-image-container {
-        width: 90px;
-        height: 90px;
-    }
-}
+            .team-section h2 {
+                font-size: 1.75rem;
+                margin-bottom: 40px;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .member-image-container {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 15px;
+            }
+        }
 
         @media (max-width: 480px) {
             .about-header h1 {
@@ -516,6 +493,16 @@
             .value-content,
             .member-content {
                 padding: 20px;
+            }
+            
+            .team-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                max-width: 300px;
             }
         }
     </style>
@@ -638,54 +625,43 @@
 
         <!-- Team Section -->
         <section class="team-section">
-       <h2>Leadership Team</h2>
-      <div class="team-grid">
-        <div class="team-member member-1">
-            <div class="member-image-container">
-                <div class="member-image"></div>
-            </div>
-            <div class="member-content">
-                <h4>Sarah Chen</h4>
-                <div class="role">CEO & Co-Founder</div>
-                <p>Former product lead at TechSolutions with 15+ years experience in SaaS platform development and business strategy.</p>
-            </div>
-        </div>
+            <h2>Leadership Team</h2>
+            <div class="team-grid">
+                <div class="team-member member-1">
+                    <div class="member-image-container">
+                        <div class="member-image"></div>
+                    </div>
+                    <div class="member-content">
+                        <h4>Sarah Chen</h4>
+                        <div class="role">CEO & Co-Founder</div>
+                        <p>Former product lead at TechSolutions with 15+ years experience in SaaS platform development and business strategy.</p>
+                    </div>
+                </div>
 
-        <div class="team-member member-2">
-            <div class="member-image-container">
-                <div class="member-image"></div>
-            </div>
-            <div class="member-content">
-                <h4>Marcus Rodriguez</h4>
-                <div class="role">CTO & Co-Founder</div>
-                <p>Cloud architecture expert with background in scalable system design and enterprise software development.</p>
-            </div>
-        </div>
+                <div class="team-member member-2">
+                    <div class="member-image-container">
+                        <div class="member-image"></div>
+                    </div>
+                    <div class="member-content">
+                        <h4>Marcus Rodriguez</h4>
+                        <div class="role">CTO & Co-Founder</div>
+                        <p>Cloud architecture expert with background in scalable system design and enterprise software development.</p>
+                    </div>
+                </div>
 
-        <div class="team-member member-3">
-            <div class="member-image-container">
-                <div class="member-image"></div>
+                <div class="team-member member-3">
+                    <div class="member-image-container">
+                        <div class="member-image"></div>
+                    </div>
+                    <div class="member-content">
+                        <h4>Priya Patel</h4>
+                        <div class="role">Head of Product</div>
+                        <p>Product management veteran focused on creating intuitive user experiences that solve real business problems.</p>
+                    </div>
+                </div>
             </div>
-            <div class="member-content">
-                <h4>Priya Patel</h4>
-                <div class="role">Head of Product</div>
-                <p>Product management veteran focused on creating intuitive user experiences that solve real business problems.</p>
-            </div>
-        </div>
-
-        <div class="team-member member-4">
-            <div class="member-image-container">
-                <div class="member-image"></div>
-            </div>
-            <div class="member-content">
-                <h4>David Kim</h4>
-                <div class="role">Head of Customer Success</div>
-                <p>Dedicated to ensuring customer satisfaction and driving adoption through comprehensive support and training.</p>
-            </div>
-        </div>
+        </section>
     </div>
-</section>
-
 
     <script>
         // Add subtle animations when elements come into view

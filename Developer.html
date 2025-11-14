@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Dashboard - Complete Guide</title>
+  <style>
+    :root {
+      --bg: #0f1724;
+      --card: #0b1220;
+      --muted: #9aa4b2;
+      --accent: #4f8ef7;
+      --glass: rgba(255,255,255,0.04);
+      --radius: 14px;
+      --pad: 16px;
+      --shadow: 0 6px 20px rgba(2,6,23,0.6);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --transition: all 0.2s ease;
+    }
+    
+    [data-theme="light"] {
+      --bg: #f6f8fb;
+      --card: #fff;
+      --muted: #64748b;
+      --accent: #2563eb;
+      --glass: rgba(2,6,23,0.03);
+      --shadow: 0 6px 20px rgba(20,20,40,0.06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--muted);
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 30px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), #6dd3ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+
+    .controls {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .role-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .role-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .role-btn.active {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .role-btn.dev {
+      background-color: #4361ee;
+      color: white;
+    }
+
+    .role-btn.designer {
+      background-color: #e63946;
+      color: white;
+    }
+
+    .role-btn.qa {
+      background-color: #2a9d8f;
+      color: white;
+    }
+
+    .role-btn.manager {
+      background-color: #7209b7;
+      color: white;
+    }
+
+    .dashboard-container {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .dashboard-container.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .dashboard-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .dashboard-subtitle {
+      color: var(--muted);
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: var(--pad);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .dev .card-icon {
+      background-color: #4361ee;
+    }
+
+    .designer .card-icon {
+      background-color: #e63946;
+    }
+
+    .qa .card-icon {
+      background-color: #2a9d8f;
+    }
+
+    .manager .card-icon {
+      background-color: #7209b7;
+    }
+
+    .pipeline-item, .task-item, .bug-item, .design-item, .report-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .pipeline-item:last-child, .task-item:last-child, .bug-item:last-child, 
+    .design-item:last-child, .report-item:last-child {
+      border-bottom: none;
+    }
+
+    .status {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-left: auto;
+    }
+
+    .status.success {
+      background-color: rgba(16, 185, 129, 0.2);
+      color: var(--success);
+    }
+
+    .status.failed {
+      background-color: rgba(239, 68, 68, 0.2);
+      color: var(--danger);
+    }
+
+    .status.running {
+      background-color: rgba(59, 130, 246, 0.2);
+      color: #3b82f6;
+    }
+
+    .status.pending {
+      background-color: rgba(245, 158, 11, 0.2);
+      color: var(--warning);
+    }
+
+    .status.review {
+      background-color: rgba(168, 85, 247, 0.2);
+      color: #a855f7;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: color-mix(in srgb, var(--accent) 80%, white);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: rgba(255,255,255,0.1);
+      color: var(--muted);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255,255,255,0.15);
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--success);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .feature-flag {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .feature-flag:last-child {
+      border-bottom: none;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+
+    .dev .progress {
+      background-color: #4361ee;
+    }
+
+    .designer .progress {
+      background-color: #e63946;
+    }
+
+    .qa .progress {
+      background-color: #2a9d8f;
+    }
+
+    .manager .progress {
+      background-color: #7209b7;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      opacity: 0.8;
+    }
+
+    .guide-panel {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 320px;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      z-index: 1000;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .guide-panel h3 {
+      margin-top: 0;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+
+    .guide-section {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .guide-section:last-child {
+      border-bottom: none;
+    }
+
+    .guide-item {
+      margin: 8px 0;
+      padding: 8px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .guide-item .action {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .guide-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--card);
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 100;
+      transform: translateX(150%);
+      transition: transform 0.3s ease;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification.success {
+      border-left: 3px solid var(--success);
+    }
+
+    .notification.error {
+      border-left: 3px solid var(--danger);
+    }
+
+    .notification.info {
+      border-left: 3px solid var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .role-selector {
+        justify-content: center;
+      }
+      
+      .guide-panel {
+        width: calc(100% - 40px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="logo-icon">DH</div>
+        <span>DevHybrid Dashboard</span>
+      </div>
+      <div class="controls">
+        <button id="toggleTheme" class="btn btn-secondary">
+          <i class="fas fa-moon"></i> Light Mode
+        </button>
+        <button id="guideToggle" class="btn btn-primary">
+          <i class="fas fa-book"></i> Show Guide
+        </button>
+      </div>
+    </header>
+
+    <div class="role-selector">
+      <button class="role-btn dev active" data-role="dev">
+        <i class="fas fa-code"></i> Developer
+      </button>
+      <button class="role-btn designer" data-role="designer">
+        <i class="fas fa-palette"></i> Designer
+      </button>
+      <button class="role-btn qa" data-role="qa">
+        <i class="fas fa-vial"></i> QA Tester
+      </button>
+      <button class="role-btn manager" data-role="manager">
+        <i class="fas fa-chart-line"></i> Manager
+      </button>
+    </div>
+
+    <!-- Developer Dashboard -->
+    <div id="dev-dashboard" class="dashboard-container active dev">
+      <div class="dashboard-header">
+        <div>
+          <h1 class="dashboard-title">Developer Dashboard</h1>
+          <p class="dashboard-subtitle">CI/CD pipelines, merge requests, environment toggles, and dev task boards</p>
+        </div>
+        <button class="btn btn-primary" id="new-task-btn">
+          <i class="fas fa-plus"></i> New Task
+        </button>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">CI/CD Pipelines</h3>
+            <div class="card-icon">
+              <i class="fas fa-stream"></i>
+            </div>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Frontend Build</div>
+              <small>Updated 5 min ago</small>
+            </div>
+            <span class="status success">Success</span>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Backend Deployment</div>
+              <small>Updated 12 min ago</small>
+            </div>
+            <span class="status running">Running</span>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Database Migration</div>
+              <small>Updated 1 hour ago</small>
+            </div>
+            <span class="status failed">Failed</span>
+          </div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="view-pipelines-btn">
+            View All Pipelines
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Merge Requests</h3>
+            <div class="card-icon">
+              <i class="fas fa-code-branch"></i>
+            </div>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>User Authentication</div>
+              <small>By: Sarah Johnson</small>
+            </div>
+            <span class="status review">Review</span>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Payment Integration</div>
+              <small>By: Mike Chen</small>
+            </div>
+            <span class="status pending">Pending</span>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Mobile Responsive</div>
+              <small>By: Alex Rodriguez</small>
+            </div>
+            <span class="status success">Approved</span>
+          </div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="review-requests-btn">
+            Review Requests
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Environment Toggles</h3>
+            <div class="card-icon">
+              <i class="fas fa-sliders-h"></i>
+            </div>
+          </div>
+          <div class="feature-flag">
+            <span>Dark Mode</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="dark-mode-toggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="feature-flag">
+            <span>New Dashboard UI</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="new-ui-toggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="feature-flag">
+            <span>Experimental API</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="experimental-api-toggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="feature-flag">
+            <span>Beta Features</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="beta-features-toggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Dev Task Board</h3>
+            <div class="card-icon">
+              <i class="fas fa-tasks"></i>
+            </div>
+          </div>
+          <div class="task-item">
+            <div>
+              <div>Fix Login Bug</div>
+              <small>High Priority</small>
+            </div>
+            <span class="status pending">To Do</span>
+          </div>
+          <div class="task-item">
+            <div>
+              <div>Implement Search</div>
+              <small>Due: Tomorrow</small>
+            </div>
+            <span class="status running">In Progress</span>
+          </div>
+          <div class="task-item">
+            <div>
+              <div>Write API Tests</div>
+              <small>Assigned to you</small>
+            </div>
+            <span class="status pending">To Do</span>
+          </div>
+          <div class="task-item">
+            <div>
+              <div>Refactor Code</div>
+              <small>Low Priority</small>
+            </div>
+            <span class="status review">Review</span>
+          </div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="view-all-tasks-btn">
+            View All Tasks
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Designer Dashboard -->
+    <div id="designer-dashboard" class="dashboard-container designer">
+      <div class="dashboard-header">
+        <div>
+          <h1 class="dashboard-title">Designer Dashboard</h1>
+          <p class="dashboard-subtitle">UI components, design system, Figma links, and design tasks</p>
+        </div>
+        <button class="btn btn-primary" id="new-design-btn">
+          <i class="fas fa-plus"></i> New Design
+        </button>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Design System</h3>
+            <div class="card-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+          </div>
+          <div class="design-item">
+            <div>
+              <div>Color Palette Update</div>
+              <small>In Progress</small>
+            </div>
+            <span class="status running">75%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width: 75%"></div>
+          </div>
+          <div class="design-item">
+            <div>
+              <div>Typography Scale</div>
+              <small>Completed</small>
+            </div>
+            <span class="status success">100%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width: 100%"></div>
+          </div>
+          <div class="design-item">
+            <div>
+              <div>Icon Library</div>
+              <small>Not Started</small>
+            </div>
+            <span class="status pending">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Figma Links</h3>
+            <div class="card-icon">
+              <i class="fab fa-figma"></i>
+            </div>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Mobile App Design</div>
+              <small>Updated yesterday</small>
+            </div>
+            <i class="fas fa-external-link-alt"></i>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Website Redesign</div>
+              <small>Updated 3 days ago</small>
+            </div>
+            <i class="fas fa-external-link-alt"></i>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Admin Dashboard</div>
+              <small>In review</small>
+            </div>
+            <i class="fas fa-external-link-alt"></i>
+          </div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="open-figma-btn">
+            Open Figma
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Design Tasks</h3>
+            <div class="card-icon">
+              <i class="fas fa-tasks"></i>
+            </div>
+          </div>
+          <div class="task-item">
+            <div>
+              <div>Create Login Mockup</div>
+              <small>Due: Today</small>
+            </div>
+            <span class="status running">In Progress</span>
+          </div>
+          <div class="task-item">
+            <div>
+              <div>Update Icons</div>
+              <small>Due: Friday</small>
+            </div>
+            <span class="status pending">To Do</span>
+          </div>
+          <div class="task-item">
+            <div>
+              <div>Style Guide Documentation</div>
+              <small>Assigned to you</small>
+            </div>
+            <span class="status pending">To Do</span>
+          </div>
+          <div class="task-item">
+            <div>
+              <div>User Profile Redesign</div>
+              <small>In review</small>
+            </div>
+            <span class="status review">Review</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">User Feedback</h3>
+            <div class="card-icon">
+              <i class="fas fa-comment-alt"></i>
+            </div>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Navigation is confusing</div>
+              <small>From 5 users</small>
+            </div>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Love the new color scheme!</div>
+              <small>From 12 users</small>
+            </div>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Buttons are too small on mobile</div>
+              <small>From 8 users</small>
+            </div>
+          </div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="view-feedback-btn">
+            View All Feedback
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QA Dashboard -->
+    <div id="qa-dashboard" class="dashboard-container qa">
+      <div class="dashboard-header">
+        <div>
+          <h1 class="dashboard-title">QA Dashboard</h1>
+          <p class="dashboard-subtitle">Bug tracking, test cases, and testing progress</p>
+        </div>
+        <button class="btn btn-primary" id="new-test-btn">
+          <i class="fas fa-plus"></i> New Test
+        </button>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Bug Tracking</h3>
+            <div class="card-icon">
+              <i class="fas fa-bug"></i>
+            </div>
+          </div>
+          <div class="bug-item">
+            <div>
+              <div>Login fails on Safari</div>
+              <small>High Priority</small>
+            </div>
+            <span class="status failed">Open</span>
+          </div>
+          <div class="bug-item">
+            <div>
+              <div>Payment button not working</div>
+              <small>Critical</small>
+            </div>
+            <span class="status failed">Open</span>
+          </div>
+          <div class="bug-item">
+            <div>
+              <div>Image upload slow</div>
+              <small>Medium Priority</small>
+            </div>
+            <span class="status running">In Progress</span>
+          </div>
+          <div class="bug-item">
+            <div>
+              <div>Typography inconsistency</div>
+              <small>Low Priority</small>
+            </div>
+            <span class="status success">Fixed</span>
+          </div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="view-all-bugs-btn">
+            View All Bugs
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Test Cases</h3>
+            <div class="card-icon">
+              <i class="fas fa-vial"></i>
+            </div>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>User Registration Flow</div>
+              <small>15 test cases</small>
+            </div>
+            <span class="status success">Passed</span>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Payment Processing</div>
+              <small>22 test cases</small>
+            </div>
+            <span class="status running">In Progress</span>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Mobile Responsiveness</div>
+              <small>18 test cases</small>
+            </div>
+            <span class="status pending">Not Started</span>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>API Endpoints</div>
+              <small>30 test cases</small>
+            </div>
+            <span class="status success">Passed</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Test Progress</h3>
+            <div class="card-icon">
+              <i class="fas fa-chart-pie"></i>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-value">78%</div>
+              <div class="stat-label">Test Coverage</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">92%</div>
+              <div class="stat-label">Pass Rate</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">15</div>
+              <div class="stat-label">Open Bugs</div>
+            </div>
+          </div>
+          <div class="progress-bar" style="margin-top: 20px;">
+            <div class="progress" style="width: 78%"></div>
+          </div>
+          <div style="text-align: center; margin-top: 10px; font-size: 0.9rem;">
+            Overall Testing Progress
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Build Status</h3>
+            <div class="card-icon">
+              <i class="fas fa-server"></i>
+            </div>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Staging Environment</div>
+              <small>Version 2.1.5</small>
+            </div>
+            <span class="status success">Stable</span>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Production Environment</div>
+              <small>Version 2.1.4</small>
+            </div>
+            <span class="status success">Stable</span>
+          </div>
+          <div class="pipeline-item">
+            <div>
+              <div>Development Build</div>
+              <small>Latest commit</small>
+            </div>
+            <span class="status running">Testing</span>
+          </div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="deploy-staging-btn">
+            Deploy to Staging
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manager Dashboard -->
+    <div id="manager-dashboard" class="dashboard-container manager">
+      <div class="dashboard-header">
+        <div>
+          <h1 class="dashboard-title">Manager Dashboard</h1>
+          <p class="dashboard-subtitle">Team performance, project progress, and reports</p>
+        </div>
+        <button class="btn btn-primary" id="export-report-btn">
+          <i class="fas fa-download"></i> Export Report
+        </button>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Team Performance</h3>
+            <div class="card-icon">
+              <i class="fas fa-users"></i>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-value">92%</div>
+              <div class="stat-label">Productivity</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">15</div>
+              <div class="stat-label">Tasks Completed</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Tasks Behind</div>
+            </div>
+          </div>
+          <div class="progress-bar" style="margin-top: 20px;">
+            <div class="progress" style="width: 92%"></div>
+          </div>
+          <div style="text-align: center; margin-top: 10px; font-size: 0.9rem;">
+            This Week's Performance
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Project Timeline</h3>
+            <div class="card-icon">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+          </div>
+          <div class="report-item">
+            <div>
+              <div>Phase 1: Planning</div>
+              <small>Completed</small>
+            </div>
+            <span class="status success">100%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width: 100%"></div>
+          </div>
+          <div class="report-item">
+            <div>
+              <div>Phase 2: Development</div>
+              <small>In Progress</small>
+            </div>
+            <span class="status running">75%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width: 75%"></div>
+          </div>
+          <div class="report-item">
+            <div>
+              <div>Phase 3: Testing</div>
+              <small>Not Started</small>
+            </div>
+            <span class="status pending">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Sprint Progress</h3>
+            <div class="card-icon">
+              <i class="fas fa-tachometer-alt"></i>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-value">18/24</div>
+              <div class="stat-label">Tasks Done</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">5</div>
+              <div class="stat-label">Days Left</div>
+            </div>
+          </div>
+          <div class="progress-bar" style="margin-top: 20px;">
+            <div class="progress" style="width: 75%"></div>
+          </div>
+          <div style="text-align: center; margin-top: 10px; font-size: 0.9rem;">
+            Sprint 12 Progress
+          </div>
+          <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" id="view-sprint-details-btn">
+            View Sprint Details
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Workload Distribution</h3>
+            <div class="card-icon">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+          </div>
+          <div class="report-item">
+            <div>
+              <div>Development Team</div>
+              <small>8 members</small>
+            </div>
+            <span class="status running">85%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width: 85%"></div>
+          </div>
+          <div class="report-item">
+            <div>
+              <div>Design Team</div>
+              <small>3 members</small>
+            </div>
+            <span class="status running">70%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width: 70%"></div>
+          </div>
+          <div class="report-item">
+            <div>
+              <div>QA Team</div>
+              <small>4 members</small>
+            </div>
+            <span class="status running">65%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width: 65%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>DevHybrid Dashboard &copy; 2023 | Role-Specific Dashboard System</p>
+    </footer>
+  </div>
+
+  <!-- Guide Panel -->
+  <div class="guide-panel" id="guidePanel">
+    <h3>Dashboard Guide</h3>
+    
+    <div class="guide-section">
+      <h4>🏠 Navigation</h4>
+      <div class="guide-item">
+        <span class="action">Click role buttons</span> - Switch between Developer, Designer, QA, and Manager dashboards
+      </div>
+    </div>
+    
+    <div class="guide-section">
+      <h4>👨‍💻 Developer Dashboard</h4>
+      <div class="guide-item">
+        <span class="action">View Pipelines button</span> - Shows all CI/CD pipelines with status
+      </div>
+      <div class="guide-item">
+        <span class="action">Review Requests button</span> - Opens merge requests for review
+      </div>
+      <div class="guide-item">
+        <span class="action">Environment toggles</span> - Enable/disable features (Dark Mode, New UI, etc.)
+      </div>
+      <div class="guide-item">
+        <span class="action">New Task button</span> - Creates a new development task
+      </div>
+      <div class="guide-item">
+        <span class="action">View All Tasks button</span> - Shows complete task list
+      </div>
+    </div>
+    
+    <div class="guide-section">
+      <h4>🎨 Designer Dashboard</h4>
+      <div class="guide-item">
+        <span class="action">Open Figma button</span> - Opens Figma design files
+      </div>
+      <div class="guide-item">
+        <span class="action">View Feedback button</span> - Shows user feedback on designs
+      </div>
+      <div class="guide-item">
+        <span class="action">New Design button</span> - Creates a new design task
+      </div>
+    </div>
+    
+    <div class="guide-section">
+      <h4>🧪 QA Dashboard</h4>
+      <div class="guide-item">
+        <span class="action">View All Bugs button</span> - Shows complete bug list
+      </div>
+      <div class="guide-item">
+        <span class="action">Deploy to Staging button</span> - Deploys latest build to staging
+      </div>
+      <div class="guide-item">
+        <span class="action">New Test button</span> - Creates a new test case
+      </div>
+    </div>
+    
+    <div class="guide-section">
+      <h4>👔 Manager Dashboard</h4>
+      <div class="guide-item">
+        <span class="action">Export Report button</span> - Exports team performance report
+      </div>
+      <div class="guide-item">
+        <span class="action">View Sprint Details button</span> - Shows detailed sprint information
+      </div>
+    </div>
+    
+    <div class="guide-section">
+      <h4>🎨 Global Controls</h4>
+      <div class="guide-item">
+        <span class="action">Light/Dark Mode button</span> - Toggles between light and dark themes
+      </div>
+      <div class="guide-item">
+        <span class="action">Show Guide button</span> - Opens/closes this guide panel
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification -->
+  <div id="notification" class="notification">
+    <div id="notificationIcon"></div>
+    <div id="notificationText"></div>
+  </div>
+
+  <script>
+    // Dashboard functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Elements
+      const roleButtons = document.querySelectorAll('.role-btn');
+      const dashboards = document.querySelectorAll('.dashboard-container');
+      const toggleThemeBtn = document.getElementById('toggleTheme');
+      const guideToggle = document.getElementById('guideToggle');
+      const guidePanel = document.getElementById('guidePanel');
+      const notification = document.getElementById('notification');
+      const notificationIcon = document.getElementById('notificationIcon');
+      const notificationText = document.getElementById('notificationText');
+      
+      // Role switching
+      roleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const role = this.getAttribute('data-role');
+          
+          // Update active button
+          roleButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Show corresponding dashboard
+          dashboards.forEach(dashboard => {
+            dashboard.classList.remove('active');
+            if (dashboard.id === `${role}-dashboard`) {
+              dashboard.classList.add('active');
+            }
+          });
+          
+          showNotification(`Switched to ${role} dashboard`, 'info');
+        });
+      });
+      
+      // Theme toggle
+      toggleThemeBtn.addEventListener('click', function() {
+        const isDark = document.body.style.getPropertyValue('--bg') === '#0f1724' || 
+                      !document.body.style.getPropertyValue('--bg');
+        
+        if (isDark) {
+          document.documentElement.setAttribute('data-theme', 'light');
+          this.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+          showNotification('Switched to light theme', 'success');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          this.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+          showNotification('Switched to dark theme', 'success');
+        }
+      });
+      
+      // Guide toggle
+      guideToggle.addEventListener('click', function() {
+        if (guidePanel.style.display === 'block') {
+          guidePanel.style.display = 'none';
+          this.innerHTML = '<i class="fas fa-book"></i> Show Guide';
+        } else {
+          guidePanel.style.display = 'block';
+          this.innerHTML = '<i class="fas fa-times"></i> Hide Guide';
+        }
+      });
+      
+      // Developer dashboard buttons
+      document.getElementById('new-task-btn').addEventListener('click', function() {
+        const taskName = prompt('Enter new task name:');
+        if (taskName) {
+          showNotification(`Created new task: ${taskName}`, 'success');
+        }
+      });
+      
+      document.getElementById('view-pipelines-btn').addEventListener('click', function() {
+        showNotification('Opening all pipelines...', 'info');
+      });
+      
+      document.getElementById('review-requests-btn').addEventListener('click', function() {
+        showNotification('Opening merge requests for review...', 'info');
+      });
+      
+      document.getElementById('view-all-tasks-btn').addEventListener('click', function() {
+        showNotification('Loading all tasks...', 'info');
+      });
+      
+      // Designer dashboard buttons
+      document.getElementById('new-design-btn').addEventListener('click', function() {
+        const designName = prompt('Enter new design task:');
+        if (designName) {
+          showNotification(`Created new design: ${designName}`, 'success');
+        }
+      });
+      
+      document.getElementById('open-figma-btn').addEventListener('click', function() {
+        showNotification('Opening Figma...', 'info');
+      });
+      
+      document.getElementById('view-feedback-btn').addEventListener('click', function() {
+        showNotification('Loading user feedback...', 'info');
+      });
+      
+      // QA dashboard buttons
+      document.getElementById('new-test-btn').addEventListener('click', function() {
+        const testName = prompt('Enter new test case:');
+        if (testName) {
+          showNotification(`Created new test: ${testName}`, 'success');
+        }
+      });
+      
+      document.getElementById('view-all-bugs-btn').addEventListener('click', function() {
+        showNotification('Loading all bugs...', 'info');
+      });
+      
+      document.getElementById('deploy-staging-btn').addEventListener('click', function() {
+        showNotification('Deploying to staging environment...', 'info');
+        // Simulate deployment process
+        setTimeout(() => {
+          showNotification('Deployment to staging completed successfully', 'success');
+        }, 2000);
+      });
+      
+      // Manager dashboard buttons
+      document.getElementById('export-report-btn').addEventListener('click', function() {
+        showNotification('Exporting team performance report...', 'info');
+        // Simulate export process
+        setTimeout(() => {
+          showNotification('Report exported successfully', 'success');
+        }, 1500);
+      });
+      
+      document.getElementById('view-sprint-details-btn').addEventListener('click', function() {
+        showNotification('Opening sprint details...', 'info');
+      });
+      
+      // Environment toggles
+      const toggles = document.querySelectorAll('.toggle-switch input');
+      toggles.forEach(toggle => {
+        toggle.addEventListener('change', function() {
+          const label = this.parentElement.previousElementSibling.textContent;
+          if (this.checked) {
+            showNotification(`Enabled: ${label}`, 'success');
+          } else {
+            showNotification(`Disabled: ${label}`, 'info');
+          }
+        });
+      });
+      
+      // Notification function
+      function showNotification(message, type = 'info') {
+        // Set notification content
+        notificationText.textContent = message;
+        notification.className = `notification ${type}`;
+        
+        // Set icon based on type
+        let icon = '';
+        switch(type) {
+          case 'success':
+            icon = '✓';
+            break;
+          case 'error':
+            icon = '✗';
+            break;
+          default:
+            icon = 'ℹ';
+        }
+        
+        notificationIcon.textContent = icon;
+        
+        // Show notification
+        notification.classList.add('show');
+        
+        // Auto hide after 3 seconds
+        setTimeout(() => {
+          notification.classList.remove('show');
+        }, 3000);
+      }
+      
+      // Initialize with developer dashboard active
+      showNotification('Welcome to DevHybrid Dashboard!', 'info');
+    });
+  </script>
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</body>
+</html>
