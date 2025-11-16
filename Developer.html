@@ -1,1281 +1,3027 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Developer & Hybrid Dashboard — UI Template</title>
-  <style>
-    :root {
-      --bg: #0f1724; 
-      --card: #0b1220; 
-      --muted: #9aa4b2; 
-      --accent: #4f8ef7; 
-      --glass: rgba(255,255,255,0.04);
-      --radius: 14px; 
-      --pad: 16px;
-      --shadow: 0 6px 20px rgba(2,6,23,0.6);
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --transition: all 0.2s ease;
-    }
-    
-    [data-theme="light"] { 
-      --bg: #f6f8fb; 
-      --card: #fff; 
-      --muted: #64748b; 
-      --accent: #2563eb; 
-      --glass: rgba(2,6,23,0.03); 
-      --shadow: 0 6px 20px rgba(20,20,40,0.06);
-    } 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PluseCraft - Complete Dashboard System</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+            --bg-color: #f1f5f9;
+            --card-bg: white;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+        }
 
-    * { box-sizing: border-box; }
-    
-    html, body {
-      height: 100%; 
-      margin: 0; 
-      font-family: 'Inter', ui-sans-serif, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
-      background: linear-gradient(180deg, var(--bg), #071023 60%); 
-      color: var(--muted);
-      line-height: 1.5;
-    }
-    
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+        /* Dark Theme */
+        [data-theme="dark"] {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #94a3b8;
+            --light: #1e293b;
+            --dark: #f8fafc;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f1f5f9;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
 
-    /* Layout */
-    .app {
-      display: grid; 
-      grid-template-columns: 260px 1fr 340px; 
-      gap: 20px; 
-      padding: 28px; 
-      max-width: 1300px; 
-      margin: 28px auto;
-      transition: var(--transition);
-    }
-    
-    @media (max-width: 1100px) { 
-      .app {
-        grid-template-columns: 1fr; 
-        padding: 16px;
-      } 
-      .right-col { order: 3; } 
-      .main-col { order: 2; } 
-      .left-col { order: 1; } 
-    }
+        /* Blue Theme */
+        [data-theme="blue"] {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --secondary: #475569;
+            --light: #dbeafe;
+            --dark: #1e293b;
+            --bg-color: #eff6ff;
+            --card-bg: white;
+            --text-color: #1e293b;
+            --border-color: #bfdbfe;
+        }
 
-    /* Sidebar */
-    .sidebar {
-      background: var(--card); 
-      border-radius: var(--radius); 
-      padding: 18px; 
-      box-shadow: var(--shadow);
-      height: fit-content;
-    }
-    
-    .brand {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-    
-    .logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), #6dd3ff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 700;
-    }
-    
-    .brand h2 {
-      margin: 0;
-      font-size: 16px;
-      color: var(--muted);
-    }
-    
-    .nav {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    
-    .nav button {
-      background: transparent;
-      border: 0;
-      color: var(--muted);
-      text-align: left;
-      padding: 10px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .nav button:hover {
-      background: var(--glass);
-    }
-    
-    .nav button.active {
-      background: var(--glass);
-      color: var(--accent);
-    }
-    
-    .nav-icon {
-      width: 16px;
-      height: 16px;
-    }
+        /* Green Theme */
+        [data-theme="green"] {
+            --primary: #059669;
+            --primary-dark: #047857;
+            --secondary: #6b7280;
+            --light: #d1fae5;
+            --dark: #064e3b;
+            --bg-color: #ecfdf5;
+            --card-bg: white;
+            --text-color: #064e3b;
+            --border-color: #a7f3d0;
+        }
 
-    /* Top controls */
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    
-    .controls {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    
-    .search {
-      background: var(--card);
-      padding: 8px 12px;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      transition: var(--transition);
-    }
-    
-    .search:focus-within {
-      box-shadow: 0 0 0 2px var(--accent);
-    }
-    
-    input.search-in {
-      border: 0;
-      background: transparent;
-      outline: none;
-      color: var(--muted);
-      width: 220px;
-    }
+        /* Purple Theme */
+        [data-theme="purple"] {
+            --primary: #7c3aed;
+            --primary-dark: #6d28d9;
+            --secondary: #8b5cf6;
+            --light: #ede9fe;
+            --dark: #4c1d95;
+            --bg-color: #faf5ff;
+            --card-bg: white;
+            --text-color: #4c1d95;
+            --border-color: #ddd6fe;
+        }
 
-    /* Cards */
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent); 
-      padding: var(--pad); 
-      border-radius: var(--radius); 
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-    
-    .card:hover {
-      box-shadow: 0 8px 25px rgba(2,6,23,0.7);
-    }
-    
-    h3 {
-      margin: 0 0 10px 0;
-      color: var(--muted);
-      font-weight: 600;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    /* Dashboard grid */
-    .main {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-    
-    @media (max-width: 900px) { 
-      .main {
-        grid-template-columns: 1fr;
-      } 
-    }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
 
-    .pipeline {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      overflow-x: auto;
-      padding-bottom: 8px;
-    }
-    
-    .pipeline .step {
-      min-width: 170px;
-      padding: 12px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.02);
-      transition: var(--transition);
-    }
-    
-    .pipeline .step.drop-zone {
-      background: rgba(79, 142, 247, 0.1);
-      border: 1px dashed var(--accent);
-    }
-    
-    .task {
-      background: rgba(255,255,255,0.03);
-      padding: 10px;
-      border-radius: 8px;
-      margin: 8px 0;
-      cursor: grab;
-      transition: var(--transition);
-      border-left: 3px solid transparent;
-    }
-    
-    .task:hover {
-      background: rgba(255,255,255,0.05);
-      transform: translateY(-1px);
-    }
-    
-    .task.dragging {
-      opacity: 0.5;
-      transform: rotate(3deg);
-    }
-    
-    .task.todo { border-left-color: var(--warning); }
-    .task.inprogress { border-left-color: var(--accent); }
-    .task.review { border-left-color: #f59e0b; }
-    .task.done { border-left-color: var(--success); }
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    /* Right column */
-    .right-col .card {
-      margin-bottom: 12px;
-    }
-    
-    .presence {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-    
-    .dot.online { background: var(--success); }
-    .dot.offline { background: var(--danger); }
-    .dot.away { background: var(--warning); }
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: var(--transition);
+        }
 
-    /* Toggle */
-    .toggle {
-      display: inline-flex;
-      background: var(--glass);
-      padding: 6px;
-      border-radius: 999px;
-    }
-    
-    .toggle button {
-      border: 0;
-      background: transparent;
-      padding: 6px 10px;
-      border-radius: 999px;
-      color: var(--muted);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    
-    .toggle button.active {
-      background: var(--accent);
-      color: white;
-    }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
 
-    /* Theme controls */
-    .themes {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    
-    .swatch {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      cursor: pointer;
-      border: 2px solid rgba(255,255,255,0.04);
-      transition: var(--transition);
-    }
-    
-    .swatch:hover {
-      transform: scale(1.1);
-    }
-    
-    .swatch.active {
-      border-color: var(--accent);
-    }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
 
-    /* Onboarding modal */
-    .modal {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(2,6,23,0.5);
-      backdrop-filter: blur(4px);
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-    
-    .modal.show {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .wizard {
-      width: 920px;
-      max-width: 95%;
-      background: var(--card);
-      padding: 22px;
-      border-radius: 14px;
-      color: var(--muted);
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
-    }
-    
-    .modal.show .wizard {
-      transform: translateY(0);
-    }
-    
-    .steps {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-    
-    .wizard-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
 
-    /* Docs */
-    .docs {
-      height: 420px;
-      overflow: auto;
-    }
-    
-    pre {
-      background: rgba(0,0,0,0.25);
-      padding: 12px;
-      border-radius: 8px;
-      color: #e6eefc;
-      overflow: auto;
-      font-size: 13px;
-    }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+        }
 
-    /* Small helpers */
-    .muted {
-      color: var(--muted);
-      font-size: 13px;
-    }
-    
-    .btn {
-      background: var(--accent);
-      color: white;
-      padding: 8px 12px;
-      border-radius: 10px;
-      border: 0;
-      cursor: pointer;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 500;
-    }
-    
-    .btn:hover {
-      background: color-mix(in srgb, var(--accent) 80%, white);
-      transform: translateY(-1px);
-    }
-    
-    .ghost {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.06);
-      padding: 8px 10px;
-      border-radius: 10px;
-      color: var(--muted);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    
-    .ghost:hover {
-      background: rgba(255,255,255,0.05);
-    }
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--primary);
+            color: white;
+        }
 
-    /* Responsive header for mobile */
-    .mobile-header {
-      display: none;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px;
-    }
-    
-    @media (max-width: 1100px) { 
-      .mobile-header {
-        display: flex;
-      } 
-      .app {
-        margin-top: 56px;
-      } 
-    }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-    /* Drag placeholder */
-    .placeholder {
-      height: 48px;
-      border-radius: 8px;
-      border: 2px dashed rgba(255,255,255,0.06);
-      margin: 8px 0;
-    }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
 
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 24px;
-    }
-    
-    /* Stats cards */
-    .stats-grid {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    
-    .stat-card {
-      flex: 1;
-      min-width: 220px;
-      padding: 16px;
-      border-radius: var(--radius);
-      background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
-      transition: var(--transition);
-    }
-    
-    .stat-card:hover {
-      transform: translateY(-2px);
-    }
-    
-    /* Progress bar */
-    .progress {
-      height: 6px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 3px;
-      margin-top: 8px;
-      overflow: hidden;
-    }
-    
-    .progress-bar {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 3px;
-      transition: width 0.5s ease;
-    }
-    
-    /* Notification */
-    .notification {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--card);
-      padding: 12px 16px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 100;
-      transform: translateX(150%);
-      transition: transform 0.3s ease;
-    }
-    
-    .notification.show {
-      transform: translateX(0);
-    }
-    
-    .notification.success { border-left: 3px solid var(--success); }
-    .notification.error { border-left: 3px solid var(--danger); }
-    .notification.info { border-left: 3px solid var(--accent); }
-    
-    /* Loading spinner */
-    .spinner {
-      width: 20px;
-      height: 20px;
-      border: 2px solid rgba(255,255,255,0.1);
-      border-radius: 50%;
-      border-top-color: var(--accent);
-      animation: spin 1s linear infinite;
-      display: inline-block;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-  </style>
+        .workspace-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .status-remote { background-color: var(--primary); }
+        .status-hybrid { background-color: var(--warning); }
+        .status-onsite { background-color: var(--success); }
+        .status-office { background-color: var(--secondary); }
+
+        /* Theme Selector */
+        .theme-selector {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-btn {
+            background: var(--light);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .theme-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .theme-options {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 1rem;
+            display: none;
+            flex-direction: column;
+            gap: 0.5rem;
+            min-width: 150px;
+            z-index: 10;
+            margin-top: 0.5rem;
+        }
+
+        .theme-options.active {
+            display: flex;
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-option:hover {
+            background: var(--light);
+        }
+
+        .theme-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .theme-light { background: #f1f5f9; border: 1px solid #cbd5e1; }
+        .theme-dark { background: #0f172a; }
+        .theme-blue { background: #eff6ff; border: 1px solid #bfdbfe; }
+        .theme-green { background: #ecfdf5; border: 1px solid #a7f3d0; }
+        .theme-purple { background: #faf5ff; border: 1px solid #ddd6fe; }
+
+        /* Role Selector */
+        .role-selector {
+            display: flex;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin: 2rem auto;
+            max-width: 400px;
+        }
+
+        .role-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            flex: 1;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .role-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Main Content Sections */
+        .main-section {
+            display: none;
+            padding: 2rem 0;
+            min-height: 80vh;
+        }
+
+        .main-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title h1 {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--secondary);
+        }
+
+        /* Dashboard Content */
+        .dashboard-content {
+            display: none;
+        }
+
+        .dashboard-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-warning {
+            background-color: var(--warning);
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        /* Lists */
+        .list {
+            list-style: none;
+        }
+
+        .list-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .item-info p {
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        .item-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-success {
+            background: #dcfce7;
+            color: var(--success);
+        }
+
+        .status-warning {
+            background: #fef3c7;
+            color: var(--warning);
+        }
+
+        .status-error {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+
+        .status-info {
+            background: #dbeafe;
+            color: var(--primary);
+        }
+
+        /* Charts */
+        .chart-container {
+            height: 200px;
+            background: var(--light);
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+            display: flex;
+            align-items: flex-end;
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: var(--primary);
+            border-radius: 4px 4px 0 0;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .chart-bar:hover {
+            opacity: 0.8;
+        }
+
+        .chart-label {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+
+        /* Activity Feed */
+        .activity-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .activity-content h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-content p {
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        .activity-time {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .action-btn {
+            background: var(--light);
+            border: none;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .action-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .action-btn i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            background: var(--light);
+            font-weight: 600;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        /* Workspace Status Selector */
+        .status-selector {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 0.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .status-option {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            color: var(--text-color);
+            background: transparent;
+        }
+
+        .status-option.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        /* Project Cards */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--light);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 auto 1rem;
+        }
+
+        .team-role {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .team-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Analytics Charts */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .chart-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Settings */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        .settings-nav {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .settings-nav-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .settings-nav-item:last-child {
+            border-bottom: none;
+        }
+
+        .settings-nav-item:hover, .settings-nav-item.active {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .settings-content {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary);
+        }
+
+        /* Profile View */
+        .profile-header {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .profile-info h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info p {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-value {
+            font-weight: 500;
+        }
+
+        /* Meeting Schedule */
+        .meeting-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .meeting-form .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .meeting-form .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .meeting-list {
+            margin-top: 2rem;
+        }
+
+        .meeting-item {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+
+        .meeting-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .meeting-title {
+            font-weight: 600;
+        }
+
+        .meeting-time {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .meeting-participants {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .participant-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Developer Tools Content */
+        .tools-content {
+            margin-top: 1.5rem;
+        }
+
+        .api-console {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .api-endpoint {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .endpoint-method {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .method-get { background: #dcfce7; color: var(--success); }
+        .method-post { background: #dbeafe; color: var(--primary); }
+        .method-put { background: #fef3c7; color: var(--warning); }
+        .method-delete { background: #fee2e2; color: var(--danger); }
+
+        .endpoint-url {
+            flex: 1;
+            font-family: 'Courier New', monospace;
+            background: var(--card-bg);
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .test-btn {
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .response-area {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1rem;
+            min-height: 100px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .documentation-section {
+            margin-bottom: 2rem;
+        }
+
+        .doc-section-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .api-keys-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .api-key-item {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .key-info h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .key-info p {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .key-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .webhooks-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .webhook-item {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+        }
+
+        .webhook-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .webhook-url {
+            font-family: 'Courier New', monospace;
+            background: var(--card-bg);
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .dashboard-grid, .analytics-grid, .settings-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .meeting-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .api-endpoint {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="mobile-header card" style="position:fixed;left:12px;right:12px;top:10px;z-index:50">
-    <div style="display:flex;gap:10px;align-items:center">
-      <div class="logo">DH</div>
-      <strong style="color:var(--muted)">Dev Hybrid UI</strong>
-    </div>
-    <div style="display:flex;gap:8px;align-items:center">
-      <button id="open-wizard" class="ghost">Onboard</button>
-      <button id="open-custom" class="ghost">Customize</button>
-    </div>
-  </div>
-
-  <div class="app">
-    <!-- LEFT: Sidebar -->
-    <aside class="sidebar left-col">
-      <div class="brand">
-        <div class="logo">DH</div>
-        <div>
-          <h2>DevHybrid</h2>
-          <div class="muted">Build & collaborate • Hybrid-ready</div>
+    <!-- Header -->
+    <header>
+      <center><h1>Welcome to Plusecraft Dashboard</h1></center>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo"></div>
+                <div class="nav-links">
+                    <a href="#" class="" data-section="dashboard">Home</a>
+                    <a href="#" data-section="projects">Projects</a>
+                    <a href="#" data-section="analytics">Analytics</a>
+                    <a href="#" data-section="team">Team</a>
+                    <a href="#" data-section="settings">Settings</a>
+                </div>
+                <div class="user-info">
+                    <div class="theme-selector">
+                        <button class="theme-btn" id="theme-toggle">🎨</button>
+                        <div class="theme-options" id="theme-options">
+                            <div class="theme-option" data-theme="light">
+                                <div class="theme-color theme-light"></div>
+                                <span>Light</span>
+                            </div>
+                            <div class="theme-option" data-theme="dark">
+                                <div class="theme-color theme-dark"></div>
+                                <span>Dark</span>
+                            </div>
+                            <div class="theme-option" data-theme="blue">
+                                <div class="theme-color theme-blue"></div>
+                                <span>Blue</span>
+                            </div>
+                            <div class="theme-option" data-theme="green">
+                                <div class="theme-color theme-green"></div>
+                                <span>Green</span>
+                            </div>
+                            <div class="theme-option" data-theme="purple">
+                                <div class="theme-color theme-purple"></div>
+                                <span>Purple</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="status-selector">
+                        <button class="status-option active" data-status="remote">Remote</button>
+                        <button class="status-option" data-status="hybrid">Hybrid</button>
+                        <button class="status-option" data-status="onsite">On-site</button>
+                        <button class="status-option" data-status="office">Office</button>
+                    </div>
+                    <div class="workspace-status">
+                        <div class="status-indicator status-remote"></div>
+                        <span>Working Remotely</span>
+                    </div>
+                    
+            </nav>
         </div>
-      </div>
+    </header>
 
-      <div class="nav" role="navigation">
-        <button class="active" data-view="overview">
-          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-          </svg>
-          Overview
-        </button>
-        <button data-view="developer">
-          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="16 18 22 12 16 6"></polyline>
-            <polyline points="8 6 2 12 8 18"></polyline>
-          </svg>
-          Developer
-        </button>
-        <button data-view="qa">
-          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-            <line x1="16" y1="13" x2="8" y2="13"></line>
-            <line x1="16" y1="17" x2="8" y2="17"></line>
-            <polyline points="10 9 9 9 8 9"></polyline>
-          </svg>
-          QA
-        </button>
-        <button data-view="design">
-          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
-            <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
-          </svg>
-          Design
-        </button>
-        <button data-view="docs">
-          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-            <line x1="16" y1="13" x2="8" y2="13"></line>
-            <line x1="16" y1="17" x2="8" y2="17"></line>
-            <polyline points="10 9 9 9 8 9"></polyline>
-          </svg>
-          Docs
-        </button>
-      </div>
-
-      <div style="margin-top:18px;" class="card">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <div class="muted">Your Role</div>
-            <select id="roleSelect" style="margin-top:8px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:var(--muted);width:100%">
-              <option>Developer</option>
-              <option>Manager</option>
-              <option>Designer</option>
-              <option>QA</option>
-            </select>
-          </div>
-          <div style="text-align:right">
-            <div class="muted">Mode</div>
-            <div class="toggle" style="margin-top:8px">
-              <button id="btnRemote" class="active">Remote</button>
-              <button id="btnOffice">Office</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top:12px;text-align:center">
-        <button id="open-wizard-2" class="btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="16"></line>
-            <line x1="8" y1="12" x2="16" y2="12"></line>
-          </svg>
-          Start 5-min Setup
-        </button>
-      </div>
-
-      <div style="margin-top:12px" class="card">
-        <h3>My Quick Links</h3>
-        <div class="muted">Favorites & recent</div>
-        <div id="favorites" style="margin-top:10px;display:flex;flex-direction:column;gap:8px"></div>
-        <div style="margin-top:10px;display:flex;gap:8px">
-          <input id="favInput" placeholder="Add favorite..." style="flex:1;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:var(--muted)">
-          <button id="addFav" class="ghost">Add</button>
-        </div>
-      </div>
-    </aside>
-
-    <!-- MAIN -->
-    <main class="main-col">
-      <div class="topbar">
-        <div style="display:flex;gap:12px;align-items:center">
-          <div class="search card">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
-              <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.6"></circle>
-            </svg>
-            <input class="search-in" placeholder="Search projects, tasks, docs..." />
-          </div>
-
-          <div style="display:flex;gap:8px;align-items:center">
-            <div class="muted">View:</div>
-            <div class="toggle" id="viewToggle">
-              <button class="active" data-viewtype="kanban">Kanban</button>
-              <button data-viewtype="list">List</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="controls">
-          <div class="muted">Theme</div>
-          <div class="themes">
-            <div class="swatch active" title="Blue" data-color="#4f8ef7" style="background:linear-gradient(135deg,#4f8ef7,#6dd3ff)"></div>
-            <div class="swatch" title="Purple" data-color="#7c3aed" style="background:linear-gradient(135deg,#7c3aed,#b58eff)"></div>
-            <div class="swatch" title="Green" data-color="#10b981" style="background:linear-gradient(135deg,#10b981,#7ef7c3)"></div>
-          </div>
-          <button id="toggleTheme" class="ghost">Light</button>
-          <button id="open-custom" class="ghost">Customize</button>
-        </div>
-      </div>
-
-      <div class="main">
-        <section class="card overview">
-          <h3>Overview</h3>
-          <div class="muted" style="margin-bottom:12px">A quick glance at your workspace.</div>
-
-          <div class="stats-grid">
-            <div class="stat-card">
-              <div class="muted">Active Pipelines</div>
-              <div style="font-size:18px;margin-top:8px;color:var(--accent)">3 running</div>
-              <div class="progress">
-                <div class="progress-bar" style="width: 60%"></div>
-              </div>
-              <div style="margin-top:12px"><button class="ghost">View Pipelines</button></div>
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Dashboard Section -->
+        <section class="main-section active" id="dashboard-section">
+            <!-- Role Selector -->
+            <div class="role-selector">
+                <button class="role-btn active" data-role="developer">Developer Dashboard</button>
+                <button class="role-btn" data-role="manager">Manager Dashboard</button>
             </div>
 
-            <div class="stat-card">
-              <div class="muted">Open PRs</div>
-              <div style="font-size:18px;margin-top:8px;color:#ffd166">5 awaiting review</div>
-              <div class="progress">
-                <div class="progress-bar" style="width: 30%; background: #ffd166"></div>
-              </div>
-              <div style="margin-top:12px"><button class="ghost">Open PRs</button></div>
+            <!-- Developer Dashboard -->
+            <div class="dashboard-content active" id="developer-dashboard">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h1>Developer Dashboard</h1>
+                        <p>Monitor your APIs, deployments, and development metrics</p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-primary" id="dev-refresh">Refresh Data</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="main-content">
+                        <!-- API Usage Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">API Usage & Performance</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline">Detailed Analytics</button>
+                                </div>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-value">1,247</div>
+                                    <div class="stat-label">Requests Today</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">99.2%</div>
+                                    <div class="stat-label">Success Rate</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">42%</div>
+                                    <div class="stat-label">Rate Limit Used</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">12ms</div>
+                                    <div class="stat-label">Avg Response Time</div>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <div class="chart-bar" style="height: 70%;">
+                                    <div class="chart-label">Mon</div>
+                                </div>
+                                <div class="chart-bar" style="height: 85%;">
+                                    <div class="chart-label">Tue</div>
+                                </div>
+                                <div class="chart-bar" style="height: 60%;">
+                                    <div class="chart-label">Wed</div>
+                                </div>
+                                <div class="chart-bar" style="height: 90%;">
+                                    <div class="chart-label">Thu</div>
+                                </div>
+                                <div class="chart-bar" style="height: 75%;">
+                                    <div class="chart-label">Fri</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Deployment Pipeline -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Deployment Pipeline</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-primary">New Deployment</button>
+                                </div>
+                            </div>
+                            <ul class="list">
+                                <li class="list-item">
+                                    <div class="item-info">
+                                        <h4>User Authentication Service</h4>
+                                        <p>Production • v1.2.3</p>
+                                    </div>
+                                    <div class="item-status status-success">Deployed</div>
+                                </li>
+                                <li class="list-item">
+                                    <div class="item-info">
+                                        <h4>Payment API v2</h4>
+                                        <p>Staging • Running tests</p>
+                                    </div>
+                                    <div class="item-status status-warning">Testing</div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Code Quality -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Code Quality & Testing</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline">View Reports</button>
+                                </div>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-value">95%</div>
+                                    <div class="stat-label">Test Coverage</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">12</div>
+                                    <div class="stat-label">Open Issues</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">0</div>
+                                    <div class="stat-label">Critical Bugs</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">A</div>
+                                    <div class="stat-label">Code Quality</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Development Environment -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Development Environment</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline">Manage</button>
+                                </div>
+                            </div>
+                            <ul class="list">
+                                <li class="list-item">
+                                    <div class="item-info">
+                                        <h4>Local Development</h4>
+                                        <p>Docker containers running</p>
+                                    </div>
+                                    <div class="item-status status-success">Active</div>
+                                </li>
+                                <li class="list-item">
+                                    <div class="item-info">
+                                        <h4>Staging Server</h4>
+                                        <p>Ready for testing</p>
+                                    </div>
+                                    <div class="item-status status-success">Ready</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="sidebar">
+                        <!-- Developer Tools -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Developer Tools</h3>
+                            </div>
+                            <div class="quick-actions">
+                                <button class="action-btn" id="api-console-btn">
+                                    <i>⚡</i>
+                                    API Console
+                                </button>
+                                <button class="action-btn" id="documentation-btn">
+                                    <i>📚</i>
+                                    Documentation
+                                </button>
+                                <button class="action-btn" id="api-keys-btn">
+                                    <i>🔑</i>
+                                    API Keys
+                                </button>
+                                <button class="action-btn" id="webhooks-btn">
+                                    <i>🔔</i>
+                                    Webhooks
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Development Activity</h3>
+                            </div>
+                            <div class="activity-feed">
+                                <div class="activity-item">
+                                    <div class="activity-icon">🔧</div>
+                                    <div class="activity-content">
+                                        <h4>Code Committed</h4>
+                                        <p>Updated user authentication service</p>
+                                        <div class="activity-time">2 hours ago</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">🚀</div>
+                                    <div class="activity-content">
+                                        <h4>Deployment Completed</h4>
+                                        <p>v1.2.3 deployed to production</p>
+                                        <div class="activity-time">5 hours ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="stat-card">
-              <div class="muted">On-site Today</div>
-              <div style="font-size:18px;margin-top:8px;color:#8be9fd">2 desks booked</div>
-              <div class="progress">
-                <div class="progress-bar" style="width: 20%; background: #8be9fd"></div>
-              </div>
-              <div style="margin-top:12px"><button class="ghost">Manage Desks</button></div>
+            <!-- Manager Dashboard -->
+            <div class="dashboard-content" id="manager-dashboard">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h1>Manager Dashboard</h1>
+                        <p>Monitor team performance, projects, and business metrics</p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-primary" id="manager-refresh">Refresh Data</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="main-content">
+                        <!-- Business Overview -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Business Overview</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline">Detailed Report</button>
+                                </div>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-value">$245K</div>
+                                    <div class="stat-label">Revenue</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">18%</div>
+                                    <div class="stat-label">Growth</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">1,248</div>
+                                    <div class="stat-label">Customers</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">4.8/5</div>
+                                    <div class="stat-label">Satisfaction</div>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <div class="chart-bar" style="height: 60%; background: var(--success);">
+                                    <div class="chart-label">Q1</div>
+                                </div>
+                                <div class="chart-bar" style="height: 75%; background: var(--success);">
+                                    <div class="chart-label">Q2</div>
+                                </div>
+                                <div class="chart-bar" style="height: 90%; background: var(--warning);">
+                                    <div class="chart-label">Q3</div>
+                                </div>
+                                <div class="chart-bar" style="height: 85%; background: var(--primary);">
+                                    <div class="chart-label">Q4</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Team Performance -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Team Performance</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-primary">Generate Report</button>
+                                </div>
+                            </div>
+                            <ul class="list">
+                                <li class="list-item">
+                                    <div class="item-info">
+                                        <h4>Sarah Chen</h4>
+                                        <p>Senior Developer • 12 tasks completed</p>
+                                    </div>
+                                    <div class="item-status status-success">Excellent</div>
+                                </li>
+                                <li class="list-item">
+                                    <div class="item-info">
+                                        <h4>Mike Rodriguez</h4>
+                                        <p>Frontend Lead • 8 tasks, 2 pending</p>
+                                    </div>
+                                    <div class="item-status status-success">Good</div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Project Portfolio -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Project Portfolio</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-primary" id="new-project-btn">New Project</button>
+                                </div>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-value">8</div>
+                                    <div class="stat-label">Active Projects</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">85%</div>
+                                    <div class="stat-label">On Time</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">$42K</div>
+                                    <div class="stat-label">Budget Used</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">12</div>
+                                    <div class="stat-label">Team Members</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resource Allocation -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Resource Allocation</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline">Manage Resources</button>
+                                </div>
+                            </div>
+                            <ul class="list">
+                                <li class="list-item">
+                                    <div class="item-info">
+                                        <h4>Development Team</h4>
+                                        <p>8 members • 75% utilization</p>
+                                    </div>
+                                    <div class="item-status status-warning">High Load</div>
+                                </li>
+                                <li class="list-item">
+                                    <div class="item-info">
+                                        <h4>Infrastructure</h4>
+                                        <p>Servers & cloud resources</p>
+                                    </div>
+                                    <div class="item-status status-success">Optimal</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="sidebar">
+                        <!-- Management Tools -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Management Tools</h3>
+                            </div>
+                            <div class="quick-actions">
+                                <button class="action-btn" id="schedule-meeting-btn">
+                                    <i>📅</i>
+                                    Schedule Meeting
+                                </button>
+                                <button class="action-btn" id="team-reports-btn">
+                                    <i>📊</i>
+                                    Team Reports
+                                </button>
+                                <button class="action-btn" id="budget-review-btn">
+                                    <i>💰</i>
+                                    Budget Review
+                                </button>
+                                <button class="action-btn" id="performance-reviews-btn">
+                                    <i>⭐</i>
+                                    Performance Reviews
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Upcoming Milestones -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Upcoming Milestones</h3>
+                            </div>
+                            <div class="activity-feed">
+                                <div class="activity-item">
+                                    <div class="activity-icon">🎯</div>
+                                    <div class="activity-content">
+                                        <h4>Product Launch</h4>
+                                        <p>Version 2.0 release to production</p>
+                                        <div class="activity-time">Due: Oct 30</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">📊</div>
+                                    <div class="activity-content">
+                                        <h4>Quarterly Review</h4>
+                                        <p>Q3 performance analysis meeting</p>
+                                        <div class="activity-time">Due: Nov 5</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </section>
 
-        <section class="card">
-          <h3>Developer Board</h3>
-          <div class="muted">Kanban with drag & drop. (Front-end only demo)</div>
+        <!-- Projects Section -->
+        <section class="main-section" id="projects-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <h1>Projects Management</h1>
+                    <p>Manage and track all your development projects</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-primary" id="create-project-btn">Create New Project</button>
+                </div>
+            </div>
 
-          <div class="pipeline" id="board">
-            <div class="step" data-col="todo">
-              <strong class="muted">To do</strong>
-              <div class="task todo" draggable="true">Implement login page</div>
-              <div class="task todo" draggable="true">Connect CI to repo</div>
-            </div>
-            <div class="step" data-col="inprogress">
-              <strong class="muted">In progress</strong>
-              <div class="task inprogress" draggable="true">Design API spec</div>
-            </div>
-            <div class="step" data-col="review">
-              <strong class="muted">Review</strong>
-              <div class="task review" draggable="true">Refactor auth module</div>
-            </div>
-            <div class="step" data-col="done">
-              <strong class="muted">Done</strong>
-              <div class="task done" draggable="true">Create project scaffold</div>
-            </div>
-          </div>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">E-commerce Platform</h3>
+                            <div class="item-status status-success">Active</div>
+                        </div>
+                        <button class="btn btn-outline">Manage</button>
+                    </div>
+                    <p class="project-description">Build a modern e-commerce platform with React and Node.js</p>
+                    <div class="project-meta">
+                        <div class="meta-item">👥 5 members</div>
+                        <div class="meta-item">📅 Due Dec 15</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--secondary);">
+                        <span>75% Complete</span>
+                        <span>12 tasks remaining</span>
+                    </div>
+                </div>
 
-          <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
-            <button id="addCard" class="btn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-              Add Task
-            </button>
-          </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">Mobile App Redesign</h3>
+                            <div class="item-status status-warning">In Progress</div>
+                        </div>
+                        <button class="btn btn-outline">Manage</button>
+                    </div>
+                    <p class="project-description">Redesign the mobile application with modern UI/UX principles</p>
+                    <div class="project-meta">
+                        <div class="meta-item">👥 3 members</div>
+                        <div class="meta-item">📅 Due Jan 20</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 45%"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--secondary);">
+                        <span>45% Complete</span>
+                        <span>28 tasks remaining</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">API Gateway</h3>
+                            <div class="item-status status-info">Planning</div>
+                        </div>
+                        <button class="btn btn-outline">Manage</button>
+                    </div>
+                    <p class="project-description">Develop a centralized API gateway for microservices</p>
+                    <div class="project-meta">
+                        <div class="meta-item">👥 4 members</div>
+                        <div class="meta-item">📅 Due Feb 10</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 20%"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--secondary);">
+                        <span>20% Complete</span>
+                        <span>45 tasks remaining</span>
+                    </div>
+                </div>
+            </div>
         </section>
-      </div>
 
-      <footer>Prototype UI built with HTML • CSS • JavaScript — Frontend-only</footer>
+        <!-- Analytics Section -->
+        <section class="main-section" id="analytics-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <h1>Analytics & Reports</h1>
+                    <p>Comprehensive analytics and performance reports</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-primary">Export Report</button>
+                </div>
+            </div>
+
+            <div class="analytics-grid">
+                <div class="chart-card">
+                    <h3>User Engagement Metrics</h3>
+                    <div class="chart-container">
+                        <div class="chart-bar" style="height: 80%;">
+                            <div class="chart-label">Jan</div>
+                        </div>
+                        <div class="chart-bar" style="height: 65%;">
+                            <div class="chart-label">Feb</div>
+                        </div>
+                        <div class="chart-bar" style="height: 90%;">
+                            <div class="chart-label">Mar</div>
+                        </div>
+                        <div class="chart-bar" style="height: 75%;">
+                            <div class="chart-label">Apr</div>
+                        </div>
+                        <div class="chart-bar" style="height: 95%;">
+                            <div class="chart-label">May</div>
+                        </div>
+                        <div class="chart-bar" style="height: 85%;">
+                            <div class="chart-label">Jun</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Performance Metrics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">2.4s</div>
+                            <div class="stat-label">Avg Load Time</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">98.5%</div>
+                            <div class="stat-label">Uptime</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">1.2M</div>
+                            <div class="stat-label">Monthly Users</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">4.2</div>
+                            <div class="stat-label">Avg Session</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 2rem;">
+                <h3>API Performance</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Endpoint</th>
+                            <th>Requests</th>
+                            <th>Success Rate</th>
+                            <th>Avg Response</th>
+                            <th>Errors</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>/api/v1/users</td>
+                            <td>24,589</td>
+                            <td>99.8%</td>
+                            <td>45ms</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>/api/v1/products</td>
+                            <td>18,342</td>
+                            <td>99.5%</td>
+                            <td>62ms</td>
+                            <td>28</td>
+                        </tr>
+                        <tr>
+                            <td>/api/v1/orders</td>
+                            <td>12,876</td>
+                            <td>98.9%</td>
+                            <td>89ms</td>
+                            <td>45</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="main-section" id="team-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <h1>Team Management</h1>
+                    <p>Manage your team members and their roles</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-primary" id="add-team-member-btn">Add Team Member</button>
+                </div>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">SC</div>
+                    <h3>Sarah Chen</h3>
+                    <div class="team-role">Senior Developer</div>
+                    <div class="team-status status-success">Active</div>
+                    <div class="team-meta">
+                        <div class="meta-item">📧 sarah@company.com</div>
+                        <div class="meta-item">📍 Remote</div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn btn-outline view-profile-btn" data-member="sarah" style="width: 100%;">View Profile</button>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">MR</div>
+                    <h3>Mike Rodriguez</h3>
+                    <div class="team-role">Frontend Lead</div>
+                    <div class="team-status status-success">Active</div>
+                    <div class="team-meta">
+                        <div class="meta-item">📧 mike@company.com</div>
+                        <div class="meta-item">📍 Hybrid</div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn btn-outline view-profile-btn" data-member="mike" style="width: 100%;">View Profile</button>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">EW</div>
+                    <h3>Emily Watson</h3>
+                    <div class="team-role">Backend Developer</div>
+                    <div class="team-status status-warning">Away</div>
+                    <div class="team-meta">
+                        <div class="meta-item">📧 emily@company.com</div>
+                        <div class="meta-item">📍 On-site</div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn btn-outline view-profile-btn" data-member="emily" style="width: 100%;">View Profile</button>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">DK</div>
+                    <h3>David Kim</h3>
+                    <div class="team-role">DevOps Engineer</div>
+                    <div class="team-status status-info">Vacation</div>
+                    <div class="team-meta">
+                        <div class="meta-item">📧 david@company.com</div>
+                        <div class="meta-item">📍 Office</div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn btn-outline view-profile-btn" data-member="david" style="width: 100%;">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section class="main-section" id="settings-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <h1>Settings & Configuration</h1>
+                    <p>Manage your account and platform settings</p>
+                </div>
+            </div>
+
+            <div class="settings-grid">
+                <div class="settings-nav">
+                    <div class="settings-nav-item active">Account Settings</div>
+                    <div class="settings-nav-item">Notifications</div>
+                    <div class="settings-nav-item">Security</div>
+                    <div class="settings-nav-item">Integrations</div>
+                    <div class="settings-nav-item">Billing</div>
+                    <div class="settings-nav-item">API Keys</div>
+                </div>
+
+                <div class="settings-content">
+                    <h3>Account Settings</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="user-name">Full Name</label>
+                            <input type="text" id="user-name" class="form-control" value="John Developer">
+                        </div>
+                        <div class="form-group">
+                            <label for="user-email">Email Address</label>
+                            <input type="email" id="user-email" class="form-control" value="john@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="user-role">Default Role View</label>
+                            <select id="user-role" class="form-control">
+                                <option value="developer">Developer</option>
+                                <option value="manager">Manager</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-timezone">Timezone</label>
+                            <select id="user-timezone" class="form-control">
+                                <option value="est">Eastern Time (ET)</option>
+                                <option value="pst">Pacific Time (PT)</option>
+                                <option value="utc" selected>UTC</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary">Save Changes</button>
+                            <button type="button" class="btn btn-outline">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- RIGHT: Controls & Docs -->
-    <aside class="right-col">
-      <div class="card">
-        <h3>Presence</h3>
-        <div class="presence" style="margin-top:8px">
-          <div class="dot online"></div>
-          <div class="muted">You (Remote)</div>
-        </div>
-        <div style="margin-top:8px">
-          <small class="muted">Switch to Office to see desk booking and map.</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Desk Booking (Demo)</h3>
-        <div class="muted">Select a date to book desk (frontend only)</div>
-        <input id="deskDate" type="date" style="margin-top:10px;padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:var(--muted);width:100%">
-        <div style="margin-top:10px;display:flex;gap:8px">
-          <button id="bookDesk" class="btn">Book</button>
-          <button id="clearDesk" class="ghost">Clear</button>
-        </div>
-        <div id="deskMsg" class="muted" style="margin-top:8px"></div>
-      </div>
-
-      <div class="card docs">
-        <h3>Docs & API Preview</h3>
-        <div class="muted">Code sample & quick API snippet</div>
-        <pre><code>GET /api/projects
-Authorization: Bearer &lt;token&gt;
-
-Response 200 {
-  id, name, status, owner
-}
-
-// Try code samples in your environment
-</code></pre>
-        <div style="margin-top:8px;display:flex;gap:8px">
-          <button class="ghost">Open API Console</button>
-          <button class="ghost">Copy Snippet</button>
-        </div>
-      </div>
-    </aside>
-  </div>
-
-  <!-- Onboarding Modal (hidden) -->
-  <div id="wizard" class="modal">
-    <div class="wizard">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <h3>Welcome — Quick Setup</h3>
-        <button id="closeWizard" class="ghost">Close</button>
-      </div>
-      <div class="steps">
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <div style="flex:1;min-width:250px" class="card">
-            <div class="muted">Step 1</div>
-            <h4>Connect Repository</h4>
-            <div class="muted">Connect GitHub / GitLab (demo)</div>
-            <div style="margin-top:12px">
-              <button class="btn" id="connectRepo">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-                Connect
-              </button>
+    <!-- Modals -->
+    <!-- Create Project Modal -->
+    <div class="modal" id="create-project-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Create New Project</h2>
+                <button class="close-modal">&times;</button>
             </div>
-          </div>
-          <div style="flex:1;min-width:250px" class="card">
-            <div class="muted">Step 2</div>
-            <h4>Pick Template</h4>
-            <div class="muted">Select a starter template</div>
-            <div style="margin-top:12px">
-              <select id="templatePick" style="padding:8px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:var(--muted);width:100%">
-                <option>Web App</option>
-                <option>API Service</option>
-                <option>Static Site</option>
-              </select>
-            </div>
-          </div>
-          <div style="flex:1;min-width:250px" class="card">
-            <div class="muted">Step 3</div>
-            <h4>Deploy Preview</h4>
-            <div class="muted">Run demo pipeline (frontend simulation)</div>
-            <div style="margin-top:12px">
-              <button id="runDemo" class="btn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                Run Demo
-              </button>
-            </div>
-          </div>
+            <form id="project-form">
+                <div class="form-group">
+                    <label for="project-name">Project Name</label>
+                    <input type="text" id="project-name" class="form-control" placeholder="Enter project name">
+                </div>
+                <div class="form-group">
+                    <label for="project-description">Description</label>
+                    <textarea id="project-description" class="form-control" rows="3" placeholder="Enter project description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="project-deadline">Deadline</label>
+                    <input type="date" id="project-deadline" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="project-team">Team Members</label>
+                    <select id="project-team" class="form-control" multiple>
+                        <option value="sarah">Sarah Chen</option>
+                        <option value="mike">Mike Rodriguez</option>
+                        <option value="emily">Emily Watson</option>
+                        <option value="david">David Kim</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Create Project</button>
+                    <button type="button" class="btn btn-outline close-modal">Cancel</button>
+                </div>
+            </form>
         </div>
-
-        <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
-          <div class="muted">Status: <span id="wizardStatus">Not started</span></div>
-          <div><button id="finishWizard" class="btn">Finish Setup</button></div>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- Customization Drawer (simple) -->
-  <div id="customDrawer" class="modal">
-    <div class="wizard">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <h3>Customize</h3>
-        <button id="closeCustom" class="ghost">Close</button>
-      </div>
-      <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
-        <div style="flex:1;min-width:250px" class="card">
-          <h4>Theme color</h4>
-          <div class="themes" style="margin-top:8px">
-            <div class="swatch active" data-color="#4f8ef7" style="background:linear-gradient(135deg,#4f8ef7,#6dd3ff)"></div>
-            <div class="swatch" data-color="#7c3aed" style="background:linear-gradient(135deg,#7c3aed,#b58eff)"></div>
-            <div class="swatch" data-color="#10b981" style="background:linear-gradient(135deg,#10b981,#7ef7c3)"></div>
-          </div>
+    <!-- Add Team Member Modal -->
+    <div class="modal" id="add-team-member-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Add Team Member</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="team-member-form">
+                <div class="form-group">
+                    <label for="member-name">Full Name</label>
+                    <input type="text" id="member-name" class="form-control" placeholder="Enter full name">
+                </div>
+                <div class="form-group">
+                    <label for="member-email">Email Address</label>
+                    <input type="email" id="member-email" class="form-control" placeholder="Enter email address">
+                </div>
+                <div class="form-group">
+                    <label for="member-role">Role</label>
+                    <select id="member-role" class="form-control">
+                        <option value="developer">Developer</option>
+                        <option value="frontend">Frontend Developer</option>
+                        <option value="backend">Backend Developer</option>
+                        <option value="devops">DevOps Engineer</option>
+                        <option value="manager">Manager</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="member-location">Work Location</label>
+                    <select id="member-location" class="form-control">
+                        <option value="remote">Remote</option>
+                        <option value="hybrid">Hybrid</option>
+                        <option value="onsite">On-site</option>
+                        <option value="office">Office</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Add Member</button>
+                    <button type="button" class="btn btn-outline close-modal">Cancel</button>
+                </div>
+            </form>
         </div>
-        <div style="flex:1;min-width:250px" class="card">
-          <h4>Layout</h4>
-          <div style="margin-top:8px" class="muted">Choose a compact or spacious layout</div>
-          <div style="margin-top:12px;display:flex;gap:8px">
-            <button id="compact" class="ghost">Compact</button>
-            <button id="spacious" class="ghost">Spacious</button>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- Notification -->
-  <div id="notification" class="notification">
-    <div id="notificationIcon"></div>
-    <div id="notificationText"></div>
-  </div>
+    <!-- View Profile Modal -->
+    <div class="modal" id="view-profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Team Member Profile</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="profile-content">
+                <!-- Profile content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
 
-  <script>
-    // Dashboard App
-    const Dashboard = {
-      // DOM Elements
-      elements: {
-        app: document.documentElement,
-        toggleThemeBtn: document.getElementById('toggleTheme'),
-        swatches: document.querySelectorAll('.swatch'),
-        roleSelect: document.getElementById('roleSelect'),
-        btnRemote: document.getElementById('btnRemote'),
-        btnOffice: document.getElementById('btnOffice'),
-        favoritesEl: document.getElementById('favorites'),
-        wizard: document.getElementById('wizard'),
-        customDrawer: document.getElementById('customDrawer'),
-        notification: document.getElementById('notification'),
-        notificationIcon: document.getElementById('notificationIcon'),
-        notificationText: document.getElementById('notificationText')
-      },
-
-      // Initialize the dashboard
-      init() {
-        this.loadSettings();
-        this.bindEvents();
-        this.renderFavorites();
-        this.updateDeskStatus();
-      },
-
-      // Load saved settings from localStorage
-      loadSettings() {
-        // Theme
-        const savedTheme = localStorage.getItem('dh-theme') || 'dark';
-        if (savedTheme === 'light') {
-          this.elements.app.setAttribute('data-theme', 'light');
-          this.elements.toggleThemeBtn.textContent = 'Dark';
-        } else {
-          this.elements.app.setAttribute('data-theme', 'dark');
-          this.elements.toggleThemeBtn.textContent = 'Light';
-        }
-
-        // Accent color
-        const savedAccent = localStorage.getItem('dh-accent');
-        if (savedAccent) {
-          document.documentElement.style.setProperty('--accent', savedAccent);
-          // Update active swatch
-          this.elements.swatches.forEach(s => {
-            if (s.dataset.color === savedAccent) {
-              s.classList.add('active');
-            } else {
-              s.classList.remove('active');
-            }
-          });
-        }
-
-        // Role
-        this.elements.roleSelect.value = localStorage.getItem('dh-role') || 'Developer';
-      },
-
-      // Bind event listeners
-      bindEvents() {
-        // Theme toggle
-        this.elements.toggleThemeBtn.addEventListener('click', () => {
-          if (this.elements.app.getAttribute('data-theme') === 'light') {
-            this.elements.app.setAttribute('data-theme', 'dark');
-            localStorage.setItem('dh-theme', 'dark');
-            this.elements.toggleThemeBtn.textContent = 'Light';
-          } else {
-            this.elements.app.setAttribute('data-theme', 'light');
-            localStorage.setItem('dh-theme', 'light');
-            this.elements.toggleThemeBtn.textContent = 'Dark';
-          }
-        });
-
-        // Accent color selection
-        this.elements.swatches.forEach(s => {
-          s.addEventListener('click', () => {
-            const color = s.dataset.color;
-            document.documentElement.style.setProperty('--accent', color);
-            localStorage.setItem('dh-accent', color);
+    <!-- Schedule Meeting Modal -->
+    <div class="modal" id="schedule-meeting-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Schedule Meeting</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="meeting-form">
+                <div class="meeting-form">
+                    <div class="form-group">
+                        <label for="meeting-title">Meeting Title</label>
+                        <input type="text" id="meeting-title" class="form-control" placeholder="Enter meeting title">
+                    </div>
+                    <div class="form-group">
+                        <label for="meeting-date">Date</label>
+                        <input type="date" id="meeting-date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="meeting-time">Time</label>
+                        <input type="time" id="meeting-time" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="meeting-duration">Duration</label>
+                        <select id="meeting-duration" class="form-control">
+                            <option value="30">30 minutes</option>
+                            <option value="60">1 hour</option>
+                            <option value="90">1.5 hours</option>
+                            <option value="120">2 hours</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="meeting-participants">Participants</label>
+                        <select id="meeting-participants" class="form-control" multiple>
+                            <option value="sarah">Sarah Chen</option>
+                            <option value="mike">Mike Rodriguez</option>
+                            <option value="emily">Emily Watson</option>
+                            <option value="david">David Kim</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="meeting-description">Description</label>
+                        <textarea id="meeting-description" class="form-control" rows="3" placeholder="Enter meeting description"></textarea>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Schedule Meeting</button>
+                    <button type="button" class="btn btn-outline close-modal">Cancel</button>
+                </div>
+            </form>
             
-            // Update active swatch
-            this.elements.swatches.forEach(sw => sw.classList.remove('active'));
-            s.classList.add('active');
+            <div class="meeting-list">
+                <h3>Upcoming Meetings</h3>
+                <div class="meeting-item">
+                    <div class="meeting-header">
+                        <div class="meeting-title">Project Review - E-commerce Platform</div>
+                        <div class="meeting-time">Oct 25, 2023 • 10:00 AM</div>
+                    </div>
+                    <p>Quarterly project review and planning session</p>
+                    <div class="meeting-participants">
+                        <div class="participant-avatar">SC</div>
+                        <div class="participant-avatar">MR</div>
+                        <div class="participant-avatar">EW</div>
+                    </div>
+                </div>
+                <div class="meeting-item">
+                    <div class="meeting-header">
+                        <div class="meeting-title">Sprint Planning</div>
+                        <div class="meeting-time">Oct 27, 2023 • 2:00 PM</div>
+                    </div>
+                    <p>Planning for the upcoming development sprint</p>
+                    <div class="meeting-participants">
+                        <div class="participant-avatar">SC</div>
+                        <div class="participant-avatar">MR</div>
+                        <div class="participant-avatar">DK</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Reports Modal -->
+    <div class="modal" id="team-reports-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Team Performance Reports</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="card">
+                <h3>Team Performance Overview</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">95%</div>
+                        <div class="stat-label">Task Completion</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">4.8/5</div>
+                        <div class="stat-label">Quality Rating</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">88%</div>
+                        <div class="stat-label">On-time Delivery</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Active Projects</div>
+                    </div>
+                </div>
+            </div>
             
-            this.showNotification('Theme color updated', 'success');
-          });
-        });
+            <div class="card" style="margin-top: 1.5rem;">
+                <h3>Individual Performance</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Team Member</th>
+                            <th>Role</th>
+                            <th>Tasks Completed</th>
+                            <th>Quality Score</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sarah Chen</td>
+                            <td>Senior Developer</td>
+                            <td>42</td>
+                            <td>4.9/5</td>
+                            <td><span class="item-status status-success">Excellent</span></td>
+                        </tr>
+                        <tr>
+                            <td>Mike Rodriguez</td>
+                            <td>Frontend Lead</td>
+                            <td>38</td>
+                            <td>4.7/5</td>
+                            <td><span class="item-status status-success">Good</span></td>
+                        </tr>
+                        <tr>
+                            <td>Emily Watson</td>
+                            <td>Backend Developer</td>
+                            <td>35</td>
+                            <td>4.6/5</td>
+                            <td><span class="item-status status-warning">Needs Improvement</span></td>
+                        </tr>
+                        <tr>
+                            <td>David Kim</td>
+                            <td>DevOps Engineer</td>
+                            <td>28</td>
+                            <td>4.8/5</td>
+                            <td><span class="item-status status-success">Good</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="form-actions" style="margin-top: 1.5rem;">
+                <button class="btn btn-primary">Export Report</button>
+                <button class="btn btn-outline close-modal">Close</button>
+            </div>
+        </div>
+    </div>
 
-        // Role change
-        this.elements.roleSelect.addEventListener('change', () => {
-          localStorage.setItem('dh-role', this.elements.roleSelect.value);
-          this.showNotification(`Role set to ${this.elements.roleSelect.value}`, 'info');
-        });
+    <!-- Budget Review Modal -->
+    <div class="modal" id="budget-review-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Budget Review</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="card">
+                <h3>Budget Overview</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">$245K</div>
+                        <div class="stat-label">Total Budget</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$189K</div>
+                        <div class="stat-label">Budget Used</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">$56K</div>
+                        <div class="stat-label">Remaining</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">77%</div>
+                        <div class="stat-label">Utilization</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 1.5rem;">
+                <h3>Budget Allocation by Department</h3>
+                <div class="chart-container">
+                    <div class="chart-bar" style="height: 90%; background: var(--primary);">
+                        <div class="chart-label">Dev</div>
+                    </div>
+                    <div class="chart-bar" style="height: 65%; background: var(--success);">
+                        <div class="chart-label">Ops</div>
+                    </div>
+                    <div class="chart-bar" style="height: 45%; background: var(--warning);">
+                        <div class="chart-label">Marketing</div>
+                    </div>
+                    <div class="chart-bar" style="height: 30%; background: var(--danger);">
+                        <div class="chart-label">Admin</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 1.5rem;">
+                <h3>Expense Breakdown</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Allocated</th>
+                            <th>Spent</th>
+                            <th>Remaining</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Development</td>
+                            <td>$120,000</td>
+                            <td>$98,500</td>
+                            <td>$21,500</td>
+                            <td><span class="item-status status-success">On Track</span></td>
+                        </tr>
+                        <tr>
+                            <td>Infrastructure</td>
+                            <td>$80,000</td>
+                            <td>$65,200</td>
+                            <td>$14,800</td>
+                            <td><span class="item-status status-success">On Track</span></td>
+                        </tr>
+                        <tr>
+                            <td>Marketing</td>
+                            <td>$30,000</td>
+                            <td>$18,750</td>
+                            <td>$11,250</td>
+                            <td><span class="item-status status-success">On Track</span></td>
+                        </tr>
+                        <tr>
+                            <td>Administrative</td>
+                            <td>$15,000</td>
+                            <td>$6,550</td>
+                            <td>$8,450</td>
+                            <td><span class="item-status status-success">On Track</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="form-actions" style="margin-top: 1.5rem;">
+                <button class="btn btn-primary">Download Report</button>
+                <button class="btn btn-outline close-modal">Close</button>
+            </div>
+        </div>
+    </div>
 
-        // Mode toggle
-        this.elements.btnRemote.addEventListener('click', () => {
-          this.setMode('Remote');
-          this.showNotification('Switched to Remote mode', 'info');
+    <!-- Performance Reviews Modal -->
+    <div class="modal" id="performance-reviews-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Performance Reviews</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="card">
+                <h3>Upcoming Reviews</h3>
+                <ul class="list">
+                    <li class="list-item">
+                        <div class="item-info">
+                            <h4>Sarah Chen</h4>
+                            <p>Senior Developer • Q4 2023 Review</p>
+                        </div>
+                        <div class="item-status status-info">Scheduled: Nov 15</div>
+                    </li>
+                    <li class="list-item">
+                        <div class="item-info">
+                            <h4>Mike Rodriguez</h4>
+                            <p>Frontend Lead • Q4 2023 Review</p>
+                        </div>
+                        <div class="item-status status-info">Scheduled: Nov 18</div>
+                    </li>
+                    <li class="list-item">
+                        <div class="item-info">
+                            <h4>Emily Watson</h4>
+                            <p>Backend Developer • Q4 2023 Review</p>
+                        </div>
+                        <div class="item-status status-warning">Pending Feedback</div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="card" style="margin-top: 1.5rem;">
+                <h3>Review Templates</h3>
+                <div class="quick-actions">
+                    <button class="action-btn">
+                        <i>📝</i>
+                        Developer Review
+                    </button>
+                    <button class="action-btn">
+                        <i>📝</i>
+                        Manager Review
+                    </button>
+                    <button class="action-btn">
+                        <i>📝</i>
+                        Team Lead Review
+                    </button>
+                    <button class="action-btn">
+                        <i>📝</i>
+                        Custom Template
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 1.5rem;">
+                <h3>Recent Reviews</h3>
+                <div class="activity-feed">
+                    <div class="activity-item">
+                        <div class="activity-icon">⭐</div>
+                        <div class="activity-content">
+                            <h4>David Kim - Q3 2023 Review</h4>
+                            <p>Completed with overall rating: Excellent</p>
+                            <div class="activity-time">Completed: Sep 28, 2023</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">⭐</div>
+                        <div class="activity-content">
+                            <h4>Team Performance - Q3 2023</h4>
+                            <p>Team review completed and shared</p>
+                            <div class="activity-time">Completed: Sep 15, 2023</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-actions" style="margin-top: 1.5rem;">
+                <button class="btn btn-primary">Schedule New Review</button>
+                <button class="btn btn-outline close-modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Developer Tools Modals -->
+    <!-- API Console Modal -->
+    <div class="modal" id="api-console-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">API Console</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="tools-content">
+                <p>Test your API endpoints directly from this console. Select an endpoint and click "Test" to see the response.</p>
+                
+                <div class="api-console">
+                    <div class="api-endpoint">
+                        <span class="endpoint-method method-get">GET</span>
+                        <span class="endpoint-url">/api/v1/users</span>
+                        <button class="test-btn" data-endpoint="/api/v1/users" data-method="GET">Test</button>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <span class="endpoint-method method-post">POST</span>
+                        <span class="endpoint-url">/api/v1/users</span>
+                        <button class="test-btn" data-endpoint="/api/v1/users" data-method="POST">Test</button>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <span class="endpoint-method method-get">GET</span>
+                        <span class="endpoint-url">/api/v1/products</span>
+                        <button class="test-btn" data-endpoint="/api/v1/products" data-method="GET">Test</button>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <span class="endpoint-method method-put">PUT</span>
+                        <span class="endpoint-url">/api/v1/products/123</span>
+                        <button class="test-btn" data-endpoint="/api/v1/products/123" data-method="PUT">Test</button>
+                    </div>
+                    
+                    <div class="response-area" id="api-response">
+                        Response will appear here...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Documentation Modal -->
+    <div class="modal" id="documentation-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">API Documentation</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="tools-content">
+                <p>Comprehensive documentation for all available API endpoints and their usage.</p>
+                
+                <div class="documentation-section">
+                    <h3 class="doc-section-title">Authentication</h3>
+                    <p>All API requests require authentication using Bearer tokens. Include your API key in the Authorization header:</p>
+                    <div class="code-block">
+                        Authorization: Bearer your-api-key-here
+                    </div>
+                </div>
+                
+                <div class="documentation-section">
+                    <h3 class="doc-section-title">User Management</h3>
+                    <p>Endpoints for managing user accounts and profiles.</p>
+                    
+                    <div class="api-endpoint">
+                        <span class="endpoint-method method-get">GET</span>
+                        <span class="endpoint-url">/api/v1/users</span>
+                    </div>
+                    <p><strong>Description:</strong> Retrieve a list of all users</p>
+                    <p><strong>Parameters:</strong> limit, offset, search</p>
+                    
+                    <div class="api-endpoint">
+                        <span class="endpoint-method method-post">POST</span>
+                        <span class="endpoint-url">/api/v1/users</span>
+                    </div>
+                    <p><strong>Description:</strong> Create a new user</p>
+                    <p><strong>Body:</strong> User object with name, email, role</p>
+                </div>
+                
+                <div class="documentation-section">
+                    <h3 class="doc-section-title">Product Management</h3>
+                    <p>Endpoints for managing products in the catalog.</p>
+                    
+                    <div class="api-endpoint">
+                        <span class="endpoint-method method-get">GET</span>
+                        <span class="endpoint-url">/api/v1/products</span>
+                    </div>
+                    <p><strong>Description:</strong> Get all products with filtering options</p>
+                    
+                    <div class="api-endpoint">
+                        <span class="endpoint-method method-put">PUT</span>
+                        <span class="endpoint-url">/api/v1/products/{id}</span>
+                    </div>
+                    <p><strong>Description:</strong> Update a specific product</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API Keys Modal -->
+    <div class="modal" id="api-keys-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">API Keys Management</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="tools-content">
+                <p>Manage your API keys for different environments and applications.</p>
+                
+                <div class="api-keys-list">
+                    <div class="api-key-item">
+                        <div class="key-info">
+                            <h4>Production Key</h4>
+                            <p>Created: Jan 15, 2023 • Last used: Today</p>
+                            <div class="code-block" style="margin: 0.5rem 0; font-size: 0.8rem;">
+                                sk_live_51Mn8wqKq9X8Z9v8T4w7qR9sT4w7qR9s
+                            </div>
+                        </div>
+                        <div class="key-actions">
+                            <button class="btn btn-outline">Regenerate</button>
+                            <button class="btn btn-danger">Revoke</button>
+                        </div>
+                    </div>
+                    
+                    <div class="api-key-item">
+                        <div class="key-info">
+                            <h4>Staging Key</h4>
+                            <p>Created: Mar 22, 2023 • Last used: 2 days ago</p>
+                            <div class="code-block" style="margin: 0.5rem 0; font-size: 0.8rem;">
+                                sk_test_51Mn8wqKq9X8Z9v8T4w7qR9sT4w7qR9s
+                            </div>
+                        </div>
+                        <div class="key-actions">
+                            <button class="btn btn-outline">Regenerate</button>
+                            <button class="btn btn-danger">Revoke</button>
+                        </div>
+                    </div>
+                    
+                    <div class="api-key-item">
+                        <div class="key-info">
+                            <h4>Development Key</h4>
+                            <p>Created: Jun 10, 2023 • Last used: 1 week ago</p>
+                            <div class="code-block" style="margin: 0.5rem 0; font-size: 0.8rem;">
+                                sk_dev_51Mn8wqKq9X8Z9v8T4w7qR9sT4w7qR9s
+                            </div>
+                        </div>
+                        <div class="key-actions">
+                            <button class="btn btn-outline">Regenerate</button>
+                            <button class="btn btn-danger">Revoke</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions" style="margin-top: 1.5rem;">
+                    <button class="btn btn-primary">Generate New Key</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Webhooks Modal -->
+    <div class="modal" id="webhooks-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Webhooks Configuration</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="tools-content">
+                <p>Configure webhooks to receive real-time notifications for various events in your application.</p>
+                
+                <div class="webhooks-list">
+                    <div class="webhook-item">
+                        <div class="webhook-header">
+                            <h4>User Registered</h4>
+                            <div class="item-status status-success">Active</div>
+                        </div>
+                        <div class="webhook-url">https://yourapp.com/webhooks/user-registered</div>
+                        <p>Triggered when a new user registers in the system</p>
+                        <div class="key-actions" style="margin-top: 0.5rem;">
+                            <button class="btn btn-outline">Edit</button>
+                            <button class="btn btn-danger">Disable</button>
+                        </div>
+                    </div>
+                    
+                    <div class="webhook-item">
+                        <div class="webhook-header">
+                            <h4>Payment Processed</h4>
+                            <div class="item-status status-success">Active</div>
+                        </div>
+                        <div class="webhook-url">https://yourapp.com/webhooks/payment-processed</div>
+                        <p>Triggered when a payment is successfully processed</p>
+                        <div class="key-actions" style="margin-top: 0.5rem;">
+                            <button class="btn btn-outline">Edit</button>
+                            <button class="btn btn-danger">Disable</button>
+                        </div>
+                    </div>
+                    
+                    <div class="webhook-item">
+                        <div class="webhook-header">
+                            <h4>Order Shipped</h4>
+                            <div class="item-status status-warning">Inactive</div>
+                        </div>
+                        <div class="webhook-url">https://yourapp.com/webhooks/order-shipped</div>
+                        <p>Triggered when an order is marked as shipped</p>
+                        <div class="key-actions" style="margin-top: 0.5rem;">
+                            <button class="btn btn-outline">Edit</button>
+                            <button class="btn btn-primary">Enable</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions" style="margin-top: 1.5rem;">
+                    <button class="btn btn-primary">Add New Webhook</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme System
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeOptions = document.getElementById('theme-options');
+        const themeOptionsList = document.querySelectorAll('.theme-option');
+        
+        // Toggle theme options visibility
+        themeToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            themeOptions.classList.toggle('active');
         });
         
-        this.elements.btnOffice.addEventListener('click', () => {
-          this.setMode('Office');
-          this.showNotification('Switched to Office mode', 'info');
-        });
-
-        // Favorites
-        const favInput = document.getElementById('favInput');
-        const addFav = document.getElementById('addFav');
-        
-        addFav.addEventListener('click', () => {
-          const value = favInput.value.trim();
-          if (!value) return;
-          
-          const favorites = JSON.parse(localStorage.getItem('dh-favs') || '[]');
-          favorites.unshift(value);
-          localStorage.setItem('dh-favs', JSON.stringify(favorites.slice(0, 8)));
-          favInput.value = '';
-          this.renderFavorites();
-          this.showNotification('Favorite added', 'success');
-        });
-
-        // Desk booking
-        const deskDate = document.getElementById('deskDate');
-        const bookDesk = document.getElementById('bookDesk');
-        const deskMsg = document.getElementById('deskMsg');
-        const clearDesk = document.getElementById('clearDesk');
-        
-        bookDesk.addEventListener('click', () => {
-          if (!deskDate.value) {
-            deskMsg.textContent = 'Pick a date first';
-            return;
-          }
-          
-          localStorage.setItem('dh-desk', deskDate.value);
-          deskMsg.textContent = 'Desk booked for ' + deskDate.value;
-          this.showNotification('Desk booked successfully', 'success');
+        // Close theme options when clicking outside
+        document.addEventListener('click', function() {
+            themeOptions.classList.remove('active');
         });
         
-        clearDesk.addEventListener('click', () => {
-          localStorage.removeItem('dh-desk');
-          deskMsg.textContent = 'Booking cleared';
-          deskDate.value = '';
-          this.showNotification('Desk booking cleared', 'info');
-        });
-
-        // Onboarding wizard
-        document.getElementById('open-wizard').addEventListener('click', () => this.showModal(this.elements.wizard));
-        document.getElementById('open-wizard-2').addEventListener('click', () => this.showModal(this.elements.wizard));
-        document.getElementById('closeWizard').addEventListener('click', () => this.hideModal(this.elements.wizard));
-        
-        document.getElementById('connectRepo').addEventListener('click', () => {
-          document.getElementById('wizardStatus').textContent = 'Repository connected';
-          this.showNotification('Repository connected', 'success');
+        // Change theme
+        themeOptionsList.forEach(option => {
+            option.addEventListener('click', function() {
+                const theme = this.getAttribute('data-theme');
+                document.documentElement.setAttribute('data-theme', theme);
+                
+                // Save theme preference to localStorage
+                localStorage.setItem('dashboard-theme', theme);
+                
+                // Close theme options
+                themeOptions.classList.remove('active');
+            });
         });
         
-        document.getElementById('runDemo').addEventListener('click', () => {
-          document.getElementById('wizardStatus').textContent = 'Demo pipeline started';
-          this.showNotification('Demo pipeline started', 'info');
-          
-          setTimeout(() => {
-            document.getElementById('wizardStatus').textContent = 'Demo pipeline finished (pass)';
-            this.showNotification('Demo pipeline finished', 'success');
-          }, 1600);
-        });
+        // Load saved theme from localStorage
+        const savedTheme = localStorage.getItem('dashboard-theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
         
-        document.getElementById('finishWizard').addEventListener('click', () => {
-          this.hideModal(this.elements.wizard);
-          this.showNotification('Setup completed successfully', 'success');
-        });
-
-        // Customization drawer
-        document.getElementById('open-custom').addEventListener('click', () => this.showModal(this.elements.customDrawer));
-        document.getElementById('closeCustom').addEventListener('click', () => this.hideModal(this.elements.customDrawer));
-        
-        document.getElementById('compact').addEventListener('click', () => {
-          document.documentElement.style.setProperty('--radius', '8px');
-          this.showNotification('Compact layout applied', 'success');
-        });
-        
-        document.getElementById('spacious').addEventListener('click', () => {
-          document.documentElement.style.setProperty('--radius', '18px');
-          this.showNotification('Spacious layout applied', 'success');
-        });
-
-        // Kanban board
-        this.initKanban();
-
-        // View toggle
-        document.getElementById('viewToggle').addEventListener('click', e => {
-          if (e.target.dataset.viewtype) {
-            document.querySelectorAll('#viewToggle button').forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            this.showNotification(`Switched to ${e.target.dataset.viewtype} view`, 'info');
-          }
-        });
-
         // Navigation
-        document.querySelectorAll('.nav button').forEach(btn => {
-          btn.addEventListener('click', () => {
-            document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            this.showNotification(`Switched to ${btn.textContent.trim()} view`, 'info');
-          });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.nav-links a').forEach(l => {
+                    l.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Show corresponding section
+                const section = this.getAttribute('data-section');
+                document.querySelectorAll('.main-section').forEach(sec => {
+                    sec.classList.remove('active');
+                });
+                document.getElementById(`${section}-section`).classList.add('active');
+            });
         });
-      },
 
-      // Set user mode (Remote/Office)
-      setMode(mode) {
-        if (mode === 'Remote') {
-          this.elements.btnRemote.classList.add('active');
-          this.elements.btnOffice.classList.remove('active');
-          document.querySelector('.dot').className = 'dot online';
-          document.querySelector('.dot').nextElementSibling.textContent = 'You (Remote)';
-        } else {
-          this.elements.btnOffice.classList.add('active');
-          this.elements.btnRemote.classList.remove('active');
-          document.querySelector('.dot').className = 'dot offline';
-          document.querySelector('.dot').nextElementSibling.textContent = 'You (Office)';
+        // Role Switching - Fixed Version
+        document.querySelectorAll('.role-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.role-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Show corresponding dashboard
+                const role = this.getAttribute('data-role');
+                
+                // Hide all dashboard contents
+                document.querySelectorAll('.dashboard-content').forEach(dashboard => {
+                    dashboard.classList.remove('active');
+                });
+                
+                // Show the selected dashboard
+                const selectedDashboard = document.getElementById(`${role}-dashboard`);
+                if (selectedDashboard) {
+                    selectedDashboard.classList.add('active');
+                }
+            });
+        });
+
+        // Workspace Status
+        document.querySelectorAll('.status-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from all options
+                document.querySelectorAll('.status-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                
+                // Add active class to clicked option
+                this.classList.add('active');
+                
+                // Update workspace status display
+                const status = this.getAttribute('data-status');
+                const statusIndicator = document.querySelector('.status-indicator');
+                const statusText = document.querySelector('.workspace-status span');
+                
+                // Update classes and text
+                statusIndicator.className = 'status-indicator';
+                statusIndicator.classList.add(`status-${status}`);
+                
+                const statusMessages = {
+                    'remote': 'Working Remotely',
+                    'hybrid': 'Working Hybrid',
+                    'onsite': 'Working On-site',
+                    'office': 'Working from Office'
+                };
+                
+                statusText.textContent = statusMessages[status];
+            });
+        });
+
+        // Settings Navigation
+        document.querySelectorAll('.settings-nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all items
+                document.querySelectorAll('.settings-nav-item').forEach(navItem => {
+                    navItem.classList.remove('active');
+                });
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // In a real app, this would load different settings content
+                const settingType = this.textContent.toLowerCase();
+                console.log(`Loading ${settingType} settings...`);
+            });
+        });
+
+        // Button Actions
+        document.getElementById('dev-refresh').addEventListener('click', function() {
+            console.log('Refreshing developer dashboard data...');
+        });
+
+        document.getElementById('manager-refresh').addEventListener('click', function() {
+            console.log('Refreshing manager dashboard data...');
+        });
+
+        // Modal functionality
+        const modals = document.querySelectorAll('.modal');
+        const closeModalButtons = document.querySelectorAll('.close-modal');
+        
+        // Close modal function
+        function closeModal(modal) {
+            modal.classList.remove('active');
         }
-      },
-
-      // Render favorites list
-      renderFavorites() {
-        this.elements.favoritesEl.innerHTML = '';
-        const favorites = JSON.parse(localStorage.getItem('dh-favs') || '[]');
         
-        if (favorites.length === 0) {
-          this.elements.favoritesEl.innerHTML = '<div class="muted">No favorites yet</div>';
-          return;
-        }
-        
-        favorites.forEach((favorite, index) => {
-          const item = document.createElement('div');
-          item.style.display = 'flex';
-          item.style.justifyContent = 'space-between';
-          item.style.alignItems = 'center';
-          item.innerHTML = `
-            <div class="muted">${favorite}</div>
-            <div style="display:flex;gap:6px">
-              <button data-index="${index}" class="ghost open-fav">Open</button>
-              <button data-index="${index}" class="ghost remove-fav">Remove</button>
-            </div>
-          `;
-          this.elements.favoritesEl.appendChild(item);
+        // Close modals when clicking close button
+        closeModalButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const modal = this.closest('.modal');
+                closeModal(modal);
+            });
         });
         
-        // Add event listeners to new buttons
-        document.querySelectorAll('.remove-fav').forEach(btn => {
-          btn.addEventListener('click', e => {
-            const index = parseInt(e.target.dataset.index);
-            const favorites = JSON.parse(localStorage.getItem('dh-favs') || '[]');
-            favorites.splice(index, 1);
-            localStorage.setItem('dh-favs', JSON.stringify(favorites));
-            this.renderFavorites();
-            this.showNotification('Favorite removed', 'info');
-          });
+        // Close modals when clicking outside
+        modals.forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal(this);
+                }
+            });
         });
         
-        document.querySelectorAll('.open-fav').forEach(btn => {
-          btn.addEventListener('click', e => {
-            const index = parseInt(e.target.dataset.index);
-            const favorites = JSON.parse(localStorage.getItem('dh-favs') || '[]');
-            this.showNotification(`Opening ${favorites[index]}`, 'info');
-          });
-        });
-      },
-
-      // Update desk booking status
-      updateDeskStatus() {
-        const deskMsg = document.getElementById('deskMsg');
-        const savedDesk = localStorage.getItem('dh-desk');
-        
-        if (savedDesk) {
-          deskMsg.textContent = 'Booked: ' + savedDesk;
-        }
-      },
-
-      // Initialize Kanban board with drag & drop
-      initKanban() {
-        let dragEl = null;
-        
-        // Add drag events to existing tasks
-        document.querySelectorAll('.task').forEach(task => {
-          task.addEventListener('dragstart', e => {
-            dragEl = task;
-            task.classList.add('dragging');
-            e.dataTransfer.effectAllowed = 'move';
-          });
-          
-          task.addEventListener('dragend', () => {
-            dragEl = null;
-            task.classList.remove('dragging');
-          });
+        // Create Project Modal
+        document.getElementById('create-project-btn').addEventListener('click', function() {
+            document.getElementById('create-project-modal').classList.add('active');
         });
         
-        // Add drop zones to columns
-        document.querySelectorAll('.step').forEach(column => {
-          column.addEventListener('dragover', e => {
+        document.getElementById('new-project-btn').addEventListener('click', function() {
+            document.getElementById('create-project-modal').classList.add('active');
+        });
+        
+        document.getElementById('project-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            column.classList.add('drop-zone');
-          });
-          
-          column.addEventListener('dragleave', () => {
-            column.classList.remove('drop-zone');
-          });
-          
-          column.addEventListener('drop', e => {
+            alert('Project created successfully!');
+            closeModal(document.getElementById('create-project-modal'));
+        });
+        
+        // Add Team Member Modal
+        document.getElementById('add-team-member-btn').addEventListener('click', function() {
+            document.getElementById('add-team-member-modal').classList.add('active');
+        });
+        
+        document.getElementById('team-member-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            column.classList.remove('drop-zone');
-            
-            if (dragEl) {
-              column.appendChild(dragEl);
-              
-              // Update task status class based on column
-              const status = column.dataset.col;
-              dragEl.className = `task ${status}`;
-              
-              this.showNotification(`Task moved to ${column.querySelector('strong').textContent}`, 'success');
-            }
-          });
+            alert('Team member added successfully!');
+            closeModal(document.getElementById('add-team-member-modal'));
         });
         
-        // Add new task
-        document.getElementById('addCard').addEventListener('click', () => {
-          const title = prompt('Enter task title:') || 'New task';
-          if (!title.trim()) return;
-          
-          const task = document.createElement('div');
-          task.className = 'task todo';
-          task.draggable = true;
-          task.textContent = title;
-          
-          // Add drag events to new task
-          task.addEventListener('dragstart', e => {
-            dragEl = task;
-            task.classList.add('dragging');
-            e.dataTransfer.effectAllowed = 'move';
-          });
-          
-          task.addEventListener('dragend', () => {
-            dragEl = null;
-            task.classList.remove('dragging');
-          });
-          
-          document.querySelector('[data-col="todo"]').appendChild(task);
-          this.showNotification('Task added', 'success');
+        // View Profile Modal
+        document.querySelectorAll('.view-profile-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const member = this.getAttribute('data-member');
+                const modal = document.getElementById('view-profile-modal');
+                const profileContent = document.getElementById('profile-content');
+                
+                // Team member data
+                const teamMembers = {
+                    'sarah': {
+                        name: 'Sarah Chen',
+                        role: 'Senior Developer',
+                        email: 'sarah@company.com',
+                        location: 'Remote',
+                        status: 'Active',
+                        avatar: 'SC',
+                        joinDate: 'March 15, 2021',
+                        projects: 12,
+                        skills: ['JavaScript', 'React', 'Node.js', 'TypeScript'],
+                        bio: 'Experienced full-stack developer with 5+ years in web application development. Specializes in React and Node.js ecosystems.'
+                    },
+                    'mike': {
+                        name: 'Mike Rodriguez',
+                        role: 'Frontend Lead',
+                        email: 'mike@company.com',
+                        location: 'Hybrid',
+                        status: 'Active',
+                        avatar: 'MR',
+                        joinDate: 'June 22, 2022',
+                        projects: 8,
+                        skills: ['React', 'Vue.js', 'CSS/SCSS', 'UI/UX Design'],
+                        bio: 'Frontend specialist with a keen eye for design and user experience. Leads the frontend development team.'
+                    },
+                    'emily': {
+                        name: 'Emily Watson',
+                        role: 'Backend Developer',
+                        email: 'emily@company.com',
+                        location: 'On-site',
+                        status: 'Away',
+                        avatar: 'EW',
+                        joinDate: 'January 10, 2023',
+                        projects: 6,
+                        skills: ['Python', 'Django', 'PostgreSQL', 'Docker'],
+                        bio: 'Backend developer focused on building scalable and secure APIs. Currently on parental leave.'
+                    },
+                    'david': {
+                        name: 'David Kim',
+                        role: 'DevOps Engineer',
+                        email: 'david@company.com',
+                        location: 'Office',
+                        status: 'Vacation',
+                        avatar: 'DK',
+                        joinDate: 'September 5, 2021',
+                        projects: 10,
+                        skills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD'],
+                        bio: 'DevOps engineer ensuring smooth deployment and operation of all applications. Currently on vacation.'
+                    }
+                };
+                
+                const memberData = teamMembers[member];
+                
+                // Generate profile HTML
+                profileContent.innerHTML = `
+                    <div class="profile-header">
+                        <div class="profile-avatar">${memberData.avatar}</div>
+                        <div class="profile-info">
+                            <h2>${memberData.name}</h2>
+                            <p>${memberData.role}</p>
+                            <div class="team-status status-${memberData.status === 'Active' ? 'success' : memberData.status === 'Away' ? 'warning' : 'info'}">${memberData.status}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Email</span>
+                            <span class="detail-value">${memberData.email}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Work Location</span>
+                            <span class="detail-value">${memberData.location}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Join Date</span>
+                            <span class="detail-value">${memberData.joinDate}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Active Projects</span>
+                            <span class="detail-value">${memberData.projects}</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <h3>Skills</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+                            ${memberData.skills.map(skill => `<span class="item-status status-info">${skill}</span>`).join('')}
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <h3>Bio</h3>
+                        <p>${memberData.bio}</p>
+                    </div>
+                    
+                    <div class="form-actions" style="margin-top: 1.5rem;">
+                        <button class="btn btn-primary">Send Message</button>
+                        <button class="btn btn-outline close-modal">Close</button>
+                    </div>
+                `;
+                
+                // Re-attach close modal event to the new button
+                profileContent.querySelector('.close-modal').addEventListener('click', function() {
+                    closeModal(modal);
+                });
+                
+                modal.classList.add('active');
+            });
         });
-      },
+        
+        // Management Tools Modals
+        document.getElementById('schedule-meeting-btn').addEventListener('click', function() {
+            document.getElementById('schedule-meeting-modal').classList.add('active');
+        });
+        
+        document.getElementById('team-reports-btn').addEventListener('click', function() {
+            document.getElementById('team-reports-modal').classList.add('active');
+        });
+        
+        document.getElementById('budget-review-btn').addEventListener('click', function() {
+            document.getElementById('budget-review-modal').classList.add('active');
+        });
+        
+        document.getElementById('performance-reviews-btn').addEventListener('click', function() {
+            document.getElementById('performance-reviews-modal').classList.add('active');
+        });
+        
+        // Meeting form submission
+        document.getElementById('meeting-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Meeting scheduled successfully!');
+            closeModal(document.getElementById('schedule-meeting-modal'));
+        });
 
-      // Show modal
-      showModal(modal) {
-        modal.classList.add('show');
-      },
+        // Developer Tools Modals
+        document.getElementById('api-console-btn').addEventListener('click', function() {
+            document.getElementById('api-console-modal').classList.add('active');
+        });
+        
+        document.getElementById('documentation-btn').addEventListener('click', function() {
+            document.getElementById('documentation-modal').classList.add('active');
+        });
+        
+        document.getElementById('api-keys-btn').addEventListener('click', function() {
+            document.getElementById('api-keys-modal').classList.add('active');
+        });
+        
+        document.getElementById('webhooks-btn').addEventListener('click', function() {
+            document.getElementById('webhooks-modal').classList.add('active');
+        });
+        
+        // API Console functionality
+        document.querySelectorAll('.test-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const endpoint = this.getAttribute('data-endpoint');
+                const method = this.getAttribute('data-method');
+                const responseArea = document.getElementById('api-response');
+                
+                // Show loading state
+                responseArea.innerHTML = '<em>Testing endpoint... Please wait</em>';
+                
+                // Simulate API call with timeout
+                setTimeout(() => {
+                    const responses = {
+                        '/api/v1/users': {
+                            GET: {
+                                status: 200,
+                                data: [
+                                    { id: 1, name: 'John Doe', email: 'john@example.com' },
+                                    { id: 2, name: 'Jane Smith', email: 'jane@example.com' }
+                                ]
+                            },
+                            POST: {
+                                status: 201,
+                                data: { id: 3, name: 'New User', email: 'new@example.com' }
+                            }
+                        },
+                        '/api/v1/products': {
+                            GET: {
+                                status: 200,
+                                data: [
+                                    { id: 1, name: 'Product A', price: 29.99 },
+                                    { id: 2, name: 'Product B', price: 49.99 }
+                                ]
+                            }
+                        },
+                        '/api/v1/products/123': {
+                            PUT: {
+                                status: 200,
+                                data: { id: 123, name: 'Updated Product', price: 39.99 }
+                            }
+                        }
+                    };
+                    
+                    const response = responses[endpoint] && responses[endpoint][method];
+                    
+                    if (response) {
+                        responseArea.innerHTML = `
+                            <strong>Status: ${response.status}</strong><br>
+                            <pre>${JSON.stringify(response.data, null, 2)}</pre>
+                        `;
+                    } else {
+                        responseArea.innerHTML = '<strong>Status: 404</strong><br>Endpoint not found';
+                    }
+                }, 1500);
+            });
+        });
 
-      // Hide modal
-      hideModal(modal) {
-        modal.classList.remove('show');
-      },
-
-      // Show notification
-      showNotification(message, type = 'info') {
-        const { notification, notificationIcon, notificationText } = this.elements;
-        
-        // Set notification content
-        notificationText.textContent = message;
-        notification.className = `notification ${type}`;
-        
-        // Set icon based on type
-        let iconSvg = '';
-        switch(type) {
-          case 'success':
-            iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>';
-            break;
-          case 'error':
-            iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
-            break;
-          default:
-            iconSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>';
-        }
-        
-        notificationIcon.innerHTML = iconSvg;
-        
-        // Show notification
-        notification.classList.add('show');
-        
-        // Auto hide after 3 seconds
-        setTimeout(() => {
-          notification.classList.remove('show');
-        }, 3000);
-      }
-    };
-
-    // Initialize the dashboard when DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-      Dashboard.init();
-    });
-  </script>
+        // Initialize with dashboard active and developer dashboard showing
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('dashboard-section').classList.add('active');
+            document.getElementById('developer-dashboard').classList.add('active');
+        });
+    </script>
 </body>
 </html>

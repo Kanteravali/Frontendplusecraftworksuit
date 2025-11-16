@@ -26,7 +26,6 @@
 
         * {
             margin: 0;
-               scroll-behavior: smooth;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -722,11 +721,71 @@
 
         .form-group input,
         .form-group select {
-            width: 100%;
-            padding: 12px;
+            width: 50%;
+            padding: 10px;
             border: 1px solid #ddd;
             border-radius: var(--border-radius);
             font-size: 1rem;
+        }
+
+        /* Login/Register Specific Styles */
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .auth-tab.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .user-info {
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .user-name {
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.4rem;
         }
 
         /* Responsive Styles */
@@ -775,74 +834,73 @@
             }
 
             .image-container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0;
-}
+                max-width: 100%;
+                margin: 0 auto;
+                padding: 0;
+            }
 
-.image-link {
-    display: block;
-    text-decoration: none;
-    transition: transform 0.3s ease;
-}
+            .image-link {
+                display: block;
+                text-decoration: none;
+                transition: transform 0.3s ease;
+            }
 
-.image-link:hover {
-    transform: scale(1.02);
-}
+            .image-link:hover {
+                transform: scale(1.02);
+            }
 
-.featured-image {
-    width: 100%;
-    height: auto;
-    max-height: 600px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    display: block;
-}
+            .featured-image {
+                width: 100%;
+                height: auto;
+                max-height: 600px;
+                object-fit: cover;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                display: block;
+            }
 
-/* Alternative: Full-width image */
-.featured-image.full-width {
-    width: 100vw;
-    max-width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    border-radius: 0;
-    box-shadow: none;
-}
+            /* Alternative: Full-width image */
+            .featured-image.full-width {
+                width: 100vw;
+                max-width: 100vw;
+                margin-left: calc(-50vw + 50%);
+                border-radius: 0;
+                box-shadow: none;
+            }
 
-/* For hero section style */
-.featured-image.hero-style {
-    width: 40%;
-    height: 70vh;
-    min-height: 500px;
-    object-fit: cover;
-    border-radius: 0;
-    box-shadow: none;
-}
+            /* For hero section style */
+            .featured-image.hero-style {
+                width: 40%;
+                height: 70vh;
+                min-height: 500px;
+                object-fit: cover;
+                border-radius: 0;
+                box-shadow: none;
+            }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .featured-image {
-        max-height: 400px;
-    }
-    
-    .featured-image.hero-style {
-        height: 50vh;
-        min-height: 400px;
-    }
-}
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .featured-image {
+                    max-height: 400px;
+                }
+                
+                .featured-image.hero-style {
+                    height: 50vh;
+                    min-height: 400px;
+                }
+            }
 
-@media (max-width: 480px) {
-    .featured-image {
-        max-height: 300px;
-        border-radius: 4px;
-    }
-    
-    .featured-image.hero-style {
-        height: 40vh;
-        min-height: 300px;
-    }
-    
-}
+            @media (max-width: 480px) {
+                .featured-image {
+                    max-height: 300px;
+                    border-radius: 4px;
+                }
+                
+                .featured-image.hero-style {
+                    height: 40vh;
+                    min-height: 300px;
+                }
+            }
         }
     </style>
 </head>
@@ -852,9 +910,9 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-    <img class="logo-img" src="assets/logo.png" alt="Pulsecrafts">
-    <span>Pulsecrafts</span>
-</a>
+                    <img class="logo-img" src="assets/logo.png" alt="Pulsecrafts">
+                    <span>Pulsecrafts</span>
+                </a>
                 
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
@@ -862,16 +920,20 @@
                     <li><a href="Features.html">Features</a></li>
                     <li><a href="#use-cases">Use Cases</a></li>
                     <li><a href="Developer.html">Developer</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="pricing.html">pricing</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
                 
                 <div class="nav-buttons">
+                    <div class="user-info" id="userInfo">
+                        <div class="user-avatar" id="userAvatar"></div>
+                        <span class="user-name" id="userName"></span>
+                        <button class="logout-btn" id="logoutBtn">Logout</button>
+                    </div>
                     <a href="#" class="btn btn-secondary" id="loginBtn">Log In</a>
                     <a href="#" class="btn btn-primary" id="trialBtn">Start Free Trial</a>
                 </div>
               
-            
                 <div class="mobile-menu">
                     <i class="fas fa-bars"></i>
                 </div>
@@ -892,15 +954,12 @@
                     </div>
                 </div>
                 <div class="image-container">
-    <a href="#" class="image-link">
-        <img class="featured-image" src="assets/kk.png" alt="" style="width: 70%; height: 70%;">
-    </a>
-</div>
-
-
-<h1></h1>
-                
-                            
+                    <a href="#" class="image-link">
+                        <img class="featured-image" src="assets/kk.png" alt="" style="width: 70%; height: 70%;">
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- About Section -->
@@ -913,7 +972,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Features Section -->
     <section class="features" id="features">
@@ -1275,7 +1333,143 @@
         </div>
     </div>
 
+    <!-- Login/Register Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">Login</div>
+                <div class="auth-tab" data-tab="register">Register</div>
+            </div>
+            
+            <form id="loginForm" class="auth-form active">
+                <h2>Login to Your Account</h2>
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                <p class="text-center" style="margin-top: 15px;">
+                    <a href="#" id="forgotPassword">Forgot your password?</a>
+                </p>
+            </form>
+            
+            <form id="registerForm" class="auth-form">
+                <h2>Create Your Account</h2>
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerCompany">Company</label>
+                    <input type="text" id="registerCompany">
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+            </form>
+        </div>
+    </div>
+
     <script>
+        // User management system
+        class UserManager {
+            constructor() {
+                this.currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+                this.users = JSON.parse(localStorage.getItem('users')) || [];
+                this.init();
+            }
+
+            init() {
+                this.updateUI();
+            }
+
+            register(userData) {
+                // Check if user already exists
+                if (this.users.find(user => user.email === userData.email)) {
+                    return { success: false, message: 'User with this email already exists' };
+                }
+
+                // Add user to database
+                const newUser = {
+                    id: Date.now().toString(),
+                    name: userData.name,
+                    email: userData.email,
+                    company: userData.company,
+                    password: userData.password,
+                    createdAt: new Date().toISOString()
+                };
+
+                this.users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(this.users));
+
+                // Auto login after registration
+                this.login(userData.email, userData.password);
+
+                return { success: true, message: 'Registration successful' };
+            }
+
+            login(email, password) {
+                const user = this.users.find(u => u.email === email && u.password === password);
+                
+                if (user) {
+                    this.currentUser = user;
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.updateUI();
+                    return { success: true, message: 'Login successful' };
+                } else {
+                    return { success: false, message: 'Invalid email or password' };
+                }
+            }
+
+            logout() {
+                this.currentUser = null;
+                localStorage.removeItem('currentUser');
+                this.updateUI();
+            }
+
+            updateUI() {
+                const userInfo = document.getElementById('userInfo');
+                const loginBtn = document.getElementById('loginBtn');
+                const trialBtn = document.getElementById('trialBtn');
+                const userAvatar = document.getElementById('userAvatar');
+                const userName = document.getElementById('userName');
+
+                if (this.currentUser) {
+                    // User is logged in
+                    userInfo.style.display = 'flex';
+                    loginBtn.style.display = 'none';
+                    trialBtn.style.display = 'none';
+                    
+                    // Set user info
+                    userAvatar.textContent = this.currentUser.name.charAt(0).toUpperCase();
+                    userName.textContent = this.currentUser.name;
+                } else {
+                    // User is not logged in
+                    userInfo.style.display = 'none';
+                    loginBtn.style.display = 'inline-block';
+                    trialBtn.style.display = 'inline-block';
+                }
+            }
+        }
+
+        // Initialize user manager
+        const userManager = new UserManager();
+
         // Mobile menu toggle
         document.querySelector('.mobile-menu').addEventListener('click', function() {
             const navLinks = document.querySelector('.nav-links');
@@ -1324,11 +1518,13 @@
         // Modal functionality
         const demoModal = document.getElementById('demoModal');
         const trialModal = document.getElementById('trialModal');
+        const authModal = document.getElementById('authModal');
         const demoBtn = document.getElementById('demoBtn');
         const heroTrialBtn = document.getElementById('heroTrialBtn');
         const trialBtn = document.getElementById('trialBtn');
         const pricingBtn = document.getElementById('pricingBtn');
         const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
         const closeButtons = document.querySelectorAll('.close-modal');
 
         // Open demo modal
@@ -1340,12 +1536,33 @@
         // Open trial modal
         heroTrialBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            trialModal.style.display = 'flex';
+            if (userManager.currentUser) {
+                alert('Your free trial has been activated! Check your email for login instructions.');
+            } else {
+                trialModal.style.display = 'flex';
+            }
         });
 
         trialBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            trialModal.style.display = 'flex';
+            if (userManager.currentUser) {
+                alert('Your free trial has been activated! Check your email for login instructions.');
+            } else {
+                trialModal.style.display = 'flex';
+            }
+        });
+
+        // Open auth modal
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            authModal.style.display = 'flex';
+        });
+
+        // Logout functionality
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            userManager.logout();
+            alert('You have been logged out successfully.');
         });
 
         // Close modals
@@ -1353,6 +1570,7 @@
             button.addEventListener('click', function() {
                 demoModal.style.display = 'none';
                 trialModal.style.display = 'none';
+                authModal.style.display = 'none';
             });
         });
 
@@ -1364,6 +1582,23 @@
             if (e.target === trialModal) {
                 trialModal.style.display = 'none';
             }
+            if (e.target === authModal) {
+                authModal.style.display = 'none';
+            }
+        });
+
+        // Auth tabs functionality
+        document.querySelectorAll('.auth-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Update active tab
+                document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show corresponding form
+                const tabName = this.getAttribute('data-tab');
+                document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+                document.getElementById(`${tabName}Form`).classList.add('active');
+            });
         });
 
         // Form submissions
@@ -1381,18 +1616,57 @@
             this.reset();
         });
 
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            const result = userManager.login(email, password);
+            
+            if (result.success) {
+                alert(result.message);
+                authModal.style.display = 'none';
+                this.reset();
+            } else {
+                alert(result.message);
+            }
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const company = document.getElementById('registerCompany').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            const result = userManager.register({
+                name,
+                email,
+                company,
+                password
+            });
+            
+            if (result.success) {
+                alert(result.message);
+                authModal.style.display = 'none';
+                this.reset();
+            } else {
+                alert(result.message);
+            }
+        });
+
         // Pricing button functionality
         pricingBtn.addEventListener('click', function(e) {
             e.preventDefault();
             alert('Redirecting to pricing page...');
             // In a real implementation, this would navigate to the pricing page
-        });
-
-        // Login button functionality
-        loginBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Redirecting to login page...');
-            // In a real implementation, this would navigate to the login page
         });
     </script>
 </body>
