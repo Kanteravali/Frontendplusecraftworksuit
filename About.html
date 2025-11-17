@@ -34,17 +34,17 @@
         .about-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 80px 20px;
+            padding: 60px 20px;
         }
 
         /* Header Section */
         .about-header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
         .about-header h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 20px;
             color: var(--text-dark);
@@ -63,11 +63,11 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
-            margin-bottom: 100px;
+            margin-bottom: 80px;
         }
 
         .story-content h2 {
-            font-size: 2.25rem;
+            font-size: 2rem;
             font-weight: 600;
             margin-bottom: 24px;
             color: var(--text-dark);
@@ -162,7 +162,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            margin-bottom: 100px;
+            margin-bottom: 80px;
         }
 
         .mission-card, .vision-card {
@@ -245,12 +245,12 @@
 
         /* Values Section */
         .values-section {
-            margin-bottom: 100px;
+            margin-bottom: 80px;
         }
 
         .values-section h2 {
             text-align: center;
-            font-size: 2.25rem;
+            font-size: 2rem;
             font-weight: 600;
             margin-bottom: 60px;
             color: var(--text-dark);
@@ -345,7 +345,7 @@
         /* Team Section */
         .team-section {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
         .team-section h2 {
@@ -443,20 +443,144 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .about-container {
+                max-width: 1000px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .company-story {
+                gap: 40px;
+            }
+            
+            .story-content h2 {
+                font-size: 1.75rem;
+            }
+            
+            .story-content p {
+                font-size: 1rem;
+            }
+            
+            .story-visual {
+                height: 350px;
+            }
+            
+            .mission-vision {
+                gap: 30px;
+            }
+            
+            .card-content {
+                padding: 30px;
+            }
+            
+            .values-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+            }
+            
+            .value-content {
+                padding: 25px;
+            }
+            
+            .team-grid {
+                gap: 30px;
+            }
+        }
+
         @media (max-width: 768px) {
+            .about-container {
+                padding: 40px 20px;
+            }
+            
+            .about-header {
+                margin-bottom: 40px;
+            }
+            
+            .about-header h1 {
+                font-size: 2rem;
+            }
+            
+            .about-header p {
+                font-size: 1.1rem;
+            }
+            
             .company-story {
                 grid-template-columns: 1fr;
                 gap: 40px;
+                margin-bottom: 60px;
             }
 
             .mission-vision {
                 grid-template-columns: 1fr;
+                margin-bottom: 60px;
             }
 
             .story-stats {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
             }
-
+            
+            .stat-item {
+                padding: 15px;
+            }
+            
+            .stat-number {
+                font-size: 1.75rem;
+            }
+            
+            .story-visual {
+                height: 300px;
+                order: -1;
+            }
+            
+            .image-overlay {
+                padding: 30px;
+            }
+            
+            .image-overlay h3 {
+                font-size: 1.25rem;
+            }
+            
+            .card-image {
+                height: 180px;
+            }
+            
+            .card-content {
+                padding: 25px;
+            }
+            
+            .card-content h3 {
+                font-size: 1.375rem;
+            }
+            
+            .values-section {
+                margin-bottom: 60px;
+            }
+            
+            .values-section h2 {
+                font-size: 1.75rem;
+                margin-bottom: 40px;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .value-content {
+                padding: 20px;
+            }
+            
+            .value-content h4 {
+                font-size: 1.125rem;
+            }
+            
+            .team-section {
+                margin-bottom: 40px;
+            }
+            
             .team-section h2 {
                 font-size: 1.75rem;
                 margin-bottom: 40px;
@@ -465,6 +589,7 @@
             .team-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 30px;
+                max-width: 600px;
             }
             
             .member-image-container {
@@ -472,37 +597,237 @@
                 height: 100px;
                 margin-bottom: 15px;
             }
+            
+            .member-content h4 {
+                font-size: 1rem;
+            }
+            
+            .member-content p {
+                font-size: 0.85rem;
+            }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 576px) {
+            .about-container {
+                padding: 30px 15px;
+            }
+            
+            .about-header {
+                margin-bottom: 30px;
+            }
+            
             .about-header h1 {
-                font-size: 2rem;
-            }
-
-            .about-header p {
-                font-size: 1.1rem;
-            }
-
-            .story-content h2,
-            .values-section h2,
-            .team-section h2 {
                 font-size: 1.75rem;
             }
-
-            .card-content,
-            .value-content,
-            .member-content {
+            
+            .about-header p {
+                font-size: 1rem;
+            }
+            
+            .company-story {
+                gap: 30px;
+                margin-bottom: 50px;
+            }
+            
+            .story-content h2 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+            
+            .story-content p {
+                font-size: 0.95rem;
+                margin-bottom: 15px;
+            }
+            
+            .story-stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-top: 30px;
+            }
+            
+            .stat-item {
+                padding: 15px;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .story-visual {
+                height: 250px;
+            }
+            
+            .image-overlay {
                 padding: 20px;
+            }
+            
+            .image-overlay h3 {
+                font-size: 1.125rem;
+                margin-bottom: 10px;
+            }
+            
+            .image-overlay p {
+                font-size: 0.9rem;
+            }
+            
+            .mission-vision {
+                gap: 25px;
+                margin-bottom: 50px;
+            }
+            
+            .card-image {
+                height: 160px;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+            
+            .card-content h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+            }
+            
+            .card-content p {
+                font-size: 0.95rem;
+            }
+            
+            .values-section {
+                margin-bottom: 50px;
+            }
+            
+            .values-section h2 {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+            }
+            
+            .values-grid {
+                gap: 20px;
+            }
+            
+            .value-image {
+                height: 100px;
+            }
+            
+            .value-content {
+                padding: 20px;
+            }
+            
+            .value-content h4 {
+                font-size: 1.1rem;
+                margin-bottom: 12px;
+            }
+            
+            .value-content p {
+                font-size: 0.9rem;
+            }
+            
+            .team-section {
+                margin-bottom: 30px;
             }
             
             .team-section h2 {
                 font-size: 1.5rem;
+                margin-bottom: 30px;
             }
             
             .team-grid {
                 grid-template-columns: 1fr;
                 gap: 25px;
                 max-width: 300px;
+            }
+            
+            .member-image-container {
+                width: 90px;
+                height: 90px;
+                margin-bottom: 12px;
+            }
+            
+            .member-content h4 {
+                font-size: 1rem;
+            }
+            
+            .member-content .role {
+                font-size: 0.8rem;
+            }
+            
+            .member-content p {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .about-container {
+                padding: 20px 12px;
+            }
+            
+            .about-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .about-header p {
+                font-size: 0.95rem;
+            }
+            
+            .story-content h2 {
+                font-size: 1.375rem;
+            }
+            
+            .story-content p {
+                font-size: 0.9rem;
+            }
+            
+            .story-visual {
+                height: 200px;
+            }
+            
+            .image-overlay {
+                padding: 15px;
+            }
+            
+            .image-overlay h3 {
+                font-size: 1rem;
+            }
+            
+            .image-overlay p {
+                font-size: 0.85rem;
+            }
+            
+            .card-content {
+                padding: 15px;
+            }
+            
+            .card-content h3 {
+                font-size: 1.125rem;
+            }
+            
+            .card-content p {
+                font-size: 0.9rem;
+            }
+            
+            .values-section h2 {
+                font-size: 1.375rem;
+            }
+            
+            .value-content {
+                padding: 15px;
+            }
+            
+            .value-content h4 {
+                font-size: 1rem;
+            }
+            
+            .value-content p {
+                font-size: 0.85rem;
+            }
+            
+            .team-section h2 {
+                font-size: 1.375rem;
+            }
+            
+            .member-image-container {
+                width: 80px;
+                height: 80px;
             }
         }
     </style>
