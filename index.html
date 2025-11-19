@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulsecrafts WorkSuite - All-in-One Cloud Workspace</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
         /* Base Styles */
         :root {
@@ -47,7 +49,7 @@
 
         section {
             padding: 80px 0;
-            background-color: #ffffff; /* Ensure all sections have white background */
+            background-color: #ffffff;
         }
 
         h1, h2, h3, h4 {
@@ -198,7 +200,7 @@
 
         /* Hero Section */
         .hero {
-            background: white; /* Changed from gradient to white */
+            background: white;
             padding: 100px 0;
             position: relative;
             overflow: hidden;
@@ -282,7 +284,7 @@
 
         /* Features Section */
         .features {
-            background-color: white; /* Changed from light gray to white */
+            background-color: white;
         }
 
         .features-grid {
@@ -300,7 +302,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            border: 1px solid #f0f0f0; /* Added border for visual separation */
+            border: 1px solid #f0f0f0;
         }
 
         .feature-card:hover {
@@ -394,7 +396,7 @@
 
         /* Use Cases Section */
         .use-cases {
-            background-color: white; /* Changed from light gray to white */
+            background-color: white;
         }
 
         .use-cases-grid {
@@ -412,7 +414,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            border: 1px solid #f0f0f0; /* Added border for visual separation */
+            border: 1px solid #f0f0f0;
         }
 
         .use-case-card:hover {
@@ -443,6 +445,104 @@
 
         .use-case-card:hover .use-case-details {
             max-height: 200px;
+        }
+
+        /* Google Workspace Style Section */
+        .workspace-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+            margin: 80px 0;
+        }
+
+        .workspace-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .workspace-header {
+            font-size: 40px;
+            font-weight: 400;
+            margin-bottom: 60px;
+            line-height: 1.2;
+            color: #202124;
+            text-align: left;
+        }
+
+        .workspace-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .workspace-feature {
+            padding-right: 20px;
+        }
+
+        .workspace-feature-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            color: #202124;
+        }
+
+        .workspace-feature-title .icon {
+            margin-right: 10px;
+            color: #1a73e8;
+        }
+
+        .workspace-feature-description {
+            font-size: 16px;
+            color: #5f6368;
+            line-height: 1.6;
+        }
+
+        .includes-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            color: #202124;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 20px;
+        }
+
+        .tool {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 15px 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .tool:hover {
+            background-color: rgba(66, 133, 244, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #f8f9fa;
+        }
+
+        .tool-name {
+            font-size: 14px;
+            color: #5f6368;
+            font-weight: 500;
         }
 
         /* Testimonials Section */
@@ -510,15 +610,15 @@
 
         /* CTA Section */
         .cta {
-            background: white; /* Changed from gradient to white */
-            color: var(--dark); /* Changed text color to dark for contrast */
+            background: white;
+            color: var(--dark);
             text-align: center;
             padding: 100px 0;
-            border-top: 1px solid #f0f0f0; /* Added border for visual separation */
+            border-top: 1px solid #f0f0f0;
         }
 
         .cta h2 {
-            color: var(--dark); /* Changed from white to dark */
+            color: var(--dark);
             margin-bottom: 1.5rem;
         }
 
@@ -527,81 +627,138 @@
             margin: 0 auto 2.5rem;
             font-size: 1.1rem;
             opacity: 0.9;
-            color: var(--gray); /* Changed text color for better readability */
+            color: var(--gray);
         }
 
         .cta .btn {
-            background-color: var(--primary); /* Changed from white to primary color */
-            color: white; /* Changed from primary to white */
+            background-color: var(--primary);
+            color: white;
         }
 
         .cta .btn:hover {
-            background-color: var(--primary-dark); /* Changed hover color */
+            background-color: var(--primary-dark);
+        }
+
+        /* Newsletter Signup Section - UPDATED: Removed white background */
+        .newsletter-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+            /* Removed white background and box-shadow */
+            padding: 40px;
+        }
+
+        .newsletter-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: #202124;
+            text-align: center;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            gap: 16px;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #202124;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #202124;
+            background-color: white;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+
+        .checkbox-group {
+            margin-bottom: 20px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 16px;
+            cursor: pointer;
+        }
+
+        .checkbox-label input {
+            margin-right: 12px;
+            margin-top: 2px;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .privacy-text {
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .privacy-link {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .privacy-link:hover {
+            text-decoration: underline;
+        }
+
+        .signup-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            width: 100%;
+        }
+
+        .signup-button:hover {
+            background-color: var(--primary-dark);
         }
 
         /* Footer */
-* {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        :root {
-            --primary: #6C63FF;
-            --primary-dark: #554fd8;
-            --secondary: #FF6584;
-            --dark: #2D2B55;
-            --light: #F7F7FF;
-            --gray: #8A8AA3;
-            --border: #E5E5EC;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        
-        .content h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-        
-        .content p {
-            font-size: 18px;
-            color: var(--gray);
-            max-width: 600px;
-        }
-        
-        /* Footer Styles */
         footer {
             background: var(--dark);
             color: white;
             padding: 50px 0 20px;
             margin-top: auto;
         }
-        
+
         .footer-main {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -609,13 +766,13 @@
             padding-bottom: 40px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .footer-brand {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-        
+
         .footer-logo {
             display: flex;
             align-items: center;
@@ -623,58 +780,58 @@
             font-size: 24px;
             font-weight: 700;
         }
-        
+
         .footer-logo i {
             color: var(--primary);
         }
-        
+
         .footer-description {
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
             max-width: 300px;
         }
-        
+
         .footer-heading {
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 20px;
             color: white;
         }
-        
+
         .footer-links {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-        
+
         .footer-links a {
             text-decoration: none;
             color: rgba(255, 255, 255, 0.7);
             transition: color 0.3s;
         }
-        
+
         .footer-links a:hover {
             color: white;
         }
-        
+
         .footer-contact {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-        
+
         .contact-item {
             display: flex;
             align-items: center;
             gap: 10px;
             color: rgba(255, 255, 255, 0.7);
         }
-        
+
         .contact-item i {
             color: var(--primary);
             width: 20px;
         }
-        
+
         .footer-bottom {
             display: flex;
             justify-content: space-between;
@@ -683,27 +840,27 @@
             font-size: 14px;
             color: rgba(255, 255, 255, 0.7);
         }
-        
+
         .footer-legal {
             display: flex;
             gap: 20px;
         }
-        
+
         .footer-legal a {
             text-decoration: none;
             color: rgba(255, 255, 255, 0.7);
             transition: color 0.3s;
         }
-        
+
         .footer-legal a:hover {
             color: white;
         }
-        
+
         .social-links {
             display: flex;
             gap: 15px;
         }
-        
+
         .social-links a {
             display: flex;
             align-items: center;
@@ -716,18 +873,18 @@
             font-size: 16px;
             transition: all 0.3s;
         }
-        
+
         .social-links a:hover {
             background: var(--primary);
             color: white;
             transform: translateY(-3px);
         }
-        
+
         .newsletter {
             display: flex;
             margin-top: 15px;
         }
-        
+
         .newsletter input {
             padding: 12px 15px;
             border: none;
@@ -737,11 +894,11 @@
             width: 70%;
             outline: none;
         }
-        
+
         .newsletter input::placeholder {
             color: rgba(255, 255, 255, 0.5);
         }
-        
+
         .newsletter button {
             padding: 12px 20px;
             background: var(--primary);
@@ -751,36 +908,11 @@
             cursor: pointer;
             transition: background 0.3s;
         }
-        
+
         .newsletter button:hover {
             background: var(--primary-dark);
         }
-        
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .footer-main {
-                grid-template-columns: 1fr 1fr;
-                gap: 30px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .footer-main {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .footer-bottom {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
-            
-            .footer-legal {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
+
         /* Modal Styles */
         .modal {
             display: none;
@@ -961,7 +1093,6 @@
             display: block;
         }
 
-
         .nav-container {
             background-color: white;
             border-radius: 28px;
@@ -969,17 +1100,16 @@
             padding: 10px 10px;
             max-width: 700px;
             width: 100%;
-            margin: 0 auto; /* Changed from margin-right: auto to center it */
+            margin: 0 auto;
             justify-content: center;
-            
         }
-        
+
         nav {
             display: flex;
             justify-content: center;
             gap: 32px;
         }
-        
+
         nav a {
             text-decoration: none;
             color: #333;
@@ -990,11 +1120,11 @@
             transition: color 0.2s ease;
             position: relative;
         }
-        
+
         nav a:hover {
             color: black;
         }
-        
+
         nav a:hover::after {
             content: '';
             position: absolute;
@@ -1004,36 +1134,18 @@
             height: 2px;
             background-color: whitesmoke;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
+
         .faq-section {
             background: white;
             border-radius: 10px;
             box-shadow: whitesmoke;
             overflow: hidden;
         }
-        
+
         .faq-item {
             border-bottom: 1px solid #eaeaea;
         }
-        
+
         .faq-question {
             padding: 23px 33px;
             cursor: pointer;
@@ -1044,16 +1156,16 @@
             font-size: 1.1rem;
             transition: all 0.3s ease;
         }
-        
+
         .faq-question:hover {
             background-color: whitesmoke;
         }
-        
+
         .faq-question.active {
             background-color: #f0f4ff;
             color: whitesmoke;
         }
-        
+
         .chevron {
             width: 20px;
             height: 20px;
@@ -1062,7 +1174,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .chevron::before {
             content: '';
             width: 10px;
@@ -1072,11 +1184,11 @@
             transform: rotate(45deg);
             transition: transform 0.3s ease;
         }
-        
+
         .faq-question.active .chevron::before {
             transform: rotate(-135deg);
         }
-        
+
         .faq-answer {
             padding: 0 30px;
             max-height: 0;
@@ -1084,55 +1196,54 @@
             transition: max-height 0.3s ease, padding 0.3s ease;
             background-color: whitesmoke;
         }
-        
+
         .faq-answer.open {
             padding: 20px 30px;
             max-height: 500px;
         }
-        @media (max-width: 600px) {
-            nav {
-                flex-direction: column;
-                gap: 12px;
-                align-items: center;
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            .tools-grid {
+                grid-template-columns: repeat(6, 1fr);
             }
         }
-        /* Responsive Styles */
-        @media (max-width: 1200px) {
-            .container {
-                max-width: 1000px;
-                
-            }
-        }
-        
 
         @media (max-width: 992px) {
             h1 {
                 font-size: 2.5rem;
             }
-            
+
             h2 {
                 font-size: 2rem;
             }
-            
+
             .hero-content {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             .hero-text {
                 margin-bottom: 50px;
             }
-            
+
             .hero-buttons {
                 justify-content: center;
             }
-            
+
             .image-container {
                 margin-top: 40px;
             }
-            
+
             .featured-image {
                 max-width: 400px;
+            }
+            .workspace-features {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1140,64 +1251,94 @@
             .nav-links, .nav-buttons {
                 display: none;
             }
-            
+
             .mobile-menu {
                 display: block;
             }
-            
+
             section {
                 padding: 60px 0;
             }
-            
+
             h1 {
                 font-size: 2rem;
             }
-            
+
             h2 {
                 font-size: 1.8rem;
             }
-            
+
             .hero {
                 padding: 80px 0;
             }
-            
+
             .hero-text p {
                 font-size: 1.1rem;
             }
-            
+
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .hero-buttons .btn {
                 width: 100%;
                 max-width: 300px;
             }
-            
+
             .feature-card, .use-case-card {
                 padding: 20px;
             }
-            
+
             .feature-icon, .use-case-icon {
                 width: 60px;
                 height: 60px;
                 font-size: 1.5rem;
             }
-            
+
             .integration-logo {
                 width: 100px;
                 height: 50px;
                 font-size: 1.5rem;
             }
-            
+
             .modal-content {
                 padding: 30px 20px;
             }
-            
-            .footer-content {
+
+            .footer-main {
                 grid-template-columns: 1fr;
                 gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .tools-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .workspace-header {
+                font-size: 32px;
+            }
+            
+            .newsletter-container {
+                padding: 24px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .form-group {
+                min-width: 100%;
             }
         }
 
@@ -1205,113 +1346,96 @@
             h1 {
                 font-size: 1.8rem;
             }
-            
+
             h2 {
                 font-size: 1.6rem;
             }
-            
+
             h3 {
                 font-size: 1.3rem;
             }
-            
+
             section {
                 padding: 50px 0;
             }
-            
+
             .hero {
                 padding: 60px 0;
             }
-            
+
             .hero-text p {
                 font-size: 1rem;
             }
-            
+
             .btn {
                 padding: 10px 20px;
                 font-size: 0.9rem;
             }
-            
+
             .btn-large {
                 padding: 12px 25px;
                 font-size: 1rem;
             }
-            
+
             .features-grid, .use-cases-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .integrations-logos {
                 gap: 20px;
             }
-            
+
             .integration-logo {
                 width: 80px;
                 height: 40px;
                 font-size: 1.3rem;
             }
-            
+
             .testimonial-card {
                 padding: 20px;
             }
-            
+
             .testimonial-avatar {
                 width: 60px;
                 height: 60px;
             }
-            
+
             .cta {
                 padding: 80px 0;
             }
-            
+
             .footer-bottom {
                 font-size: 0.8rem;
             }
+            .tools-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .workspace-header {
+                font-size: 28px;
+            }
         }
 
-         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .faq-question {
-                padding: 15px 20px;
-                font-size: 1rem;
-            }
-            
-            .faq-answer.open {
-                padding: 15px 20px;
-            }
-        }
         @media (max-width: 400px) {
             .container {
                 padding: 0 15px;
             }
-            
+
             .hero-text h1 {
                 font-size: 1.6rem;
             }
-            
+
             .hero-buttons .btn {
                 width: 100%;
             }
-            
+
             .feature-card, .use-case-card {
                 padding: 15px;
             }
-            
+
             .modal-content {
                 padding: 20px 15px;
             }
-
-            
         }
-
-        
-        
     </style>
 </head>
 <body>
@@ -1323,7 +1447,7 @@
                     <img class="logo-img" src="assets/logo.png" alt="">
                     <span>Pulsecrafts</span>
                 </a>
-                
+
                 <ul class="nav-links">
                     <li><a href="#">Home</a></li>
                     <li><a href="About.html">About</a></li>
@@ -1333,7 +1457,7 @@
                     <li><a href="pricing.html">pricing</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
-                
+
                 <div class="nav-buttons">
                     <div class="user-info" id="userInfo">
                         <div class="user-avatar" id="userAvatar"></div>
@@ -1343,7 +1467,7 @@
                     <a href="#" class="btn btn-secondary" id="loginBtn">Log In</a>
                     <a href="#" class="btn btn-primary" id="trialBtn">Start Free Trial</a>
                 </div>
-              
+
                 <div class="mobile-menu" id="mobileMenu">
                     <i class="fas fa-bars"></i>
                 </div>
@@ -1380,21 +1504,20 @@
                         <a href="#" class="btn btn-primary btn-large" id="demoBtn">Book Demo</a>
                         <a href="#" class="btn btn-secondary btn-large" id="heroTrialBtn">Start Free Trial</a>
                     </div>
-                </div> 
+                </div>
         </div><br><br><br><br>
 
         <div class="nav-container">
         <nav>
-            <a href="#">What's included</a>
-            <a href="#">Premium features</a>
+            <a href="#All the tools that you need and a
+                 few more that we think you'll love">What's included</a>
+            <a href="#keyFeatures">Features</a>
             <a href="#">Plans and pricing</a>
-            <a href="#">FAQ</a>
+            <a href="#FAQ">FAQ</a>
         </nav>
     </div>
 
     </section>
-
-    
 
     <!-- About Section -->
     <section class="about">
@@ -1408,7 +1531,7 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features" id="features">
+    <section id="keyFeatures">
         <div class="container">
             <h2 class="section-title">Key Features</h2>
             <div class="features-grid">
@@ -1427,7 +1550,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-comments"></i>
@@ -1443,7 +1566,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
@@ -1459,7 +1582,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-shopping-cart"></i>
@@ -1475,7 +1598,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-chart-bar"></i>
@@ -1491,7 +1614,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-shield-alt"></i>
@@ -1559,7 +1682,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="use-case-card">
                     <div class="use-case-icon">
                         <i class="fas fa-paint-brush"></i>
@@ -1575,7 +1698,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="use-case-card">
                     <div class="use-case-icon">
                         <i class="fas fa-store"></i>
@@ -1591,7 +1714,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="use-case-card">
                     <div class="use-case-icon">
                         <i class="fas fa-laptop-house"></i>
@@ -1611,6 +1734,156 @@
         </div>
     </section>
 
+    <!-- Google Workspace Style Section -->
+    <section id = "All the tools that you need and a
+                 few more that we think you'll love">
+        <div class="workspace-container">
+            <h1 class="workspace-header"><center>All the tools that you need and a<br>
+                 few more that we think you'll love.</center></h1>
+
+            <div class="workspace-features">
+                <div class="workspace-feature">
+                    <h2 class="workspace-feature-title">
+                        <span class="material-icons icon">auto_awesome</span>
+                        Premium AI built in
+                    </h2>
+                    <p class="workspace-feature-description">
+                        Do your best work faster with AI assistance across all WorkSuite applications including Chat, Docs, Sheets, and more.
+                    </p>
+                </div>
+
+                <div class="workspace-feature">
+                    <h2 class="workspace-feature-title">
+                        <span class="material-icons icon">cloud</span>
+                        Tools born in the cloud
+                    </h2>
+                    <p class="workspace-feature-description">
+                        Collaborate in real time, from any device, across tools that are always up to date with the latest features.
+                    </p>
+                </div>
+
+                <div class="workspace-feature">
+                    <h2 class="workspace-feature-title">
+                        <span class="material-icons icon">security</span>
+                        Enterprise-grade security
+                    </h2>
+                    <p class="workspace-feature-description">
+                        Protect your data, communications, and meetings with advanced security and compliance controls.
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="includes-title">WorkSuite includes</h2>
+
+            <div class="tools-grid">
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #ea4335;">mail</span>
+                    </div>
+                    <span class="tool-name">PulseMail</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #34a853;">folder</span>
+                    </div>
+                    <span class="tool-name">PulseDrive</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #00897b;">video_call</span>
+                    </div>
+                    <span class="tool-name">PulseMeet</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #fbbc04;">event</span>
+                    </div>
+                    <span class="tool-name">PulseCalendar</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #00bcd4;">chat</span>
+                    </div>
+                    <span class="tool-name">PulseChat</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #1a73e8;">auto_awesome</span>
+                    </div>
+                    <span class="tool-name">PulseAI</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #4285f4;">description</span>
+                    </div>
+                    <span class="tool-name">PulseDocs</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #0f9d58;">grid_on</span>
+                    </div>
+                    <span class="tool-name">PulseSheets</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #f4b400;">slideshow</span>
+                    </div>
+                    <span class="tool-name">PulseSlides</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #ff6d00;">movie</span>
+                    </div>
+                    <span class="tool-name">PulseVids</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #5f6368;">lightbulb</span>
+                    </div>
+                    <span class="tool-name">PulseKeep</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #46bdc6;">language</span>
+                    </div>
+                    <span class="tool-name">PulseSites</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #673ab7;">assignment</span>
+                    </div>
+                    <span class="tool-name">PulseForms</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #1a73e8;">menu_book</span>
+                    </div>
+                    <span class="tool-name">PulseNotebook</span>
+                </div>
+
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #3ddc84;">apps</span>
+                    </div>
+                    <span class="tool-name">PulseAppSheet</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Testimonials Section -->
     <section class="testimonials">
         <div class="container">
@@ -1625,7 +1898,7 @@
                         <p class="testimonial-author">Sarah Johnson</p>
                         <p class="testimonial-role">CEO, TechSolutions Inc.</p>
                     </div>
-                    
+
                     <div class="testimonial-item">
                         <div class="testimonial-avatar">
                             <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Michael Chen">
@@ -1634,7 +1907,7 @@
                         <p class="testimonial-author">Michael Chen</p>
                         <p class="testimonial-role">Operations Manager, StyleCart</p>
                     </div>
-                    
+
                     <div class="testimonial-item">
                         <div class="testimonial-avatar">
                             <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Jessica Williams">
@@ -1657,11 +1930,11 @@
         </div>
     </section>
 
-
+    <!-- FAQ Section -->
     <div class="container">
-        <center><h1>Find the answers that you need</center></h1>
-        
-        <section class="faq-section">
+        <center><h1>Find the answers that you need</h1></center>
+
+        <section id="FAQ">
             <div class="faq-item">
                 <div class="faq-question">
                     <span>What services does Pulse Craft offer?</span>
@@ -1671,7 +1944,7 @@
                     <p>Pulse Craft specializes in web design and development, mobile app development, digital marketing, and branding solutions. We create custom digital experiences that help businesses grow and succeed online.</p>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <span>How long does a typical web development project take?</span>
@@ -1681,7 +1954,7 @@
                     <p>The timeline for web development projects varies based on complexity. A simple brochure website typically takes 2-4 weeks, while more complex e-commerce or custom web applications can take 8-12 weeks or longer. We provide detailed project timelines during our initial consultation.</p>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <span>Do you offer ongoing website maintenance?</span>
@@ -1691,7 +1964,7 @@
                     <p>Yes, we offer comprehensive website maintenance plans that include regular updates, security monitoring, performance optimization, and technical support. Our maintenance plans are available monthly or annually to suit your needs.</p>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <span>Can you redesign my existing website?</span>
@@ -1701,7 +1974,7 @@
                     <p>Absolutely! We specialize in website redesigns that improve both aesthetics and functionality. We'll analyze your current site, identify areas for improvement, and create a modern, responsive design that better serves your business goals.</p>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <span>What is your pricing structure?</span>
@@ -1711,7 +1984,7 @@
                     <p>We offer customized pricing based on project requirements. After understanding your needs, we provide a detailed quote with transparent pricing. We offer both project-based pricing and retainer options for ongoing services.</p>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <span>Do you work with clients remotely?</span>
@@ -1721,7 +1994,7 @@
                     <p>Yes, we work with clients worldwide through remote collaboration tools. We've perfected our remote workflow to ensure seamless communication and project management regardless of location.</p>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <span>What technologies do you specialize in?</span>
@@ -1731,7 +2004,7 @@
                     <p>Our team is proficient in a wide range of technologies including HTML5, CSS3, JavaScript, React, Vue.js, Node.js, PHP, WordPress, Shopify, and various database systems. We stay current with industry trends to deliver cutting-edge solutions.</p>
                 </div>
             </div>
-            
+
             <div class="faq-item">
                 <div class="faq-question">
                     <span>How do I get started with Pulse Craft?</span>
@@ -1742,9 +2015,54 @@
                 </div>
             </div>
         </section>
-        
     </div>
 
+    <!-- Newsletter Signup Section - UPDATED: Transparent background -->
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <h1 class="newsletter-title">Sign up for the WorkSuite newsletter</h1>
+            
+            <form id="newsletterForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country" required>
+                            <option value="India" selected>India</option>
+                            <option value="United States">United States</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Germany">Germany</option>
+                            <option value="France">France</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="cloudEmails">
+                        <span>Also sign me up for WorkSuite Cloud emails with news, product updates, event information, special offers, and more.</span>
+                    </label>
+                </div>
+                
+                <p class="privacy-text">
+                    I understand that my personal data will be processed in accordance with WorkSuite's <a href="#" class="privacy-link">Privacy Policy</a>.
+                </p>
+                
+                <button type="submit" class="signup-button">Sign up</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-main">
@@ -1760,7 +2078,7 @@
                         <button>Subscribe</button>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3 class="footer-heading">Products</h3>
                     <div class="footer-links">
@@ -1772,7 +2090,7 @@
                         <a href="#">Enterprise Solutions</a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3 class="footer-heading">Company</h3>
                     <div class="footer-links">
@@ -1784,7 +2102,7 @@
                         <a href="#">Contact</a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3 class="footer-heading">Support</h3>
                     <div class="footer-contact">
@@ -1810,10 +2128,10 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div>© 2023 PulseCraft Technologies. All rights reserved.</div>
-                
+
                 <div class="footer-legal">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
@@ -1824,7 +2142,8 @@
             </div>
         </div>
     </footer>
-    <!-- Demo Modal -->
+
+    <!-- Modal Sections -->
     <div class="modal" id="demoModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -1859,7 +2178,6 @@
         </div>
     </div>
 
-    <!-- Trial Modal -->
     <div class="modal" id="trialModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -1887,7 +2205,6 @@
         </div>
     </div>
 
-    <!-- Login/Register Modal -->
     <div class="modal" id="authModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -1895,7 +2212,7 @@
                 <div class="auth-tab active" data-tab="login">Login</div>
                 <div class="auth-tab" data-tab="register">Register</div>
             </div>
-            
+
             <form id="loginForm" class="auth-form active">
                 <h2>Login to Your Account</h2>
                 <div class="form-group">
@@ -1911,7 +2228,7 @@
                     <a href="#" id="forgotPassword">Forgot your password?</a>
                 </p>
             </form>
-            
+
             <form id="registerForm" class="auth-form">
                 <h2>Create Your Account</h2>
                 <div class="form-group">
@@ -1979,7 +2296,7 @@
 
             login(email, password) {
                 const user = this.users.find(u => u.email === email && u.password === password);
-                
+
                 if (user) {
                     this.currentUser = user;
                     localStorage.setItem('currentUser', JSON.stringify(user));
@@ -2008,7 +2325,7 @@
                     userInfo.style.display = 'flex';
                     loginBtn.style.display = 'none';
                     trialBtn.style.display = 'none';
-                    
+
                     // Set user info
                     userAvatar.textContent = this.currentUser.name.charAt(0).toUpperCase();
                     userName.textContent = this.currentUser.name;
@@ -2140,7 +2457,7 @@
                 // Update active tab
                 document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                
+
                 // Show corresponding form
                 const tabName = this.getAttribute('data-tab');
                 document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
@@ -2167,9 +2484,9 @@
             e.preventDefault();
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
-            
+
             const result = userManager.login(email, password);
-            
+
             if (result.success) {
                 alert(result.message);
                 authModal.style.display = 'none';
@@ -2186,20 +2503,20 @@
             const company = document.getElementById('registerCompany').value;
             const password = document.getElementById('registerPassword').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
-            
+
             // Validate passwords match
             if (password !== confirmPassword) {
                 alert('Passwords do not match');
                 return;
             }
-            
+
             const result = userManager.register({
                 name,
                 email,
                 company,
                 password
             });
-            
+
             if (result.success) {
                 alert(result.message);
                 authModal.style.display = 'none';
@@ -2216,18 +2533,19 @@
             // In a real implementation, this would navigate to the pricing page
         });
 
+        // FAQ functionality
         document.addEventListener('DOMContentLoaded', function() {
             const faqQuestions = document.querySelectorAll('.faq-question');
-            
+
             faqQuestions.forEach(question => {
                 question.addEventListener('click', function() {
                     // Toggle active class on question
                     this.classList.toggle('active');
-                    
+
                     // Toggle open class on answer
                     const answer = this.nextElementSibling;
                     answer.classList.toggle('open');
-                    
+
                     // Close other open answers
                     faqQuestions.forEach(otherQuestion => {
                         if (otherQuestion !== question) {
@@ -2237,6 +2555,54 @@
                     });
                 });
             });
+        });
+
+        // Google Workspace style section functionality
+        const toolFunctionalities = {
+            "PulseMail": "Email service with smart organization and search",
+            "PulseDrive": "Cloud storage for all your files",
+            "PulseMeet": "Video conferencing for high-quality meetings",
+            "PulseCalendar": "Scheduling tool for organizing your time",
+            "PulseChat": "Messaging for team collaboration",
+            "PulseAI": "AI assistant across WorkSuite",
+            "PulseDocs": "Word processor for collaborative documents",
+            "PulseSheets": "Spreadsheets for data analysis",
+            "PulseSlides": "Presentation app for creating slideshows",
+            "PulseVids": "AI-powered video creation tool",
+            "PulseKeep": "Note-taking service for quick ideas",
+            "PulseSites": "Website builder for project hubs",
+            "PulseForms": "Survey and quiz creation tool",
+            "PulseNotebook": "AI-powered notebook for document analysis",
+            "PulseAppSheet": "No-code platform for custom apps"
+        };
+
+        // Add hover functionality to show tool descriptions
+        document.querySelectorAll('.tool').forEach(tool => {
+            const toolName = tool.querySelector('.tool-name').textContent;
+
+            tool.addEventListener('mouseenter', () => {
+                tool.setAttribute('title', toolFunctionalities[toolName]);
+            });
+        });
+
+        // Newsletter form functionality
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const country = document.getElementById('country').value;
+            const cloudEmails = document.getElementById('cloudEmails').checked;
+            
+            // In a real implementation, you would send this data to a server
+            console.log({
+                email: email,
+                country: country,
+                cloudEmails: cloudEmails
+            });
+            
+            alert('Thank you for signing up for the WorkSuite newsletter!');
+            document.getElementById('newsletterForm').reset();
+            document.getElementById('country').value = 'India'; // Reset to default
         });
     </script>
 </body>
