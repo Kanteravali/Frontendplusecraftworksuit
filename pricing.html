@@ -3,92 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Pricing Plans</title>
+    <title>Simple Pricing Table</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --secondary-color: #64748b;
-            --light-bg: #f8fafc;
-            --border-color: #e2e8f0;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --white: #ffffff;
-            --success: #10b981;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            background-color: var(--light-bg);
-            color: var(--text-dark);
+            background: #f8f9fa;
+            color: #333;
             line-height: 1.6;
+            padding: 40px 20px;
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
         }
-
-        header {
+        
+        .header {
             text-align: center;
-            padding: 40px 0 30px;
+            margin-bottom: 50px;
         }
-
-        h1 {
+        
+        .header h1 {
             font-size: 2.5rem;
-            margin-bottom: 16px;
-            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2c3e50;
         }
-
-        .subtitle {
-            font-size: 1.125rem;
-            color: var(--text-light);
+        
+        .header p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
             max-width: 600px;
             margin: 0 auto;
         }
-
+        
         .toggle-container {
             display: flex;
-            align-items: center;
             justify-content: center;
-            margin: 40px 0;
-            gap: 16px;
-            flex-wrap: wrap;
+            align-items: center;
+            margin: 30px 0 50px;
+            gap: 15px;
         }
-
+        
         .toggle-label {
             font-weight: 500;
-            color: var(--text-light);
+            color: #7f8c8d;
         }
-
+        
         .toggle-label.active {
-            color: var(--primary-color);
-            font-weight: 600;
+            color: #3498db;
         }
-
+        
         .toggle-switch {
             position: relative;
             display: inline-block;
             width: 60px;
             height: 30px;
         }
-
+        
         .toggle-switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
-
+        
         .slider {
             position: absolute;
             cursor: pointer;
@@ -96,11 +80,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: var(--secondary-color);
+            background-color: #bdc3c7;
             transition: .4s;
             border-radius: 34px;
         }
-
+        
         .slider:before {
             position: absolute;
             content: "";
@@ -112,179 +96,246 @@
             transition: .4s;
             border-radius: 50%;
         }
-
+        
         input:checked + .slider {
-            background-color: var(--primary-color);
+            background-color: #3498db;
         }
-
+        
         input:checked + .slider:before {
             transform: translateX(30px);
         }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .pricing-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 40px 30px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
+        
+        .pricing-container {
             display: flex;
-            flex-direction: column;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .pricing-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 35px 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
         }
-
+        
         .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
-
-        .pricing-card.featured {
-            border: 2px solid var(--primary-color);
+        
+        .pricing-card.popular {
+            border: 2px solid #3498db;
             transform: scale(1.05);
         }
-
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-5px);
+        
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
         }
-
+        
         .popular-badge {
             position: absolute;
             top: -12px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--primary-color);
+            background: #3498db;
             color: white;
-            padding: 6px 20px;
+            padding: 5px 20px;
             border-radius: 20px;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             font-weight: 600;
         }
-
+        
         .plan-name {
             font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
         }
-
+        
         .plan-description {
-            color: var(--text-light);
-            margin-bottom: 24px;
-            min-height: 48px;
+            color: #7f8c8d;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
         }
-
-        .price-container {
-            margin-bottom: 30px;
-        }
-
+        
         .price {
+            margin: 25px 0;
+        }
+        
+        .price-amount {
             font-size: 3rem;
             font-weight: 700;
-            line-height: 1;
+            color: #2c3e50;
         }
-
+        
         .price-period {
-            color: var(--text-light);
+            color: #7f8c8d;
             font-size: 1rem;
         }
-
+        
         .price-yearly {
             display: none;
         }
-
+        
         .features {
             list-style: none;
-            margin-bottom: 30px;
-            flex-grow: 1;
+            margin: 25px 0 35px;
+            text-align: left;
         }
-
+        
         .features li {
-            padding: 8px 0;
+            padding: 10px 0;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
         }
-
-        .features li:before {
-            content: "✓";
-            color: var(--success);
-            font-weight: bold;
+        
+        .feature-icon {
             margin-right: 12px;
-            flex-shrink: 0;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
         }
 
+        /* Colorful icons */
+        .icon-users { color: #3498db; }
+        .icon-storage { color: #e74c3c; }
+        .icon-analytics { color: #2ecc71; }
+        .icon-support { color: #f39c12; }
+        .icon-workflow { color: #9b59b6; }
+        .icon-security { color: #1abc9c; }
+        .icon-phone { color: #e67e22; }
+        .icon-integration { color: #34495e; }
+        .icon-unlimited { color: #27ae60; }
+        
         .btn {
             display: block;
             width: 100%;
-            padding: 14px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s;
+            padding: 14px;
             border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+        
+        .btn-secondary {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+        
+        .btn-secondary:hover {
+            background: #d5dbdb;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: #3498db;
+            border: 2px solid #3498db;
+        }
+        
+        .btn-outline:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        .custom-quote {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .custom-quote h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .custom-quote p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .btn-primary {
-            background-color: var(--primary-color);
+        .demo-section {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            border-radius: 12px;
             color: white;
         }
 
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
+        .demo-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.8rem;
         }
 
-        .btn-outline {
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 1px solid var(--primary-color);
-        }
-
-        .btn-outline:hover {
-            background-color: rgba(37, 99, 235, 0.05);
-        }
-
-        .custom-quote-section {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 50px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            margin-bottom: 60px;
-        }
-
-        .custom-quote-section h2 {
-            font-size: 1.75rem;
-            margin-bottom: 16px;
-        }
-
-        .custom-quote-section p {
-            color: var(--text-light);
+        .demo-section p {
+            margin-bottom: 25px;
             max-width: 600px;
-            margin: 0 auto 30px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
         }
 
-        .btn-large {
-            padding: 16px 32px;
-            font-size: 1.125rem;
-            display: inline-block;
-            width: auto;
+        .demo-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            color: var(--text-light);
-            font-size: 0.875rem;
+        .demo-btn {
+            padding: 12px 30px;
+            border: 2px solid white;
+            border-radius: 6px;
+            background: transparent;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
 
-        /* Modal Styles - Updated for smaller size */
+        .demo-btn:hover {
+            background: white;
+            color: #3498db;
+        }
+
+        .demo-btn-primary {
+            background: white;
+            color: #3498db;
+        }
+
+        .demo-btn-primary:hover {
+            background: #f8f9fa;
+            border-color: #f8f9fa;
+        }
+
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -292,740 +343,458 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background: rgba(0,0,0,0.5);
             z-index: 1000;
-            align-items: center;
             justify-content: center;
-            padding: 20px;
+            align-items: center;
         }
 
         .modal-content {
-            background-color: var(--white);
+            background: white;
+            padding: 40px;
             border-radius: 12px;
-            width: 100%;
-            max-width: 420px;
-            padding: 25px;
-            box-shadow: var(--shadow-lg);
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
         }
 
         .close-modal {
             position: absolute;
-            top: 12px;
-            right: 12px;
-            font-size: 1.25rem;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
             cursor: pointer;
-            color: var(--text-light);
+            color: #7f8c8d;
         }
 
         .modal h2 {
-            margin-bottom: 12px;
-            font-size: 1.5rem;
-        }
-
-        .modal p {
-            margin-bottom: 16px;
-            color: var(--text-light);
-            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
         }
 
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-weight: 500;
-            font-size: 0.9rem;
+            color: #2c3e50;
         }
 
-        .form-group input, .form-group textarea, .form-group select {
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
-            padding: 10px;
-            border: 1px solid var(--border-color);
+            padding: 12px;
+            border: 1px solid #ddd;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .form-group textarea {
-            min-height: 80px;
+            height: 100px;
             resize: vertical;
         }
 
-        .success-message {
-            display: none;
-            background-color: #d1fae5;
-            color: #065f46;
+        .modal-btn {
+            width: 100%;
             padding: 12px;
-            border-radius: 6px;
-            margin-top: 16px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--primary-color);
+            background: #3498db;
             color: white;
-            padding: 16px 24px;
-            border-radius: 8px;
-            box-shadow: var(--shadow-lg);
-            display: none;
-            z-index: 1001;
-            max-width: 300px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
 
-        /* Responsive Styles */
-        @media (max-width: 1200px) {
-            .container {
-                max-width: 1000px;
-            }
+        .modal-btn:hover {
+            background: #2980b9;
         }
-
-        @media (max-width: 992px) {
-            .pricing-cards {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 25px;
-            }
-            
-            .pricing-card {
-                padding: 30px 25px;
-            }
-            
-            .custom-quote-section {
-                padding: 40px 30px;
-            }
-        }
-
+        
         @media (max-width: 768px) {
-            header {
-                padding: 30px 0 20px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .subtitle {
-                font-size: 1rem;
-            }
-            
-            .toggle-container {
-                margin: 30px 0;
-            }
-            
-            .pricing-cards {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .pricing-card.featured {
+            .pricing-card.popular {
                 transform: scale(1);
             }
             
-            .pricing-card.featured:hover {
-                transform: translateY(-5px);
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
             }
-            
-            .pricing-card {
-                padding: 25px 20px;
-            }
-            
-            .plan-name {
-                font-size: 1.3rem;
-            }
-            
-            .price {
-                font-size: 2.5rem;
-            }
-            
-            .custom-quote-section {
-                padding: 30px 20px;
-                margin-bottom: 40px;
-            }
-            
-            .custom-quote-section h2 {
-                font-size: 1.5rem;
-            }
-            
-            .btn-large {
-                padding: 14px 28px;
-                font-size: 1rem;
-            }
-            
-            footer {
-                padding: 30px 0;
-            }
-            
-            .modal-content {
-                padding: 20px;
-            }
-        }
 
-        @media (max-width: 576px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            header {
-                padding: 20px 0 15px;
-            }
-            
-            h1 {
-                font-size: 1.75rem;
-            }
-            
-            .subtitle {
-                font-size: 0.9rem;
-            }
-            
-            .toggle-container {
-                gap: 12px;
-            }
-            
-            .toggle-label {
-                font-size: 0.9rem;
-            }
-            
-            .toggle-switch {
-                width: 50px;
-                height: 25px;
-            }
-            
-            .slider:before {
-                height: 18px;
-                width: 18px;
-                left: 3px;
-                bottom: 3px;
-            }
-            
-            input:checked + .slider:before {
-                transform: translateX(25px);
-            }
-            
-            .pricing-card {
-                padding: 20px 15px;
-            }
-            
-            .plan-name {
-                font-size: 1.2rem;
-            }
-            
-            .plan-description {
-                font-size: 0.9rem;
-                margin-bottom: 20px;
-            }
-            
-            .price-container {
-                margin-bottom: 20px;
-            }
-            
-            .price {
-                font-size: 2rem;
-            }
-            
-            .price-period {
-                font-size: 0.9rem;
-            }
-            
-            .features {
-                margin-bottom: 20px;
-            }
-            
-            .features li {
-                font-size: 0.9rem;
-                padding: 6px 0;
-            }
-            
-            .btn {
-                padding: 12px 16px;
-                font-size: 0.9rem;
-            }
-            
-            .custom-quote-section {
-                padding: 25px 15px;
-            }
-            
-            .custom-quote-section h2 {
-                font-size: 1.3rem;
-            }
-            
-            .custom-quote-section p {
-                font-size: 0.9rem;
-                margin-bottom: 20px;
-            }
-            
-            .btn-large {
-                padding: 12px 24px;
-                font-size: 0.9rem;
-            }
-            
-            footer {
-                padding: 20px 0;
-                font-size: 0.8rem;
-            }
-            
-            .modal-content {
-                padding: 15px;
-            }
-            
-            .modal h2 {
-                font-size: 1.3rem;
-            }
-            
-            .modal p {
-                font-size: 0.85rem;
-            }
-            
-            .form-group {
-                margin-bottom: 12px;
-            }
-            
-            .form-group label {
-                font-size: 0.85rem;
-            }
-            
-            .form-group input, .form-group textarea, .form-group select {
-                padding: 8px;
-                font-size: 0.85rem;
-            }
-            
-            .success-message {
-                padding: 10px;
-                font-size: 0.85rem;
-            }
-            
-            .notification {
-                bottom: 15px;
-                right: 15px;
-                left: 15px;
-                max-width: none;
-                padding: 12px 20px;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 400px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-            
-            .toggle-container {
+            .demo-buttons {
                 flex-direction: column;
-                gap: 10px;
+                align-items: center;
             }
-            
-            .pricing-card {
-                padding: 15px 10px;
+
+            .demo-btn {
+                width: 200px;
             }
-            
-            .plan-name {
-                font-size: 1.1rem;
-            }
-            
-            .price {
-                font-size: 1.75rem;
-            }
-            
-            .features li {
-                font-size: 0.85rem;
-            }
-            
-            .btn {
-                padding: 10px 14px;
-                font-size: 0.85rem;
-            }
-            
-            .custom-quote-section {
-                padding: 20px 10px;
-            }
-            
-            .custom-quote-section h2 {
-                font-size: 1.2rem;
-            }
-            
-            .btn-large {
-                padding: 10px 20px;
-                font-size: 0.85rem;
+
+            .modal-content {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
+        <div class="header">
             <h1>Simple, Transparent Pricing</h1>
-            <p class="subtitle">Choose the plan that works best for your team. All plans include a 14-day free trial with full features.</p>
-            
-            <div class="toggle-container">
-                <span class="toggle-label active" id="monthly-label">Monthly</span>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="billing-toggle">
-                    <span class="slider"></span>
-                </label>
-                <span class="toggle-label" id="yearly-label">Yearly <span style="color: var(--success);">(Save 20%)</span></span>
-            </div>
-        </header>
-
-        <div class="pricing-cards">
+            <p>Choose the plan that works best for your team. All plans include a 14-day free trial.</p>
+        </div>
+        
+        <div class="toggle-container">
+            <span class="toggle-label active" id="monthlyLabel">Monthly</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="billingToggle">
+                <span class="slider"></span>
+            </label>
+            <span class="toggle-label" id="yearlyLabel">Yearly <small>(Save 20%)</small></span>
+        </div>
+        
+        <div class="pricing-container">
+            <!-- Basic Plan -->
             <div class="pricing-card">
-                <h3 class="plan-name">Starter</h3>
-                <p class="plan-description">Perfect for small teams and individual professionals</p>
+                <h3 class="plan-name">Basic</h3>
+                <p class="plan-description">Perfect for small teams and individuals</p>
                 
-                <div class="price-container">
+                <div class="price">
                     <div class="price-monthly">
-                        <span class="price">$29</span>
+                        <span class="price-amount">$19</span>
                         <span class="price-period">/month</span>
                     </div>
                     <div class="price-yearly">
-                        <span class="price">$23</span>
+                        <span class="price-amount">$15</span>
                         <span class="price-period">/month</span>
                     </div>
                 </div>
                 
                 <ul class="features">
-                    <li>Up to 5 team members</li>
-                    <li>10GB storage</li>
-                    <li>Basic analytics</li>
-                    <li>Email support</li>
-                    <li>Standard security</li>
+                    <li>
+                        <span class="feature-icon icon-users"><i class="fas fa-users"></i></span>
+                        <span>Up to 5 users</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon icon-storage"><i class="fas fa-database"></i></span>
+                        <span>10GB storage</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon icon-analytics"><i class="fas fa-chart-bar"></i></span>
+                        <span>Basic analytics</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon icon-support"><i class="fas fa-envelope"></i></span>
+                        <span>Email support</span>
+                    </li>
                 </ul>
                 
-                <button class="btn btn-outline start-trial-btn" data-plan="Starter">Start Free Trial</button>
+                <button class="btn btn-secondary start-trial-btn" data-plan="Basic">Start Free Trial</button>
             </div>
             
-            <div class="pricing-card featured">
-                <div class="popular-badge">Most Popular</div>
+            <!-- Professional Plan -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">MOST POPULAR</div>
                 <h3 class="plan-name">Professional</h3>
-                <p class="plan-description">Ideal for growing businesses with advanced needs</p>
+                <p class="plan-description">Ideal for growing businesses</p>
                 
-                <div class="price-container">
+                <div class="price">
                     <div class="price-monthly">
-                        <span class="price">$79</span>
+                        <span class="price-amount">$49</span>
                         <span class="price-period">/month</span>
                     </div>
                     <div class="price-yearly">
-                        <span class="price">$63</span>
+                        <span class="price-amount">$39</span>
                         <span class="price-period">/month</span>
                     </div>
                 </div>
                 
                 <ul class="features">
-                    <li>Up to 25 team members</li>
-                    <li>100GB storage</li>
-                    <li>Advanced analytics</li>
-                    <li>Priority support</li>
-                    <li>Enhanced security</li>
-                    <li>Custom integrations</li>
-                    <li>API access</li>
+                    <li>
+                        <span class="feature-icon icon-users"><i class="fas fa-users"></i></span>
+                        <span>Up to 20 users</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon icon-storage"><i class="fas fa-database"></i></span>
+                        <span>100GB storage</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon icon-analytics"><i class="fas fa-chart-line"></i></span>
+                        <span>Advanced analytics</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon icon-support"><i class="fas fa-headset"></i></span>
+                        <span>Priority support</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon icon-workflow"><i class="fas fa-cogs"></i></span>
+                        <span>Custom workflows</span>
+                    </li>
                 </ul>
                 
                 <button class="btn btn-primary start-trial-btn" data-plan="Professional">Start Free Trial</button>
             </div>
             
+            <!-- Enterprise Plan -->
             <div class="pricing-card">
                 <h3 class="plan-name">Enterprise</h3>
-                <p class="plan-description">For large organizations with complex requirements</p>
+                <p class="plan-description">For large organizations</p>
                 
-                <div class="price-container">
+                <div class="price">
                     <div class="price-monthly">
-                        <span class="price">$199</span>
+                        <span class="price-amount">$99</span>
                         <span class="price-period">/month</span>
                     </div>
                     <div class="price-yearly">
-                        <span class="price">$159</span>
+                        <span class="price-amount">$79</span>
                         <span class="price-period">/month</span>
                     </div>
                 </div>
                 
                 <ul class="features">
-                    <li>Unlimited team members</li>
-                    <li>1TB storage</li>
-                    <li>Advanced analytics & reporting</li>
-                    <li>24/7 dedicated support</li>
-                    <li>Enterprise-grade security</li>
-                    <li>Custom integrations</li>
-                    <li>Full API access</li>
-                    <li>Custom onboarding</li>
+                    <li>
+                        <span class="feature-icon icon-unlimited"><i class="fas fa-infinity"></i></span>
+                        <span>Unlimited users</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon icon-storage"><i class="fas fa-database"></i></span>
+                        <span>1TB storage</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon icon-security"><i class="fas fa-shield-alt"></i></span>
+                        <span>Advanced security</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon icon-phone"><i class="fas fa-phone-alt"></i></span>
+                        <span>24/7 phone support</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon icon-integration"><i class="fas fa-plug"></i></span>
+                        <span>Custom integrations</span>
+                    </li>
                 </ul>
                 
-                <button class="btn btn-outline book-demo-btn" data-plan="Enterprise">Book a Demo</button>
+                <button class="btn btn-secondary start-trial-btn" data-plan="Enterprise">Start Free Trial</button>
             </div>
         </div>
+        
+        <div class="custom-quote">
+            <h3>Need a custom solution?</h3>
+            <p>We offer tailored plans for organizations with specific requirements. Get in touch with our sales team to discuss your needs.</p>
+            <button class="btn btn-outline" id="quoteBtn">Request Custom Quote</button>
+        </div>
 
-        <div class="custom-quote-section">
-            <h2>Need a custom solution?</h2>
-            <p>If our standard plans don't fit your specific requirements, we can create a tailored solution for your business.</p>
-            <button class="btn btn-primary btn-large request-quote-btn">Request Custom Quote</button>
+        <div class="demo-section">
+            <h3>Ready to get started?</h3>
+            <p>See our platform in action with a personalized demo or start your free trial today.</p>
+            <div class="demo-buttons">
+                <button class="demo-btn demo-btn-primary" id="demoBtn">Book a Demo</button>
+                <button class="demo-btn" id="generalTrialBtn">Start Free Trial</button>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <div class="container">
-            <p>© 2023 Your Company. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Modals -->
-    <div class="modal" id="trial-modal">
+    <!-- Trial Modal -->
+    <div class="modal" id="trialModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2>Start Your Free Trial</h2>
-            <p>You've selected the <span id="selected-plan">Professional</span> plan. Start your 14-day free trial today!</p>
-            
-            <form id="trial-form">
+            <p>Get full access to all features for 14 days. No credit card required.</p>
+            <form id="trialForm">
                 <div class="form-group">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email Address</label>
+                    <label for="email">Work Email</label>
                     <input type="email" id="email" required>
                 </div>
                 <div class="form-group">
                     <label for="company">Company Name</label>
-                    <input type="text" id="company">
+                    <input type="text" id="company" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Start Free Trial</button>
+                <div class="form-group">
+                    <label for="selectedPlan">Selected Plan</label>
+                    <input type="text" id="selectedPlan" readonly>
+                </div>
+                <button type="submit" class="modal-btn">Start Free Trial</button>
             </form>
-            
-            <div class="success-message" id="trial-success">
-                <i class="fas fa-check-circle"></i> Thank you! Your free trial has been activated. Check your email for next steps.
-            </div>
         </div>
     </div>
 
-    <div class="modal" id="demo-modal">
+    <!-- Demo Modal -->
+    <div class="modal" id="demoModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2>Book a Demo</h2>
-            <p>Schedule a personalized demo of our Enterprise plan to see how it can meet your organization's needs.</p>
-            
-            <form id="demo-form">
+            <p>Schedule a personalized demo to see how our platform can transform your business.</p>
+            <form id="demoForm">
                 <div class="form-group">
-                    <label for="demo-name">Full Name</label>
-                    <input type="text" id="demo-name" required>
+                    <label for="demoName">Full Name</label>
+                    <input type="text" id="demoName" required>
                 </div>
                 <div class="form-group">
-                    <label for="demo-email">Email Address</label>
-                    <input type="email" id="demo-email" required>
+                    <label for="demoEmail">Work Email</label>
+                    <input type="email" id="demoEmail" required>
                 </div>
                 <div class="form-group">
-                    <label for="demo-company">Company Name</label>
-                    <input type="text" id="demo-company" required>
+                    <label for="demoCompany">Company Name</label>
+                    <input type="text" id="demoCompany" required>
                 </div>
                 <div class="form-group">
-                    <label for="demo-date">Preferred Date</label>
-                    <input type="date" id="demo-date" required>
+                    <label for="demoDate">Preferred Date</label>
+                    <input type="date" id="demoDate" required>
                 </div>
                 <div class="form-group">
-                    <label for="demo-time">Preferred Time</label>
-                    <select id="demo-time" required>
+                    <label for="demoTime">Preferred Time</label>
+                    <select id="demoTime" required>
                         <option value="">Select a time</option>
-                        <option value="9:00 AM">9:00 AM</option>
-                        <option value="10:00 AM">10:00 AM</option>
-                        <option value="11:00 AM">11:00 AM</option>
-                        <option value="1:00 PM">1:00 PM</option>
-                        <option value="2:00 PM">2:00 PM</option>
-                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="09:00">9:00 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="13:00">1:00 PM</option>
+                        <option value="14:00">2:00 PM</option>
+                        <option value="15:00">3:00 PM</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="demo-notes">Additional Notes</label>
-                    <textarea id="demo-notes"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Schedule Demo</button>
+                <button type="submit" class="modal-btn">Schedule Demo</button>
             </form>
-            
-            <div class="success-message" id="demo-success">
-                <i class="fas fa-check-circle"></i> Thank you! Your demo request has been submitted. We'll contact you shortly to confirm.
-            </div>
         </div>
     </div>
 
-    <div class="modal" id="quote-modal">
+    <!-- Quote Modal -->
+    <div class="modal" id="quoteModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h2>Request a Custom Quote</h2>
-            <p>Tell us about your requirements and we'll prepare a custom solution for your business.</p>
-            
-            <form id="quote-form">
+            <h2>Request Custom Quote</h2>
+            <p>Tell us about your requirements and we'll prepare a tailored solution for your organization.</p>
+            <form id="quoteForm">
                 <div class="form-group">
-                    <label for="quote-name">Full Name</label>
-                    <input type="text" id="quote-name" required>
+                    <label for="quoteName">Full Name</label>
+                    <input type="text" id="quoteName" required>
                 </div>
                 <div class="form-group">
-                    <label for="quote-email">Email Address</label>
-                    <input type="email" id="quote-email" required>
+                    <label for="quoteEmail">Work Email</label>
+                    <input type="email" id="quoteEmail" required>
                 </div>
                 <div class="form-group">
-                    <label for="quote-company">Company Name</label>
-                    <input type="text" id="quote-company" required>
+                    <label for="quoteCompany">Company Name</label>
+                    <input type="text" id="quoteCompany" required>
                 </div>
                 <div class="form-group">
-                    <label for="quote-employees">Number of Employees</label>
-                    <select id="quote-employees" required>
-                        <option value="">Select range</option>
-                        <option value="1-10">1-10</option>
-                        <option value="11-50">11-50</option>
-                        <option value="51-200">51-200</option>
-                        <option value="201-500">201-500</option>
-                        <option value="501-1000">501-1000</option>
-                        <option value="1000+">1000+</option>
-                    </select>
+                    <label for="quoteUsers">Number of Users</label>
+                    <input type="number" id="quoteUsers" min="1" required>
                 </div>
                 <div class="form-group">
-                    <label for="quote-requirements">Specific Requirements</label>
-                    <textarea id="quote-requirements" placeholder="Please describe your specific needs..."></textarea>
+                    <label for="quoteRequirements">Specific Requirements</label>
+                    <textarea id="quoteRequirements" placeholder="Tell us about your specific needs..."></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="quote-budget">Estimated Budget</label>
-                    <select id="quote-budget">
-                        <option value="">Select range</option>
-                        <option value="<$5,000"><$5,000</option>
-                        <option value="$5,000-$10,000">$5,000-$10,000</option>
-                        <option value="$10,000-$25,000">$10,000-$25,000</option>
-                        <option value="$25,000-$50,000">$25,000-$50,000</option>
-                        <option value="$50,000+">$50,000+</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Request Quote</button>
+                <button type="submit" class="modal-btn">Request Quote</button>
             </form>
-            
-            <div class="success-message" id="quote-success">
-                <i class="fas fa-check-circle"></i> Thank you! Your quote request has been submitted. Our team will contact you within 24 hours.
-            </div>
         </div>
-    </div>
-
-    <div class="notification" id="notification">
-        <i class="fas fa-check-circle"></i> Action completed successfully!
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Billing toggle functionality
-            const billingToggle = document.getElementById('billing-toggle');
-            const monthlyLabel = document.getElementById('monthly-label');
-            const yearlyLabel = document.getElementById('yearly-label');
-            const monthlyPrices = document.querySelectorAll('.price-monthly');
-            const yearlyPrices = document.querySelectorAll('.price-yearly');
-            
-            billingToggle.addEventListener('change', function() {
-                if (this.checked) {
-                    monthlyLabel.classList.remove('active');
-                    yearlyLabel.classList.add('active');
-                    monthlyPrices.forEach(price => price.style.display = 'none');
-                    yearlyPrices.forEach(price => price.style.display = 'block');
-                } else {
-                    monthlyLabel.classList.add('active');
-                    yearlyLabel.classList.remove('active');
-                    monthlyPrices.forEach(price => price.style.display = 'block');
-                    yearlyPrices.forEach(price => price.style.display = 'none');
-                }
-            });
-
-            // Modal functionality
-            const trialModal = document.getElementById('trial-modal');
-            const demoModal = document.getElementById('demo-modal');
-            const quoteModal = document.getElementById('quote-modal');
-            const closeButtons = document.querySelectorAll('.close-modal');
-            const startTrialButtons = document.querySelectorAll('.start-trial-btn');
-            const bookDemoButtons = document.querySelectorAll('.book-demo-btn');
-            const requestQuoteButton = document.querySelector('.request-quote-btn');
-            const notification = document.getElementById('notification');
-
-            // Open modals
-            startTrialButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const planName = this.getAttribute('data-plan');
-                    document.getElementById('selected-plan').textContent = planName;
-                    trialModal.style.display = 'flex';
-                });
-            });
-
-            bookDemoButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const planName = this.getAttribute('data-plan');
-                    demoModal.style.display = 'flex';
-                });
-            });
-
-            requestQuoteButton.addEventListener('click', function() {
-                quoteModal.style.display = 'flex';
-            });
-
-            // Close modals
-            closeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    trialModal.style.display = 'none';
-                    demoModal.style.display = 'none';
-                    quoteModal.style.display = 'none';
-                });
-            });
-
-            // Close modal when clicking outside
-            window.addEventListener('click', function(event) {
-                if (event.target === trialModal) {
-                    trialModal.style.display = 'none';
-                }
-                if (event.target === demoModal) {
-                    demoModal.style.display = 'none';
-                }
-                if (event.target === quoteModal) {
-                    quoteModal.style.display = 'none';
-                }
-            });
-
-            // Form submissions
-            document.getElementById('trial-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                document.getElementById('trial-success').style.display = 'block';
-                setTimeout(function() {
-                    trialModal.style.display = 'none';
-                    document.getElementById('trial-success').style.display = 'none';
-                    document.getElementById('trial-form').reset();
-                    showNotification('Free trial activated successfully!');
-                }, 2000);
-            });
-
-            document.getElementById('demo-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                document.getElementById('demo-success').style.display = 'block';
-                setTimeout(function() {
-                    demoModal.style.display = 'none';
-                    document.getElementById('demo-success').style.display = 'none';
-                    document.getElementById('demo-form').reset();
-                    showNotification('Demo scheduled successfully!');
-                }, 2000);
-            });
-
-            document.getElementById('quote-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                document.getElementById('quote-success').style.display = 'block';
-                setTimeout(function() {
-                    quoteModal.style.display = 'none';
-                    document.getElementById('quote-success').style.display = 'none';
-                    document.getElementById('quote-form').reset();
-                    showNotification('Quote request submitted successfully!');
-                }, 2000);
-            });
-
-            // Show notification
-            function showNotification(message) {
-                notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
-                notification.style.display = 'block';
-                setTimeout(function() {
-                    notification.style.display = 'none';
-                }, 3000);
+        // Toggle functionality
+        const billingToggle = document.getElementById('billingToggle');
+        const monthlyLabel = document.getElementById('monthlyLabel');
+        const yearlyLabel = document.getElementById('yearlyLabel');
+        const monthlyPrices = document.querySelectorAll('.price-monthly');
+        const yearlyPrices = document.querySelectorAll('.price-yearly');
+        
+        billingToggle.addEventListener('change', function() {
+            if (this.checked) {
+                monthlyPrices.forEach(price => price.style.display = 'none');
+                yearlyPrices.forEach(price => price.style.display = 'block');
+                monthlyLabel.classList.remove('active');
+                yearlyLabel.classList.add('active');
+            } else {
+                monthlyPrices.forEach(price => price.style.display = 'block');
+                yearlyPrices.forEach(price => price.style.display = 'none');
+                monthlyLabel.classList.add('active');
+                yearlyLabel.classList.remove('active');
             }
+        });
+        
+        // Initialize with monthly pricing
+        yearlyPrices.forEach(price => price.style.display = 'none');
+
+        // Modal functionality
+        const trialModal = document.getElementById('trialModal');
+        const demoModal = document.getElementById('demoModal');
+        const quoteModal = document.getElementById('quoteModal');
+        const closeButtons = document.querySelectorAll('.close-modal');
+        const startTrialButtons = document.querySelectorAll('.start-trial-btn');
+        const demoBtn = document.getElementById('demoBtn');
+        const generalTrialBtn = document.getElementById('generalTrialBtn');
+        const quoteBtn = document.getElementById('quoteBtn');
+        const selectedPlanInput = document.getElementById('selectedPlan');
+
+        // Open trial modal with selected plan
+        startTrialButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const plan = this.getAttribute('data-plan');
+                selectedPlanInput.value = plan;
+                trialModal.style.display = 'flex';
+            });
+        });
+
+        // Open demo modal
+        demoBtn.addEventListener('click', function() {
+            demoModal.style.display = 'flex';
+        });
+
+        // Open general trial modal
+        generalTrialBtn.addEventListener('click', function() {
+            selectedPlanInput.value = 'Not Selected';
+            trialModal.style.display = 'flex';
+        });
+
+        // Open quote modal
+        quoteBtn.addEventListener('click', function() {
+            quoteModal.style.display = 'flex';
+        });
+
+        // Close modals
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                trialModal.style.display = 'none';
+                demoModal.style.display = 'none';
+                quoteModal.style.display = 'none';
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === trialModal) trialModal.style.display = 'none';
+            if (e.target === demoModal) demoModal.style.display = 'none';
+            if (e.target === quoteModal) quoteModal.style.display = 'none';
+        });
+
+        // Form submissions
+        document.getElementById('trialForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const plan = selectedPlanInput.value;
+            alert(`Thank you! Your ${plan} plan trial has been activated. Check your email for login instructions.`);
+            trialModal.style.display = 'none';
+            this.reset();
+        });
+
+        document.getElementById('demoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Our team will contact you shortly to schedule your demo.');
+            demoModal.style.display = 'none';
+            this.reset();
+        });
+
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Our sales team will contact you within 24 hours with a custom quote.');
+            quoteModal.style.display = 'none';
+            this.reset();
         });
     </script>
 </body>

@@ -10,12 +10,16 @@
             --primary: #4361ee;
             --primary-light: #eef2ff;
             --primary-dark: #3a56d4;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
             --text-dark: #1e293b;
             --text-light: #64748b;
             --background: #ffffff;
             --border: #e2e8f0;
-            --border-radius: 12px;
+            --border-radius: 16px;
             --transition: all 0.3s ease;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 40px rgba(67, 97, 238, 0.15);
         }
 
         * {
@@ -26,47 +30,53 @@
         }
 
         body {
-            background-color: #f8fafc;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             color: var(--text-dark);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         .features-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
 
         .features-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
 
         .features-header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--text-dark);
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
         }
 
         .features-header p {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             color: var(--text-light);
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
+            font-weight: 400;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
         }
 
         .feature-card {
             background: var(--background);
             border-radius: var(--border-radius);
-            padding: 32px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            box-shadow: var(--shadow);
             border: 1px solid var(--border);
             transition: var(--transition);
             position: relative;
@@ -78,16 +88,16 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 4px;
+            width: 6px;
             height: 100%;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             transform: scaleY(0);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(67, 97, 238, 0.08);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
             border-color: var(--primary-light);
         }
 
@@ -96,52 +106,70 @@
         }
 
         .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary-light);
-            border-radius: 16px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-light));
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             color: var(--primary);
-            font-size: 1.5rem;
+            font-size: 1.75rem;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: scale(1.1);
         }
 
         .feature-content h3 {
-            font-size: 1.375rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 700;
             margin-bottom: 16px;
             color: var(--text-dark);
         }
 
         .feature-content p {
             color: var(--text-light);
-            margin-bottom: 20px;
-            font-size: 1rem;
+            margin-bottom: 24px;
+            font-size: 1.05rem;
             line-height: 1.7;
         }
 
         .feature-highlights {
             list-style: none;
-            margin-bottom: 28px;
+            margin-bottom: 32px;
         }
 
         .feature-highlights li {
-            padding: 8px 0;
+            padding: 10px 0;
             position: relative;
-            padding-left: 28px;
+            padding-left: 32px;
             color: var(--text-light);
-            font-size: 0.95rem;
+            font-size: 1rem;
+            transition: var(--transition);
         }
 
         .feature-highlights li:before {
-            content: "•";
+            content: "✓";
             position: absolute;
             left: 12px;
             color: var(--primary);
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-highlights li {
+            color: var(--text-dark);
+        }
+
+        .feature-card:hover .feature-highlights li:before {
+            color: var(--secondary);
+            transform: scale(1.2);
         }
 
         .feature-actions {
@@ -150,12 +178,12 @@
         }
 
         .btn {
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 500;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 600;
             text-decoration: none;
             transition: var(--transition);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -163,20 +191,38 @@
             cursor: pointer;
             flex: 1;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
         }
 
         .btn-outline {
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             color: var(--text-dark);
             background: transparent;
         }
@@ -184,18 +230,54 @@
         .btn-outline:hover {
             border-color: var(--primary);
             color: var(--primary);
+            transform: translateY(-2px);
         }
 
-        /* Professional layout enhancements */
-        .feature-card .feature-number {
+        .feature-number {
             position: absolute;
-            top: 28px;
-            right: 28px;
-            font-size: 2.5rem;
-            font-weight: 700;
+            top: 32px;
+            right: 32px;
+            font-size: 3rem;
+            font-weight: 800;
             color: var(--primary-light);
             opacity: 0.3;
             line-height: 1;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-number {
+            opacity: 0.5;
+            transform: scale(1.1);
+        }
+
+        /* Screenshot Gallery */
+        .screenshot-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .screenshot-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .screenshot-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            display: block;
         }
 
         /* Modal Styles */
@@ -206,7 +288,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -214,12 +297,12 @@
         }
 
         .modal-content {
-            background-color: white;
-            padding: 32px;
+            background: var(--background);
+            padding: 40px;
             border-radius: var(--border-radius);
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             position: relative;
             max-height: 90vh;
             overflow-y: auto;
@@ -227,15 +310,15 @@
 
         .close-modal {
             position: absolute;
-            top: 16px;
-            right: 16px;
+            top: 20px;
+            right: 20px;
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--text-light);
-            background: none;
+            background: var(--primary-light);
             border: none;
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -244,43 +327,47 @@
         }
 
         .close-modal:hover {
-            background: var(--primary-light);
-            color: var(--primary);
+            background: var(--primary);
+            color: white;
+            transform: rotate(90deg);
         }
 
         .modal h2 {
             margin-bottom: 16px;
             color: var(--text-dark);
-            font-size: 1.5rem;
+            font-size: 1.75rem;
+            font-weight: 700;
         }
 
         .modal p {
             color: var(--text-light);
-            margin-bottom: 20px;
-            font-size: 0.95rem;
+            margin-bottom: 24px;
+            font-size: 1.05rem;
+            line-height: 1.6;
         }
 
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 6px;
-            font-weight: 500;
+            margin-bottom: 8px;
+            font-weight: 600;
             color: var(--text-dark);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border);
+            padding: 14px;
+            border: 2px solid var(--border);
             border-radius: 8px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: var(--transition);
+            background: var(--background);
         }
 
         .form-group input:focus,
@@ -294,19 +381,19 @@
         .modal-buttons {
             display: flex;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 24px;
         }
 
         /* Demo Video Styles */
         .demo-video {
             width: 100%;
-            height: 200px;
-            background: var(--primary-light);
-            border-radius: 8px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-light), #e0e7ff);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             position: relative;
             overflow: hidden;
         }
@@ -316,39 +403,73 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(67, 97, 238, 0.2) 100%);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(114, 9, 183, 0.1) 100%);
         }
 
         .play-button {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             cursor: pointer;
             transition: var(--transition);
             z-index: 1;
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
         }
 
         .play-button:hover {
             transform: scale(1.1);
-            background: var(--primary-dark);
+            box-shadow: 0 12px 35px rgba(67, 97, 238, 0.6);
         }
 
         /* Success Message */
         .success-message {
             background: #d1fae5;
-            border: 1px solid #a7f3d0;
+            border: 2px solid #a7f3d0;
             color: #065f46;
-            padding: 12px;
+            padding: 16px;
             border-radius: 8px;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             display: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .success-message i {
+            font-size: 1.2rem;
+        }
+
+        /* Booking Screenshots */
+        .booking-screenshots {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .booking-screenshot {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .booking-screenshot:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .booking-screenshot img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
         }
 
         /* Responsive design */
@@ -360,28 +481,124 @@
 
         @media (max-width: 992px) {
             .features-grid {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 24px;
+            }
+            
+            .feature-card {
+                padding: 32px 28px;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .feature-content h3 {
+                font-size: 1.375rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-container {
+                padding: 60px 20px;
+            }
+            
+            .features-header {
+                margin-bottom: 60px;
+            }
+            
+            .features-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features-header p {
+                font-size: 1.125rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
                 gap: 20px;
+                max-width: 500px;
+                margin: 0 auto;
             }
             
             .feature-card {
                 padding: 28px 24px;
             }
             
+            .feature-number {
+                top: 24px;
+                right: 24px;
+                font-size: 2.5rem;
+            }
+            
             .feature-icon {
                 width: 56px;
                 height: 56px;
                 font-size: 1.375rem;
+                margin-bottom: 20px;
             }
             
             .feature-content h3 {
-                font-size: 1.25rem;
+                font-size: 1.375rem;
+                margin-bottom: 14px;
+            }
+            
+            .feature-content p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+            
+            .feature-highlights {
+                margin-bottom: 24px;
+            }
+            
+            .feature-highlights li {
+                font-size: 0.95rem;
+                padding: 8px 0;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .modal-content {
+                padding: 32px 24px;
+            }
+            
+            .modal h2 {
+                font-size: 1.5rem;
+            }
+            
+            .demo-video {
+                height: 200px;
+            }
+            
+            .play-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.375rem;
+            }
+            
+            .modal-buttons {
+                flex-direction: column;
+            }
+
+            .screenshot-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .booking-screenshots {
+                grid-template-columns: 1fr;
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 576px) {
             .features-container {
-                padding: 40px 20px;
+                padding: 40px 16px;
             }
             
             .features-header {
@@ -394,13 +611,6 @@
             
             .features-header p {
                 font-size: 1rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                max-width: 500px;
-                margin: 0 auto;
             }
             
             .feature-card {
@@ -437,88 +647,7 @@
             .feature-highlights li {
                 font-size: 0.9rem;
                 padding: 6px 0;
-            }
-            
-            .btn {
-                padding: 10px 16px;
-                font-size: 0.85rem;
-            }
-            
-            .modal-content {
-                padding: 24px 20px;
-            }
-            
-            .modal h2 {
-                font-size: 1.375rem;
-            }
-            
-            .demo-video {
-                height: 160px;
-            }
-            
-            .play-button {
-                width: 50px;
-                height: 50px;
-                font-size: 1.125rem;
-            }
-            
-            .modal-buttons {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .features-container {
-                padding: 30px 15px;
-            }
-            
-            .features-header {
-                margin-bottom: 30px;
-            }
-            
-            .features-header h1 {
-                font-size: 1.75rem;
-            }
-            
-            .features-header p {
-                font-size: 0.95rem;
-            }
-            
-            .feature-card {
-                padding: 20px 16px;
-            }
-            
-            .feature-number {
-                top: 16px;
-                right: 16px;
-                font-size: 1.75rem;
-            }
-            
-            .feature-icon {
-                width: 48px;
-                height: 48px;
-                font-size: 1.125rem;
-                margin-bottom: 12px;
-            }
-            
-            .feature-content h3 {
-                font-size: 1.125rem;
-                margin-bottom: 10px;
-            }
-            
-            .feature-content p {
-                font-size: 0.9rem;
-                margin-bottom: 14px;
-            }
-            
-            .feature-highlights {
-                margin-bottom: 16px;
-            }
-            
-            .feature-highlights li {
-                font-size: 0.85rem;
-                padding: 5px 0;
-                padding-left: 24px;
+                padding-left: 28px;
             }
             
             .feature-highlights li:before {
@@ -531,125 +660,59 @@
             }
             
             .btn {
-                padding: 10px 14px;
-                font-size: 0.85rem;
+                padding: 12px 16px;
+                font-size: 0.9rem;
             }
             
             .modal {
-                padding: 15px;
+                padding: 16px;
             }
             
             .modal-content {
-                padding: 20px 16px;
+                padding: 24px 20px;
             }
             
             .modal h2 {
-                font-size: 1.25rem;
+                font-size: 1.375rem;
             }
             
             .modal p {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
             }
             
             .form-group {
-                margin-bottom: 12px;
-            }
-            
-            .form-group label {
-                font-size: 0.85rem;
-            }
-            
-            .form-group input,
-            .form-group select,
-            .form-group textarea {
-                padding: 10px;
-                font-size: 0.9rem;
-            }
-            
-            .demo-video {
-                height: 140px;
                 margin-bottom: 16px;
             }
             
-            .play-button {
-                width: 45px;
-                height: 45px;
-                font-size: 1rem;
-            }
-            
-            .success-message {
-                padding: 10px;
-                font-size: 0.85rem;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .features-container {
-                padding: 20px 12px;
-            }
-            
-            .features-header h1 {
-                font-size: 1.5rem;
-            }
-            
-            .features-header p {
+            .form-group label {
                 font-size: 0.9rem;
-            }
-            
-            .feature-card {
-                padding: 16px 12px;
-            }
-            
-            .feature-number {
-                top: 12px;
-                right: 12px;
-                font-size: 1.5rem;
-            }
-            
-            .feature-icon {
-                width: 44px;
-                height: 44px;
-                font-size: 1rem;
-            }
-            
-            .feature-content h3 {
-                font-size: 1.1rem;
-            }
-            
-            .feature-content p {
-                font-size: 0.85rem;
-            }
-            
-            .feature-highlights li {
-                font-size: 0.8rem;
-            }
-            
-            .btn {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-            }
-            
-            .modal-content {
-                padding: 16px 12px;
-            }
-            
-            .modal h2 {
-                font-size: 1.125rem;
-            }
-            
-            .modal p {
-                font-size: 0.85rem;
             }
             
             .form-group input,
             .form-group select,
             .form-group textarea {
-                padding: 8px;
-                font-size: 0.85rem;
+                padding: 12px;
+                font-size: 0.95rem;
             }
             
             .demo-video {
-                height: 120px;
+                height: 180px;
+                margin-bottom: 20px;
+            }
+            
+            .play-button {
+                width: 56px;
+                height: 56px;
+                font-size: 1.25rem;
+            }
+            
+            .success-message {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+
+            .screenshot-gallery {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -671,6 +734,19 @@
                 <div class="feature-content">
                     <h3>Collaboration Workspace</h3>
                     <p>Connect your team with powerful communication and file sharing tools in a unified workspace designed for seamless collaboration.</p>
+                    
+                    <div class="screenshot-gallery">
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Team Chat Interface">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="File Sharing">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Document Collaboration">
+                        </div>
+                    </div>
+                    
                     <ul class="feature-highlights">
                         <li>Real-time internal chat and messaging</li>
                         <li>Shared documents with collaborative editing</li>
@@ -699,6 +775,19 @@
                 <div class="feature-content">
                     <h3>Project & Task Management</h3>
                     <p>Organize, track, and deliver projects on time with intuitive task management tools that keep everyone aligned and productive.</p>
+                    
+                    <div class="screenshot-gallery">
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kanban Board">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Timeline View">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Task Details">
+                        </div>
+                    </div>
+                    
                     <ul class="feature-highlights">
                         <li>Visual task boards (Kanban, List, Timeline views)</li>
                         <li>Smart deadlines and milestone tracking</li>
@@ -727,6 +816,19 @@
                 <div class="feature-content">
                     <h3>CRM & Sales Management</h3>
                     <p>Streamline your sales process and build stronger customer relationships with intelligent CRM tools and automation.</p>
+                    
+                    <div class="screenshot-gallery">
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sales Pipeline">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Lead Management">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Customer Profiles">
+                        </div>
+                    </div>
+                    
                     <ul class="feature-highlights">
                         <li>Automated lead capture from multiple sources</li>
                         <li>Smart follow-up reminders and sequences</li>
@@ -755,6 +857,19 @@
                 <div class="feature-content">
                     <h3>E-commerce Module</h3>
                     <p>Sell products and manage your online store directly from your workspace with seamless inventory and order management.</p>
+                    
+                    <div class="screenshot-gallery">
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Product Catalog">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Order Management">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Inventory Dashboard">
+                        </div>
+                    </div>
+                    
                     <ul class="feature-highlights">
                         <li>Complete product catalog management</li>
                         <li>Automated inventory sync with Shopify</li>
@@ -783,6 +898,19 @@
                 <div class="feature-content">
                     <h3>HR & Workforce Tools</h3>
                     <p>Manage your team efficiently with comprehensive HR and workforce management tools that simplify administrative tasks.</p>
+                    
+                    <div class="screenshot-gallery">
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Employee Directory">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Time Tracking">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Payroll Dashboard">
+                        </div>
+                    </div>
+                    
                     <ul class="feature-highlights">
                         <li>Digital attendance and time tracking</li>
                         <li>Leave management with approval workflows</li>
@@ -811,6 +939,19 @@
                 <div class="feature-content">
                     <h3>Analytics & Reports</h3>
                     <p>Make data-driven decisions with powerful analytics and customizable reports that provide insights across your entire business.</p>
+                    
+                    <div class="screenshot-gallery">
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Business Dashboard">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sales Analytics">
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Custom Reports">
+                        </div>
+                    </div>
+                    
                     <ul class="feature-highlights">
                         <li>Custom dashboards with drag-and-drop widgets</li>
                         <li>Real-time business performance metrics</li>
@@ -843,6 +984,16 @@
                 </div>
             </div>
             <p id="demoModalDescription">Watch how this feature can transform your workflow and boost productivity.</p>
+            
+            <div class="booking-screenshots">
+                <div class="booking-screenshot">
+                    <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Booking Interface">
+                </div>
+                <div class="booking-screenshot">
+                    <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Calendar Integration">
+                </div>
+            </div>
+            
             <div class="modal-buttons">
                 <button class="btn btn-primary" id="scheduleDemoBtn">
                     <i class="fas fa-calendar"></i>
@@ -862,6 +1013,15 @@
             <button class="close-modal">&times;</button>
             <h2 id="learnMoreModalTitle">Feature Details</h2>
             <p id="learnMoreModalDescription">Get detailed information about this feature and how it can benefit your business.</p>
+            
+            <div class="booking-screenshots">
+                <div class="booking-screenshot">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Feature Overview">
+                </div>
+                <div class="booking-screenshot">
+                    <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="User Interface">
+                </div>
+            </div>
             
             <div class="form-group">
                 <label for="name">Full Name</label>
@@ -904,6 +1064,15 @@
             <button class="close-modal">&times;</button>
             <h2>Schedule a Live Demo</h2>
             <p>Let us show you how <span id="scheduleFeatureName"></span> can transform your business operations.</p>
+            
+            <div class="booking-screenshots">
+                <div class="booking-screenshot">
+                    <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Demo Interface">
+                </div>
+                <div class="booking-screenshot">
+                    <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Booking System">
+                </div>
+            </div>
             
             <div class="form-group">
                 <label for="demoName">Full Name</label>
@@ -1031,7 +1200,7 @@
             const email = document.getElementById('email').value;
             
             if (name && email) {
-                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'flex';
                 setTimeout(() => {
                     learnMoreModal.style.display = 'none';
                     document.getElementById('successMessage').style.display = 'none';
@@ -1053,7 +1222,7 @@
             const date = document.getElementById('demoDate').value;
             
             if (name && email && date) {
-                document.getElementById('scheduleSuccessMessage').style.display = 'block';
+                document.getElementById('scheduleSuccessMessage').style.display = 'flex';
                 setTimeout(() => {
                     scheduleModal.style.display = 'none';
                     document.getElementById('scheduleSuccessMessage').style.display = 'none';
@@ -1090,10 +1259,10 @@
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
             setTimeout(() => {
                 this.innerHTML = '<i class="fas fa-check"></i>';
-                this.style.background = '#10b981';
+                this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                 setTimeout(() => {
                     this.innerHTML = '<i class="fas fa-play"></i>';
-                    this.style.background = 'var(--primary)';
+                    this.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
                 }, 1500);
             }, 2000);
         });
@@ -1113,7 +1282,7 @@
             
             cards.forEach(card => {
                 card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
+                card.style.transform = 'translateY(30px)';
                 card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 observer.observe(card);
             });

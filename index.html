@@ -47,6 +47,7 @@
 
         section {
             padding: 80px 0;
+            background-color: #ffffff; /* Ensure all sections have white background */
         }
 
         h1, h2, h3, h4 {
@@ -197,7 +198,7 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #f5f7ff 0%, #e6ecff 100%);
+            background: white; /* Changed from gradient to white */
             padding: 100px 0;
             position: relative;
             overflow: hidden;
@@ -281,7 +282,7 @@
 
         /* Features Section */
         .features {
-            background-color: #f8f9fa;
+            background-color: white; /* Changed from light gray to white */
         }
 
         .features-grid {
@@ -299,6 +300,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            border: 1px solid #f0f0f0; /* Added border for visual separation */
         }
 
         .feature-card:hover {
@@ -392,7 +394,7 @@
 
         /* Use Cases Section */
         .use-cases {
-            background-color: #f8f9fa;
+            background-color: white; /* Changed from light gray to white */
         }
 
         .use-cases-grid {
@@ -410,6 +412,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            border: 1px solid #f0f0f0; /* Added border for visual separation */
         }
 
         .use-case-card:hover {
@@ -507,14 +510,15 @@
 
         /* CTA Section */
         .cta {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
+            background: white; /* Changed from gradient to white */
+            color: var(--dark); /* Changed text color to dark for contrast */
             text-align: center;
             padding: 100px 0;
+            border-top: 1px solid #f0f0f0; /* Added border for visual separation */
         }
 
         .cta h2 {
-            color: white;
+            color: var(--dark); /* Changed from white to dark */
             margin-bottom: 1.5rem;
         }
 
@@ -523,15 +527,16 @@
             margin: 0 auto 2.5rem;
             font-size: 1.1rem;
             opacity: 0.9;
+            color: var(--gray); /* Changed text color for better readability */
         }
 
         .cta .btn {
-            background-color: white;
-            color: var(--primary);
+            background-color: var(--primary); /* Changed from white to primary color */
+            color: white; /* Changed from primary to white */
         }
 
         .cta .btn:hover {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: var(--primary-dark); /* Changed hover color */
         }
 
         /* Footer */
@@ -770,12 +775,149 @@
             display: block;
         }
 
+
+        .nav-container {
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 10px 10px;
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto; /* Changed from margin-right: auto to center it */
+            justify-content: center;
+            
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 15px;
+            white-space: nowrap;
+            padding: 8px 4px;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: black;
+        }
+        
+        nav a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: whitesmoke;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .faq-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: whitesmoke;
+            overflow: hidden;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .faq-question {
+            padding: 23px 33px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: whitesmoke;
+        }
+        
+        .faq-question.active {
+            background-color: #f0f4ff;
+            color: whitesmoke;
+        }
+        
+        .chevron {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chevron::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid #6e8efb;
+            border-bottom: 2px solid #6e8efb;
+            transform: rotate(45deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active .chevron::before {
+            transform: rotate(-135deg);
+        }
+        
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background-color: whitesmoke;
+        }
+        
+        .faq-answer.open {
+            padding: 20px 30px;
+            max-height: 500px;
+        }
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                gap: 12px;
+                align-items: center;
+            }
+        }
         /* Responsive Styles */
         @media (max-width: 1200px) {
             .container {
                 max-width: 1000px;
+                
             }
         }
+        
 
         @media (max-width: 992px) {
             h1 {
@@ -940,6 +1082,24 @@
             }
         }
 
+         @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .faq-question {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+            
+            .faq-answer.open {
+                padding: 15px 20px;
+            }
+        }
         @media (max-width: 400px) {
             .container {
                 padding: 0 15px;
@@ -960,7 +1120,12 @@
             .modal-content {
                 padding: 20px 15px;
             }
+
+            
         }
+
+        
+        
     </style>
 </head>
 <body>
@@ -1029,10 +1194,21 @@
                         <a href="#" class="btn btn-primary btn-large" id="demoBtn">Book Demo</a>
                         <a href="#" class="btn btn-secondary btn-large" id="heroTrialBtn">Start Free Trial</a>
                     </div>
-                </div>
-                
-        </div>
+                </div> 
+        </div><br><br><br><br>
+
+        <div class="nav-container">
+        <nav>
+            <a href="#">What's included</a>
+            <a href="#">Premium features</a>
+            <a href="#">Plans and pricing</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </div>
+
     </section>
+
+    
 
     <!-- About Section -->
     <section class="about">
@@ -1294,6 +1470,94 @@
             <a href="#" class="btn btn-large" id="pricingBtn">View Pricing Plans</a>
         </div>
     </section>
+
+
+    <div class="container">
+        <center><h1>Find the answers that you need</center></h1>
+        
+        <section class="faq-section">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What services does Pulse Craft offer?</span>
+                    <div class="chevron"></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Pulse Craft specializes in web design and development, mobile app development, digital marketing, and branding solutions. We create custom digital experiences that help businesses grow and succeed online.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How long does a typical web development project take?</span>
+                    <div class="chevron"></div>
+                </div>
+                <div class="faq-answer">
+                    <p>The timeline for web development projects varies based on complexity. A simple brochure website typically takes 2-4 weeks, while more complex e-commerce or custom web applications can take 8-12 weeks or longer. We provide detailed project timelines during our initial consultation.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you offer ongoing website maintenance?</span>
+                    <div class="chevron"></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we offer comprehensive website maintenance plans that include regular updates, security monitoring, performance optimization, and technical support. Our maintenance plans are available monthly or annually to suit your needs.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can you redesign my existing website?</span>
+                    <div class="chevron"></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! We specialize in website redesigns that improve both aesthetics and functionality. We'll analyze your current site, identify areas for improvement, and create a modern, responsive design that better serves your business goals.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is your pricing structure?</span>
+                    <div class="chevron"></div>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer customized pricing based on project requirements. After understanding your needs, we provide a detailed quote with transparent pricing. We offer both project-based pricing and retainer options for ongoing services.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you work with clients remotely?</span>
+                    <div class="chevron"></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we work with clients worldwide through remote collaboration tools. We've perfected our remote workflow to ensure seamless communication and project management regardless of location.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What technologies do you specialize in?</span>
+                    <div class="chevron"></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Our team is proficient in a wide range of technologies including HTML5, CSS3, JavaScript, React, Vue.js, Node.js, PHP, WordPress, Shopify, and various database systems. We stay current with industry trends to deliver cutting-edge solutions.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I get started with Pulse Craft?</span>
+                    <div class="chevron"></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Getting started is easy! Simply contact us through our website form, email, or phone. We'll schedule a free consultation to discuss your project, answer any questions, and provide a proposal outlining our approach and pricing.</p>
+                </div>
+            </div>
+        </section>
+        
+    </div>
 
     <!-- Footer -->
     <footer id="contact">
@@ -1732,6 +1996,29 @@
             e.preventDefault();
             alert('Redirecting to pricing page...');
             // In a real implementation, this would navigate to the pricing page
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    // Toggle active class on question
+                    this.classList.toggle('active');
+                    
+                    // Toggle open class on answer
+                    const answer = this.nextElementSibling;
+                    answer.classList.toggle('open');
+                    
+                    // Close other open answers
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question) {
+                            otherQuestion.classList.remove('active');
+                            otherQuestion.nextElementSibling.classList.remove('open');
+                        }
+                    });
+                });
+            });
         });
     </script>
 </body>
