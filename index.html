@@ -8,6 +8,171 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
+
+                        .pricing-container {
+                         max-width: 1200px;
+                            margin: 0 auto;
+                        }
+                        
+                        .pricing-section {
+                            display: flex;
+                            gap: 20px;
+                            margin-bottom: 60px;
+                            flex-wrap: wrap;
+                        }
+                        
+                        .plan-card {
+                            flex: 1;
+                            min-width: 280px;
+                            background: white;
+                            border-radius: 12px;
+                            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+                            overflow: hidden;
+                            transition: transform 0.3s ease;
+                        }
+
+                        .plan-card:hover {
+                            transform: translateY(-5px);
+                        }
+                        
+                        .plan-header {
+                            padding: 24px 20px;
+                            border-bottom: 1px solid #e8eaed;
+                        }
+                        
+                        .plan-title {
+                            font-size: 1.25rem;
+                            font-weight: 500;
+                            margin-bottom: 12px;
+                        }
+                        
+                        .plan-price {
+                            margin-bottom: 8px;
+                        }
+                        
+                        .current-price {
+                            font-size: 1.75rem;
+                            font-weight: 500;
+                            color: #202124;
+                        }
+                        
+                        .original-price {
+                            font-size: 1rem;
+                            color: #5f6368;
+                            text-decoration: line-through;
+                            margin-left: 8px;
+                        }
+                        
+                        .plan-period {
+                            font-size: 0.9rem;
+                            color: #5f6368;
+                        }
+                        
+                        .plan-body {
+                            padding: 20px;
+                        }
+                        
+                        .trial-section {
+                            margin-bottom: 20px;
+                            padding-bottom: 15px;
+                            border-bottom: 1px solid #e8eaed;
+                        }
+                        
+                        .trial-title {
+                            font-weight: 500;
+                            margin-bottom: 10px;
+                            display: flex;
+                            align-items: center;
+                        }
+                        
+                        .trial-title i {
+                            margin-right: 8px;
+                            color: #1a73e8;
+                        }
+                        
+                        
+                        .features-list {
+                            list-style: none;
+                        }
+                        
+                        .features-list li {
+                            padding: 8px 0;
+                            display: flex;
+                            align-items: flex-start;
+                        }
+                        
+                        .feature-check {
+                            color: #1a73e8;
+                            margin-right: 10px;
+                            min-width: 20px;
+                        }
+                        
+                        .feature-text {
+                            flex: 1;
+                        }
+                        
+                        .plan-button {
+                            display: block;
+                            width: 100%;
+                            padding: 12px 16px;
+                            text-align: center;
+                            background: #1a73e8;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 1rem;
+                            font-weight: 500;
+                            cursor: pointer;
+                            margin-top: 20px;
+                            transition: background 0.2s;
+                        }
+                        
+                        .plan-button:hover {
+                            background: #1669d9;
+                        }
+                        
+                        .enterprise-button {
+                            background: transparent;
+                            color: #1a73e8;
+                            border: 1px solid #dadce0;
+                        }
+                        
+                        .enterprise-button:hover {
+                            background: #f8f9fa;
+                        }
+                        
+                        
+                        @media (max-width: 1024px) {
+                            .features-grid {
+                                grid-template-columns: repeat(2, 1fr);
+                            }
+                        }
+                        
+                        @media (max-width: 640px) {
+                            .pricing-section {
+                                flex-direction: column;
+                            }
+                            
+                            .features-grid {
+                                grid-template-columns: 1fr;
+                            }
+                        }
+                        
+                        .pricing-icon-storage { color: #4285f4; }
+                        .pricing-icon-email { color: #ea4335; }
+                        .pricing-icon-ai { color: #34a853; }
+                        .pricing-icon-chat { color: #fbbc05; }
+                        .pricing-icon-video { color: #4285f4; }
+                        .pricing-icon-film { color: #ea4335; }
+                        .pricing-icon-security { color: #34a853; }
+                        .pricing-icon-ediscovery { color: #fbbc05; }
+                        .pricing-icon-archive { color: #4285f4; }
+                        .pricing-icon-encryption { color: #ea4335; }
+                        .pricing-icon-dlp { color: #34a853; }
+                    
+                        /* Base Styles */
+
+
         /* Base Styles */
         :root {
             --primary: #4361ee;
@@ -1975,7 +2140,7 @@
             <a href="#All the tools that you need and a
                  few more that we think you'll love">What's included</a>
             <a href="#keyFeatures">Features</a>
-            <a href="#">Plans and pricing</a>
+            <a href="#pricing">Plans and pricing</a>
             <a href="#FAQ">FAQ</a>
         </nav>
     </div>
@@ -2327,9 +2492,9 @@
                 <!-- NEW: Accounts Icon -->
                 <div class="tool">
                     <div class="tool-icon">
-                        <span class="material-icons" style="color: #9c27b0;">account_circle</span>
+                        <span class="material-icons" style="color: #9c27b0;">account management</span>
                     </div>
-                    <span class="tool-name">Accounts</span>
+                    <span class="tool-name">Accounts Management</span>
                 </div>
             </div>
         </div>
@@ -2372,16 +2537,258 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- CTA Section -
     <section class="cta" id="pricing">
         <div class="container">
             <h2>Ready to Transform Your Workflow?</h2>
             <p>Join thousands of teams already using WorkSuite to work smarter, collaborate better, and grow faster.</p>
-            <a href="#" class="btn btn-large" id="pricingBtn">View Pricing Plans</a>
+            <a href="#" class="btn btn" id="pricingBtn">View Pricing Plans</a>
         </div>
-    </section>
+    </section>--->
 
     <!-- FAQ Section -->
+     <section  id="pricing">
+                        <div class="pricing-container">
+                    <h2 class="section-title">Premium features</h2>
+                        <div class="pricing-section">
+                            
+                            <div class="plan-card">
+                                <div class="plan-header">
+                                    <div class="plan-title">Starter</div>
+                                    <div class="plan-price">
+                                        <span class="current-price">5$</span>
+                                        <span class="original-price">¥270</span>
+                                    </div>
+                                    <div class="plan-period">per user/month</div>
+                                </div>
+                                <div class="plan-body">
+                                    <div class="trial-section">
+                                        <div class="trial-title">
+                                            <i  id="trialBtn" class="fas fa-play-circle"></i> Start a trial
+                                        </div>
+                                        <ul class="features-list">
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-database pricing-feature-icon pricing-icon-storage"></i>
+                                                    30 GB pooled storage per person*
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-envelope pricing-feature-icon pricing-icon-email"></i>
+                                                    Secure custom business email you@your-company.com
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-robot pricing-feature-icon pricing-icon-ai"></i>
+                                                    Gemini AI assistant in Gmail
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-comment-dots pricing-feature-icon pricing-icon-chat"></i>
+                                                    Chat with AI in the Gemini app
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-video pricing-feature-icon pricing-icon-video"></i>
+                                                    Video meetings, 100 participants
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-film pricing-feature-icon pricing-icon-film"></i>
+                                                    Google Vids AI-powered video creator and editor
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-shield-alt pricing-feature-icon pricing-icon-security"></i>
+                                                    Security and management controls
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <button  id="sidduTrialBtn" class="plan-button">Start a trial</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Standard Plan -->
+                            <div class="plan-card">
+                                <div class="plan-header">
+                                    <div class="plan-title">Standard</div>
+                                    <div class="plan-price">
+                                        <span class="current-price">10$</span>
+                                        <span class="original-price">¥1,000</span>
+                                    </div>
+                                    <div class="plan-period">per user/month</div>
+                                </div>
+                                <div class="plan-body">
+                                    <div class="trial-section">
+                                        <div class="trial-title">
+                                            <i class="fas fa-play-circle"></i> Start a trial
+                                        </div>
+                                        <div class="trial-subtitle">All of Starter and:</div>
+                                        <ul class="features-list">
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-database pricing-feature-icon pricing-icon-storage"></i>
+                                                    2 TB
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-database pricing-feature-icon pricing-icon-storage"></i>
+                                                    5 TB
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-chart-line pricing-feature-icon pricing-icon-storage"></i>
+                                                    2.5x more than Starter*
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-envelope-open-text pricing-feature-icon pricing-icon-email"></i>
+                                                    Secure custom business email you@your-company.com + custom layouts and mail merge
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-robot pricing-feature-icon pricing-icon-ai"></i>
+                                                    Gemini AI assistant in Gmail, Docs, Meet and more
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <button class="plan-button">Start a trial</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Plus Plan -->
+                            <div class="plan-card">
+                                <div class="plan-header">
+                                    <div class="plan-title">Plus</div>
+                                    <div class="plan-price">
+                                        <span class="current-price">17$</span>
+                                    </div>
+                                    <div class="plan-period">per user/month</div>
+                                </div>
+                                <div class="plan-body">
+                                    <div class="trial-section">
+                                        <div class="trial-title">
+                                            <i class="fas fa-play-circle"></i> Start a trial
+                                        </div>
+                                        <div class="trial-subtitle">All of Standard and:</div>
+                                        <ul class="features-list">
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-database pricing-feature-icon pricing-icon-storage"></i>
+                                                    5 TB
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-search-dollar pricing-feature-icon pricing-icon-ediscovery"></i>
+                                                    Secure custom business email + ediscovery
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-user-check pricing-feature-icon pricing-icon-video"></i>
+                                                    Video meetings with attendance tracking, 500 participants
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-archive pricing-feature-icon pricing-icon-archive"></i>
+                                                    Vault to retain, archive and search
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <button class="plan-button">Start a trial</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Enterprise Plan -->
+                            <div class="plan-card">
+                                <div class="plan-header">
+                                    <div class="plan-title">Enterprise</div>
+                                    <div class="plan-price">Let's talk</div>
+                                </div>
+                                <div class="plan-body">
+                                    <div class="trial-section">
+                                        <div class="trial-title">
+                                            <i class="fas fa-comments"></i> Contact sales
+                                        </div>
+                                        <div class="trial-subtitle">All features mentioned and:</div>
+                                        <ul class="features-list">
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-database pricing-feature-icon pricing-icon-storage"></i>
+                                                    5 TB
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-arrow-up pricing-feature-icon pricing-icon-storage"></i>
+                                                    or upgrade for more*
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-lock pricing-feature-icon pricing-icon-encryption"></i>
+                                                    Secure custom business email + S/MME encryption
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-broadcast-tower pricing-feature-icon pricing-icon-video"></i>
+                                                    Video meetings with streaming, 1,000 participants
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="feature-check"><i class="fas fa-check"></i></span>
+                                                <span class="feature-text">
+                                                    <i class="fas fa-exclamation-triangle pricing-feature-icon pricing-icon-dlp"></i>
+                                                    Data Loss Prevention (DLP)
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <button class="plan-button enterprise-button">Contact sales</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    
+                        
+                    </div>
+                    </section>
     <div class="container">
         <center><h1>Find the answers that you need</h1></center>
 
@@ -2530,9 +2937,9 @@
                     </div>
                 </div>
 
-                <div class="footer-links">
+               <!---------------- <div class="footer-links">
                    <a href="#worksuite includes">Product</a>
-                    <!-- <h3  class="footer-heading">Products</h3> -->
+                    <!-- <h3  class="footer-heading">Products</h3>
                 </div>
 
                 <div class="footer-section">
@@ -2540,7 +2947,7 @@
                     <div class="footer-links">
                         <a href="About.html"> About </a>
                     </div>
-                </div>
+                </div>---->
 
                 <div class="footer-links">
                         <a href="contact.html"> Support </a>
@@ -2942,9 +3349,17 @@
             openModal(trialModal);
         });
 
-        trialBtn.addEventListener('click', function(e) {
+        //  <button class="plan-button">Start a trial</button>
+        plan-button.addEventListener('click', function(e){
             e.preventDefault();
             openModal(trialModal);
+        })
+
+
+/////// morning show
+        sidduTrialBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal(starttrial);
         });
 
         // Open auth modal
@@ -2958,6 +3373,8 @@
             e.preventDefault();
             userManager.logout();
         });
+
+        
 
         // Close modals
         closeButtons.forEach(button => {
