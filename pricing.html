@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Pricing Table</title>
+    <title>Pricing Plans with Contact Sales</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,14 +14,15 @@
         }
         
         body {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             color: #333;
             line-height: 1.6;
             padding: 40px 20px;
+            min-height: 100vh;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
         }
         
@@ -31,15 +32,18 @@
         }
         
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 15px;
             color: #2c3e50;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .header p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #7f8c8d;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
         
@@ -54,10 +58,12 @@
         .toggle-label {
             font-weight: 500;
             color: #7f8c8d;
+            font-size: 1.1rem;
         }
         
         .toggle-label.active {
             color: #3498db;
+            font-weight: 600;
         }
         
         .toggle-switch {
@@ -114,15 +120,17 @@
         
         .pricing-card {
             flex: 1;
-            min-width: 300px;
-            max-width: 350px;
+            min-width: 200px;
+            max-width: 300px;
             background: white;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             padding: 35px 30px;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
         
         .pricing-card:hover {
@@ -170,8 +178,8 @@
         }
         
         .price-amount {
-            font-size: 2rem;
-            font-weight: 500;
+            font-size: 1.5rem;
+            font-weight: 600;
             color: #2c3e50;
         }
         
@@ -188,6 +196,7 @@
             list-style: none;
             margin: 25px 0 35px;
             text-align: left;
+            flex-grow: 1;
         }
         
         .features li {
@@ -257,28 +266,24 @@
             color: white;
         }
         
-        .custom-quote {
+        .contact-info {
+            margin-top: 20px;
             text-align: center;
-            margin-top: 50px;
-            padding: 30px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
         
-        .custom-quote h3 {
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-        
-        .custom-quote p {
+        .contact-info p {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             color: #7f8c8d;
-            margin-bottom: 20px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
-
+        
+        .contact-info i {
+            color: #3498db;
+        }
+        
         .demo-section {
             text-align: center;
             margin-top: 60px;
@@ -492,13 +497,13 @@
                     </li>
                 </ul>
                 
-                <button class="btn btn-secondary start-trial-btn" data-plan="Basic">Start Free Trial</button>
+                <button class="btn btn-secondary start-trial-btn" data-plan="Starter">Start Free Trial</button>
             </div>
             
             <!-- Professional Plan -->
             <div class="pricing-card popular">
-                <div class="popular-badge">Standard</div>
-                <h3 class="plan-name">Professional</h3>
+                <div class="popular-badge">MOST POPULAR</div>
+                <h3 class="plan-name">standard</h3>
                 <p class="plan-description">Ideal for growing businesses</p>
                 
                 <div class="price">
@@ -579,12 +584,38 @@
                 
                 <button class="btn btn-secondary start-trial-btn" data-plan="Enterprise">Start Free Trial</button>
             </div>
-        </div>
-        
-        <div class="custom-quote">
-            <h3>Need a custom solution?</h3>
-            <p>We offer tailored plans for organizations with specific requirements. Get in touch with our sales team to discuss your needs.</p>
-            <button class="btn btn-outline" id="quoteBtn">Request Custom Quote</button>
+            
+            <!-- Contact Sales Card -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Contact Sales</h3>
+                <p class="plan-description">Need a custom solution? Let's talk about your specific requirements.</p>
+                
+                <ul class="features">
+                    <li>
+                        <span class="feature-icon"><i class="fas fa-check" style="color: #2ecc71;"></i></span>
+                        <span>Tailored to your needs</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon"><i class="fas fa-check" style="color: #2ecc71;"></i></span>
+                        <span>Volume discounts available</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon"><i class="fas fa-check" style="color: #2ecc71;"></i></span>
+                        <span>Dedicated account manager</span>
+                    </li>
+                    <li>
+                        <span class="feature-icon"><i class="fas fa-check" style="color: #2ecc71;"></i></span>
+                        <span>Custom implementation support</span>
+                    </li>
+                </ul>
+                
+                <button class="btn btn-outline" id="contactSalesBtn">Contact Sales Team</button>
+                
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> +19175401361</p>
+                    <p><i class="fas fa-envelope"></i> support@pulsecrafts.com</p>
+                </div>
+            </div>
         </div>
 
         <div class="demo-section">
@@ -665,34 +696,34 @@
         </div>
     </div>
 
-    <!-- Quote Modal -->
-    <div class="modal" id="quoteModal">
+    <!-- Contact Sales Modal -->
+    <div class="modal" id="contactSalesModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h2>Request Custom Quote</h2>
-            <p>Tell us about your requirements and we'll prepare a tailored solution for your organization.</p>
-            <form id="quoteForm">
+            <h2>Contact Sales</h2>
+            <p>Have questions or need help deciding? Our sales team is here to help you find the perfect solution.</p>
+            <form id="contactSalesForm">
                 <div class="form-group">
-                    <label for="quoteName">Full Name</label>
-                    <input type="text" id="quoteName" required>
+                    <label for="contactName">Full Name</label>
+                    <input type="text" id="contactName" required>
                 </div>
                 <div class="form-group">
-                    <label for="quoteEmail">Work Email</label>
-                    <input type="email" id="quoteEmail" required>
+                    <label for="contactEmail">Work Email</label>
+                    <input type="email" id="contactEmail" required>
                 </div>
                 <div class="form-group">
-                    <label for="quoteCompany">Company Name</label>
-                    <input type="text" id="quoteCompany" required>
+                    <label for="contactCompany">Company Name</label>
+                    <input type="text" id="contactCompany" required>
                 </div>
                 <div class="form-group">
-                    <label for="quoteUsers">Number of Users</label>
-                    <input type="number" id="quoteUsers" min="1" required>
+                    <label for="contactPhone">Phone Number</label>
+                    <input type="tel" id="contactPhone" required>
                 </div>
                 <div class="form-group">
-                    <label for="quoteRequirements">Specific Requirements</label>
-                    <textarea id="quoteRequirements" placeholder="Tell us about your specific needs..."></textarea>
+                    <label for="contactMessage">How can we help you?</label>
+                    <textarea id="contactMessage" placeholder="Tell us about your questions or requirements..." required></textarea>
                 </div>
-                <button type="submit" class="modal-btn">Request Quote</button>
+                <button type="submit" class="modal-btn">Contact Sales</button>
             </form>
         </div>
     </div>
@@ -725,12 +756,12 @@
         // Modal functionality
         const trialModal = document.getElementById('trialModal');
         const demoModal = document.getElementById('demoModal');
-        const quoteModal = document.getElementById('quoteModal');
+        const contactSalesModal = document.getElementById('contactSalesModal');
         const closeButtons = document.querySelectorAll('.close-modal');
         const startTrialButtons = document.querySelectorAll('.start-trial-btn');
         const demoBtn = document.getElementById('demoBtn');
         const generalTrialBtn = document.getElementById('generalTrialBtn');
-        const quoteBtn = document.getElementById('quoteBtn');
+        const contactSalesBtn = document.getElementById('contactSalesBtn');
         const selectedPlanInput = document.getElementById('selectedPlan');
 
         // Open trial modal with selected plan
@@ -753,9 +784,9 @@
             trialModal.style.display = 'flex';
         });
 
-        // Open quote modal
-        quoteBtn.addEventListener('click', function() {
-            quoteModal.style.display = 'flex';
+        // Open contact sales modal
+        contactSalesBtn.addEventListener('click', function() {
+            contactSalesModal.style.display = 'flex';
         });
 
         // Close modals
@@ -763,7 +794,7 @@
             button.addEventListener('click', function() {
                 trialModal.style.display = 'none';
                 demoModal.style.display = 'none';
-                quoteModal.style.display = 'none';
+                contactSalesModal.style.display = 'none';
             });
         });
 
@@ -771,7 +802,7 @@
         window.addEventListener('click', function(e) {
             if (e.target === trialModal) trialModal.style.display = 'none';
             if (e.target === demoModal) demoModal.style.display = 'none';
-            if (e.target === quoteModal) quoteModal.style.display = 'none';
+            if (e.target === contactSalesModal) contactSalesModal.style.display = 'none';
         });
 
         // Form submissions
@@ -790,10 +821,10 @@
             this.reset();
         });
 
-        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+        document.getElementById('contactSalesForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you! Our sales team will contact you within 24 hours with a custom quote.');
-            quoteModal.style.display = 'none';
+            alert('Thank you! Our sales team will contact you within 24 hours to assist with your questions.');
+            contactSalesModal.style.display = 'none';
             this.reset();
         });
     </script>

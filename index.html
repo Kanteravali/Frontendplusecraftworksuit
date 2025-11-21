@@ -38,7 +38,6 @@
             line-height: 1.5;
             background-color: #ffffff;
             overflow-x: hidden;
-            
         }
 
         .container {
@@ -88,6 +87,10 @@
             transition: var(--transition);
             border: none;
             font-size: 1rem;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-primary {
@@ -182,6 +185,9 @@
             color: var(--dark);
             font-weight: 500;
             transition: var(--transition);
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }
 
         .nav-links a:hover {
@@ -197,6 +203,8 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+            min-height: 44px;
+            align-items: center;
         }
 
         /* Hero Section */
@@ -267,22 +275,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* About Section */
-        .about {
-            background-color: white;
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-content p {
-            font-size: 1.1rem;
-            color: var(--gray);
-        }
-
         /* Features Section */
         .features {
             background-color: white;
@@ -304,6 +296,10 @@
             position: relative;
             overflow: hidden;
             border: 1px solid #f0f0f0;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .feature-card:hover {
@@ -416,6 +412,10 @@
             position: relative;
             overflow: hidden;
             border: 1px solid #f0f0f0;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .use-case-card:hover {
@@ -448,7 +448,7 @@
             max-height: 200px;
         }
 
-        /* Google Workspace Style Section */
+        /* Google Workspace Style Section - UPDATED */
         .workspace-section {
             background-color: #f8f9fa;
             padding: 80px 0;
@@ -459,6 +459,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            text-align: center; /* Center all content */
         }
 
         .workspace-header {
@@ -467,7 +468,7 @@
             margin-bottom: 60px;
             line-height: 1.2;
             color: #202124;
-            text-align: left;
+            text-align: center; /* Ensure header is centered */
         }
 
         .workspace-features {
@@ -479,6 +480,7 @@
 
         .workspace-feature {
             padding-right: 20px;
+            text-align: center; /* Center feature content */
         }
 
         .workspace-feature-title {
@@ -487,6 +489,7 @@
             margin-bottom: 16px;
             display: flex;
             align-items: center;
+            justify-content: center; /* Center title and icon */
             color: #202124;
         }
 
@@ -506,12 +509,14 @@
             font-weight: 500;
             margin-bottom: 30px;
             color: #202124;
+            text-align: center; /* Center title */
         }
 
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(8, 1fr);
             gap: 20px;
+            justify-items: center; /* Center all tool icons */
         }
 
         .tool {
@@ -522,6 +527,8 @@
             padding: 15px 10px;
             border-radius: 8px;
             transition: all 0.3s ease;
+            width: 100%; /* Ensure consistent width */
+            min-height: 100px;
         }
 
         .tool:hover {
@@ -625,7 +632,7 @@
 
         .cta p {
             max-width: 600px;
-            margin: 0 auto 2.5rem;
+            margin: 0 auto 1.5rem;
             font-size: 1.1rem;
             opacity: 0.9;
             color: var(--gray);
@@ -746,6 +753,7 @@
             cursor: pointer;
             transition: background-color 0.2s;
             width: 100%;
+            min-height: 44px;
         }
 
         .signup-button:hover {
@@ -809,6 +817,9 @@
             text-decoration: none;
             color: rgba(255, 255, 255, 0.7);
             transition: color 0.3s;
+            min-height: 30px;
+            display: flex;
+            align-items: center;
         }
 
         .footer-links a:hover {
@@ -908,6 +919,7 @@
             border-radius: 0 6px 6px 0;
             cursor: pointer;
             transition: background 0.3s;
+            min-height: 44px;
         }
 
         .newsletter button:hover {
@@ -948,6 +960,11 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--gray);
+            min-height: 30px;
+            min-width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal h2 {
@@ -989,6 +1006,10 @@
             font-weight: 500;
             color: var(--gray);
             transition: var(--transition);
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .auth-tab.active {
@@ -1032,6 +1053,8 @@
             color: var(--primary);
             cursor: pointer;
             font-size: 0.4rem;
+            min-height: 44px;
+            padding: 0 10px;
         }
 
         /* Mobile Navigation */
@@ -1071,6 +1094,9 @@
             display: block;
             padding: 10px 0;
             border-bottom: 1px solid #eee;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }
 
         .mobile-nav-buttons {
@@ -1120,6 +1146,9 @@
             padding: 8px 4px;
             transition: color 0.2s ease;
             position: relative;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }
 
         nav a:hover {
@@ -1156,6 +1185,7 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s ease;
+            min-height: 70px;
         }
 
         .faq-question:hover {
@@ -1201,6 +1231,273 @@
         .faq-answer.open {
             padding: 20px 30px;
             max-height: 500px;
+        }
+
+        /* Updated Trial Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #5f6368;
+        }
+
+        .modal h2 {
+            margin-bottom: 24px;
+            font-size: 24px;
+            font-weight: 400;
+            color: #202124;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #202124;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #202124;
+            background-color: white;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+
+        /* Employee Options Styles */
+        .employee-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .employee-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-height: 44px;
+        }
+
+        .employee-option:hover {
+            background-color: #f8f9fa;
+        }
+
+        .employee-option.selected {
+            border-color: #1a73e8;
+            background-color: #f0f6ff;
+        }
+
+        .employee-option input {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .employee-option label {
+            margin-bottom: 0;
+            cursor: pointer;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        /* Region Display */
+        .region-display {
+            padding: 12px 14px;
+            background-color: #f8f9fa;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #202124;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background-color: #e8eaed;
+            margin: 24px 0;
+        }
+
+        /* Next Button */
+        .next-button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            width: 100%;
+            min-height: 44px;
+        }
+
+        .next-button:hover {
+            background-color: #1669d9;
+        }
+
+        /* Contact Info Modal Styles */
+        .contact-info-modal .modal-content {
+            max-width: 500px;
+        }
+
+        .contact-info-modal h2 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            color: #202124;
+        }
+
+        .contact-info-modal .info-text {
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .contact-info-modal .form-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .contact-info-modal .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .contact-info-modal .form-group.full-width {
+            flex: 0 0 100%;
+        }
+
+        /* Success Modal Styles */
+        .success-modal .modal-content {
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background-color: #e6f4ea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #34a853;
+            font-size: 36px;
+        }
+
+        .success-modal h2 {
+            text-align: center;
+            margin-bottom: 16px;
+            color: #202124;
+        }
+
+        .success-modal p {
+            text-align: center;
+            color: #5f6368;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .success-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .success-actions .btn {
+            flex: 1;
+        }
+
+        /* Form Validation Styles */
+        .error-message {
+            color: #d93025;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-group.error input {
+            border-color: #d93025;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        /* Loading State */
+        .loading {
+            position: relative;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-right-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Responsive Design */
@@ -1254,7 +1551,7 @@
             }
 
             .mobile-menu {
-                display: block;
+                display: flex;
             }
 
             section {
@@ -1270,7 +1567,7 @@
             }
 
             .hero {
-                padding: 80px 0;
+                padding: 80px 0 40px;
             }
 
             .hero-text p {
@@ -1310,6 +1607,7 @@
             .footer-main {
                 grid-template-columns: 1fr;
                 gap: 30px;
+                text-align: center;
             }
 
             .footer-bottom {
@@ -1322,11 +1620,18 @@
                 flex-wrap: wrap;
                 justify-content: center;
             }
+            
             .tools-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
+            
             .workspace-header {
                 font-size: 32px;
+            }
+            
+            .workspace-section {
+                padding: 60px 0;
+                margin: 60px 0;
             }
             
             .newsletter-container {
@@ -1340,6 +1645,67 @@
             
             .form-group {
                 min-width: 100%;
+            }
+
+            .contact-info-modal .form-row {
+                flex-direction: column;
+            }
+
+            .success-actions {
+                flex-direction: column;
+            }
+            
+            .navbar {
+                padding: 15px 0;
+            }
+            
+            .logo span {
+                font-size: 1.4rem;
+            }
+            
+            .logo-img {
+                height: 32px;
+            }
+            
+            .nav-container {
+                margin-top: 20px;
+                padding: 8px;
+            }
+            
+            nav {
+                gap: 16px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav a {
+                font-size: 14px;
+                padding: 6px 8px;
+            }
+            
+            .faq-question {
+                padding: 18px 20px;
+                font-size: 1rem;
+            }
+            
+            .faq-answer {
+                padding: 0 20px;
+            }
+            
+            .faq-answer.open {
+                padding: 15px 20px;
+            }
+            
+            .footer-brand {
+                align-items: center;
+            }
+            
+            .footer-description {
+                max-width: 100%;
+            }
+            
+            .footer-contact {
+                align-items: center;
             }
         }
 
@@ -1408,10 +1774,50 @@
             .footer-bottom {
                 font-size: 0.8rem;
             }
+            
             .tools-grid {
                 grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
             }
+            
             .workspace-header {
+                font-size: 28px;
+            }
+            
+            .tool {
+                padding: 10px 5px;
+            }
+            
+            .tool-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .tool-name {
+                font-size: 12px;
+            }
+            
+            .feature-card, .use-case-card {
+                margin-bottom: 20px;
+            }
+            
+            .feature-details, .use-case-details {
+                max-height: none !important;
+                overflow: visible;
+            }
+            
+            .modal-content {
+                padding: 25px 15px;
+                margin: 10px;
+            }
+            
+            .employee-option {
+                padding: 10px 12px;
+            }
+            
+            .success-icon {
+                width: 60px;
+                height: 60px;
                 font-size: 28px;
             }
         }
@@ -1435,6 +1841,62 @@
 
             .modal-content {
                 padding: 20px 15px;
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Additional utility classes for better responsiveness */
+        .text-center-mobile {
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .text-center-mobile {
+                text-align: center;
+            }
+            
+            .hide-mobile {
+                display: none !important;
+            }
+            
+            .full-width-mobile {
+                width: 100% !important;
+            }
+        }
+
+        /* Improved touch targets for mobile */
+        @media (max-width: 768px) {
+            .btn, .nav-links a, .faq-question, .tool {
+                min-height: 44px; /* Minimum touch target size */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .mobile-nav-links a {
+                min-height: 50px;
+            }
+        }
+
+        /* Prevent horizontal scrolling */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Improved image responsiveness */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Better form element sizing on mobile */
+        @media (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
             }
         }
     </style>
@@ -1489,8 +1951,8 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="mobile-nav-buttons">
-            <a href="#" class="btn btn-secondary" id="mobileLoginBtn">Log In</a>
-            <a href="#" class="btn btn-primary" id="mobileTrialBtn">Start Free Trial</a>
+            <a href="#" class="btn btn-secondary full-width-mobile" id="mobileLoginBtn">Log In</a>
+            <a href="#" class="btn btn-primary full-width-mobile" id="mobileTrialBtn">Start Free Trial</a>
         </div>
     </div>
 
@@ -1502,8 +1964,8 @@
                     <h1>Work. Collaborate. Sell. All in One Workspace.</h1>
                     <p>Streamline your team's workflow with our all-in-one cloud platform for task management, collaboration, CRM, and e-commerce.</p>
                     <div class="hero-buttons">
-                        <a href="#" class="btn btn-primary btn-large" id="demoBtn">Book Demo</a>
-                        <a href="#" class="btn btn-secondary btn-large" id="heroTrialBtn">Start Free Trial</a>
+                        <a href="#" class="btn btn-primary btn-large full-width-mobile" id="demoBtn">Book Demo</a>
+                        <a href="#" class="btn btn-secondary btn-large full-width-mobile" id="heroTrialBtn">Start Free Trial</a>
                     </div>
                 </div>
         </div><br><br><br><br>
@@ -1519,17 +1981,6 @@
     </div>
 
     </section>
-
-    <!-- About Section -->
-     <!-----  <section class="about">
-        <div class="container">
-            <div class="about-content">
-                <h2 class="section-title">About WorkSuite</h2>
-                <p>Pulsecrafts WorkSuite is a comprehensive cloud workspace designed to help teams work more efficiently, collaborate seamlessly, manage customer relationships, and sell products or services—all from a single, integrated platform.</p>
-                <p>Our mission is to eliminate the need for multiple disconnected tools and provide businesses with a unified solution that enhances productivity and drives growth.</p>
-            </div>
-        </div>
-    </section>----1>
 
     <!-- Features Section -->
     <section id="keyFeatures">
@@ -1735,12 +2186,10 @@
         </div>
     </section>
 
-    <!-- Google Workspace Style Section -->
-    <section id = "All the tools that you need and a
-                 few more that we think you'll love">
+    <!-- Google Workspace Style Section - UPDATED -->
+    <section id="All the tools that you need and a few more that we think you'll love" class="workspace-section">
         <div class="workspace-container">
-            <h1 class="workspace-header"><center>All the tools that you need and a<br>
-                 few more that we think you'll love.</center></h1>
+            <h1 class="workspace-header">All the tools that you need and a<br>few more that we think you'll love.</h1>
 
             <div class="workspace-features">
                 <div class="workspace-feature">
@@ -1773,8 +2222,8 @@
                     </p>
                 </div>
             </div>
-
-            <h2 id='worksuite' class="includes-title">WorkSuite includes</h2>
+<!-------------------------------------------------------------------->
+            <h2 class ="Product">WorkSuite includes</h2>
 
             <div class="tools-grid">
                 <div class="tool">
@@ -1847,8 +2296,6 @@
                     <span class="tool-name">Videos</span>
                 </div>
 
-                
-
                 <div class="tool">
                     <div class="tool-icon">
                         <span class="material-icons" style="color: #46bdc6;">language</span>
@@ -1872,9 +2319,17 @@
 
                 <div class="tool">
                     <div class="tool-icon">
-                        <span class="material-icons" style="color: #3ddc84;">apps</span>
+                        <span class="material-icons" style="color: #3ddc84;">store</span>
                     </div>
-                    <span class="tool-name">Storage</span>
+                    <span class="tool-name">Store</span>
+                </div>
+                
+                <!-- NEW: Accounts Icon -->
+                <div class="tool">
+                    <div class="tool-icon">
+                        <span class="material-icons" style="color: #9c27b0;">account_circle</span>
+                    </div>
+                    <span class="tool-name">Accounts</span>
                 </div>
             </div>
         </div>
@@ -2062,9 +2517,9 @@
     <footer>
         <div class="container">
             <div class="footer-main">
-                <div class="footer-brand">
+                <div class="footer-brand text-center-mobile">
                     <div class="footer-logo">
-                        <img class="logo-img" src="assets/logo.png" alt=""></i> PulseCraft
+                        <img class="logo-img" src="assets/logo.png" alt=""></i> PulseCraft WorkSuite
                     </div>
                     <p class="footer-description">
                         Empowering teams with innovative workspace solutions that drive productivity and collaboration.
@@ -2076,7 +2531,7 @@
                 </div>
 
                 <div class="footer-links">
-                    <a href="#worksuite">Product</a>
+                   <a href="#worksuite includes">Product</a>
                     <!-- <h3  class="footer-heading">Products</h3> -->
                 </div>
 
@@ -2163,30 +2618,104 @@
         </div>
     </div>
 
+    <!-- Updated Trial Modal - Step 1 -->
     <div class="modal" id="trialModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h2>Start Your Free Trial</h2>
-            <p>Get full access to all WorkSuite features for 14 days. No credit card required.</p>
-            <form id="trialForm">
+            <h2>Let's get started</h2>
+            
+            <div class="form-group">
+                <label for="businessName">Business name</label>
+                <input type="text" id="businessName" placeholder="Enter your business name" required>
+                <div class="error-message">Please enter your business name</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Number of employees, including you</label>
+                <div class="employee-options">
+                    <div class="employee-option">
+                        <input type="radio" id="justYou" name="employees" value="Just you" required>
+                        <label for="justYou">Just you</label>
+                    </div>
+                    <div class="employee-option">
+                        <input type="radio" id="twoToNine" name="employees" value="2-9">
+                        <label for="twoToNine">2-9</label>
+                    </div>
+                    <div class="employee-option">
+                        <input type="radio" id="tenToNinetyNine" name="employees" value="10-99">
+                        <label for="tenToNinetyNine">10-99</label>
+                    </div>
+                    <div class="employee-option">
+                        <input type="radio" id="hundredToTwoNinetyNine" name="employees" value="100-299">
+                        <label for="hundredToTwoNinetyNine">100-299</label>
+                    </div>
+                    <div class="employee-option">
+                        <input type="radio" id="threeHundredPlus" name="employees" value="300+">
+                        <label for="threeHundredPlus">300+</label>
+                    </div>
+                </div>
+                <div class="error-message">Please select the number of employees</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="region">Region*</label>
+                <div class="region-display">
+                    <strong>India</strong>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <button type="button" class="next-button" id="nextButton">Next</button>
+        </div>
+    </div>
+
+    <!-- Contact Info Modal - Step 2 -->
+    <div class="modal contact-info-modal" id="contactInfoModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>What's your contact info?</h2>
+            <p class="info-text">You'll be the WorkSuite account admin since you're creating the account. 😊</p>
+            
+            <div class="form-row">
                 <div class="form-group">
-                    <label for="trialName">Full Name</label>
-                    <input type="text" id="trialName" required>
+                    <label for="firstName">First name</label>
+                    <input type="text" id="firstName" required>
+                    <div class="error-message">Please enter your first name</div>
                 </div>
                 <div class="form-group">
-                    <label for="trialEmail">Work Email</label>
-                    <input type="email" id="trialEmail" required>
+                    <label for="surname">Surname</label>
+                    <input type="text" id="surname" required>
+                    <div class="error-message">Please enter your surname</div>
                 </div>
-                <div class="form-group">
-                    <label for="trialCompany">Company Name</label>
-                    <input type="text" id="trialCompany" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Create Password</label>
-                    <input type="password" id="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Start Free Trial</button>
-            </form>
+            </div>
+            
+            <div class="form-group full-width">
+                <label for="currentEmail">Current email address</label>
+                <input type="email" id="currentEmail" required>
+                <div class="error-message">Please enter a valid email address</div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <button type="button" class="next-button" id="contactNextButton">Next</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal success-modal" id="successModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2>Welcome to WorkSuite!</h2>
+            <p>Your free trial has been successfully activated. We've sent a confirmation email with your login details and setup instructions.</p>
+            <p>You can now access all WorkSuite features for the next 14 days.</p>
+            <div class="success-actions">
+                <button class="btn btn-secondary full-width-mobile" id="closeSuccessBtn">Close</button>
+                <button class="btn btn-primary full-width-mobile" id="goToDashboardBtn">Go to Dashboard</button>
+            </div>
         </div>
     </div>
 
@@ -2351,22 +2880,20 @@
         mobileLoginBtn.addEventListener('click', function(e) {
             e.preventDefault();
             toggleMobileNav();
-            authModal.style.display = 'flex';
+            openModal(authModal);
         });
 
         mobileTrialBtn.addEventListener('click', function(e) {
             e.preventDefault();
             toggleMobileNav();
-            if (userManager.currentUser) {
-                alert('Your free trial has been activated! Check your email for login instructions.');
-            } else {
-                trialModal.style.display = 'flex';
-            }
+            openModal(trialModal);
         });
 
         // Modal functionality
         const demoModal = document.getElementById('demoModal');
         const trialModal = document.getElementById('trialModal');
+        const contactInfoModal = document.getElementById('contactInfoModal');
+        const successModal = document.getElementById('successModal');
         const authModal = document.getElementById('authModal');
         const demoBtn = document.getElementById('demoBtn');
         const heroTrialBtn = document.getElementById('heroTrialBtn');
@@ -2375,64 +2902,108 @@
         const loginBtn = document.getElementById('loginBtn');
         const logoutBtn = document.getElementById('logoutBtn');
         const closeButtons = document.querySelectorAll('.close-modal');
+        const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+        const goToDashboardBtn = document.getElementById('goToDashboardBtn');
+
+        // Prevent body scroll when modal is open
+        function preventBodyScroll(prevent) {
+            if (prevent) {
+                document.body.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
+            } else {
+                document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.body.style.width = '';
+            }
+        }
+
+        // Open modal function
+        function openModal(modal) {
+            modal.style.display = 'flex';
+            preventBodyScroll(true);
+        }
+
+        // Close modal function
+        function closeModal(modal) {
+            modal.style.display = 'none';
+            preventBodyScroll(false);
+        }
 
         // Open demo modal
         demoBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            demoModal.style.display = 'flex';
+            openModal(demoModal);
         });
 
         // Open trial modal
         heroTrialBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            if (userManager.currentUser) {
-                alert('Your free trial has been activated! Check your email for login instructions.');
-            } else {
-                trialModal.style.display = 'flex';
-            }
+            openModal(trialModal);
         });
 
         trialBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            if (userManager.currentUser) {
-                alert('Your free trial has been activated! Check your email for login instructions.');
-            } else {
-                trialModal.style.display = 'flex';
-            }
+            openModal(trialModal);
         });
 
         // Open auth modal
         loginBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            authModal.style.display = 'flex';
+            openModal(authModal);
         });
 
         // Logout functionality
         logoutBtn.addEventListener('click', function(e) {
             e.preventDefault();
             userManager.logout();
-            alert('You have been logged out successfully.');
         });
 
         // Close modals
         closeButtons.forEach(button => {
             button.addEventListener('click', function() {
-                demoModal.style.display = 'none';
-                trialModal.style.display = 'none';
-                authModal.style.display = 'none';
+                const modal = this.closest('.modal');
+                closeModal(modal);
             });
+        });
+
+        // Close success modal
+        closeSuccessBtn.addEventListener('click', function() {
+            closeModal(successModal);
+        });
+
+        // Go to dashboard
+        goToDashboardBtn.addEventListener('click', function() {
+            closeModal(successModal);
+            // In a real implementation, this would redirect to the dashboard
+            console.log('Redirecting to dashboard...');
         });
 
         // Close modal when clicking outside
         window.addEventListener('click', function(e) {
             if (e.target === demoModal) {
-                demoModal.style.display = 'none';
+                closeModal(demoModal);
             }
             if (e.target === trialModal) {
-                trialModal.style.display = 'none';
+                closeModal(trialModal);
+            }
+            if (e.target === contactInfoModal) {
+                closeModal(contactInfoModal);
+            }
+            if (e.target === successModal) {
+                closeModal(successModal);
             }
             if (e.target === authModal) {
-                authModal.style.display = 'none';
+                closeModal(authModal);
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (mobileNav.classList.contains('active') && 
+                !mobileNav.contains(e.target) && 
+                e.target !== mobileMenu) {
+                toggleMobileNav();
             }
         });
 
@@ -2453,17 +3024,124 @@
         // Form submissions
         document.getElementById('demoForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you! Our team will contact you shortly to schedule your demo.');
-            demoModal.style.display = 'none';
+            // In a real implementation, this would submit the form data
+            console.log('Demo request submitted');
+            closeModal(demoModal);
             this.reset();
         });
 
-        document.getElementById('trialForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Your free trial has been activated! Check your email for login instructions.');
-            trialModal.style.display = 'none';
-            this.reset();
+        // Employee option selection styling
+        document.querySelectorAll('.employee-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                document.querySelectorAll('.employee-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                
+                // Check the radio button
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+                
+                // Clear error state
+                const formGroup = this.closest('.form-group');
+                formGroup.classList.remove('error');
+            });
         });
+
+        // Form validation function
+        function validateForm(formId) {
+            const form = document.getElementById(formId);
+            const inputs = form.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                const formGroup = input.closest('.form-group');
+                if (!input.value || (input.type === 'radio' && !form.querySelector('input[name="' + input.name + '"]:checked'))) {
+                    formGroup.classList.add('error');
+                    isValid = false;
+                } else {
+                    formGroup.classList.remove('error');
+                }
+            });
+
+            return isValid;
+        }
+
+        // Next button functionality - Step 1
+        document.getElementById('nextButton').addEventListener('click', function() {
+            if (!validateForm('trialModal')) {
+                return;
+            }
+            
+            const businessName = document.getElementById('businessName').value;
+            const employees = document.querySelector('input[name="employees"]:checked');
+            
+            // Store the data for later use
+            window.trialData = {
+                businessName: businessName,
+                employees: employees.value,
+                region: 'India'
+            };
+            
+            // Move to next step
+            closeModal(trialModal);
+            openModal(contactInfoModal);
+        });
+
+        // Next button functionality - Step 2
+        document.getElementById('contactNextButton').addEventListener('click', function() {
+            if (!validateForm('contactInfoModal')) {
+                return;
+            }
+            
+            const firstName = document.getElementById('firstName').value;
+            const surname = document.getElementById('surname').value;
+            const currentEmail = document.getElementById('currentEmail').value;
+            
+            // Complete the trial signup
+            if (window.trialData) {
+                window.trialData.firstName = firstName;
+                window.trialData.surname = surname;
+                window.trialData.email = currentEmail;
+                
+                // Show loading state
+                this.classList.add('loading');
+                
+                // Simulate API call delay
+                setTimeout(() => {
+                    // In a real implementation, you would send this data to a server
+                    console.log('Trial signup data:', window.trialData);
+                    
+                    // Show success modal
+                    closeModal(contactInfoModal);
+                    openModal(successModal);
+                    
+                    // Reset loading state
+                    this.classList.remove('loading');
+                    
+                    // Reset all forms
+                    resetTrialForms();
+                }, 1500);
+            }
+        });
+
+        // Function to reset all trial forms
+        function resetTrialForms() {
+            document.getElementById('businessName').value = '';
+            document.querySelectorAll('.employee-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            document.querySelectorAll('input[name="employees"]').forEach(radio => {
+                radio.checked = false;
+            });
+            document.getElementById('firstName').value = '';
+            document.getElementById('surname').value = '';
+            document.getElementById('currentEmail').value = '';
+            window.trialData = null;
+        }
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -2473,11 +3151,11 @@
             const result = userManager.login(email, password);
 
             if (result.success) {
-                alert(result.message);
-                authModal.style.display = 'none';
+                closeModal(authModal);
                 this.reset();
             } else {
-                alert(result.message);
+                // Show error in form
+                console.log(result.message);
             }
         });
 
@@ -2491,7 +3169,7 @@
 
             // Validate passwords match
             if (password !== confirmPassword) {
-                alert('Passwords do not match');
+                console.log('Passwords do not match');
                 return;
             }
 
@@ -2503,19 +3181,18 @@
             });
 
             if (result.success) {
-                alert(result.message);
-                authModal.style.display = 'none';
+                closeModal(authModal);
                 this.reset();
             } else {
-                alert(result.message);
+                console.log(result.message);
             }
         });
 
         // Pricing button functionality
         pricingBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            alert('Redirecting to pricing page...');
             // In a real implementation, this would navigate to the pricing page
+            console.log('Redirecting to pricing page...');
         });
 
         // FAQ functionality
@@ -2544,21 +3221,22 @@
 
         // Google Workspace style section functionality
         const toolFunctionalities = {
-            "PulseMail": "Email service with smart organization and search",
-            "PulseDrive": "Cloud storage for all your files",
-            "PulseMeet": "Video conferencing for high-quality meetings",
-            "PulseCalendar": "Scheduling tool for organizing your time",
-            "PulseChat": "Messaging for team collaboration",
-            "PulseAI": "AI assistant across WorkSuite",
-            "PulseDocs": "Word processor for collaborative documents",
-            "PulseSheets": "Spreadsheets for data analysis",
-            "PulseSlides": "Presentation app for creating slideshows",
-            "PulseVids": "AI-powered video creation tool",
-            "PulseKeep": "Note-taking service for quick ideas",
-            "PulseSites": "Website builder for project hubs",
-            "PulseForms": "Survey and quiz creation tool",
-            "PulseNotebook": "AI-powered notebook for document analysis",
-            "PulseAppSheet": "No-code platform for custom apps"
+            "Mail": "Email service with smart organization and search",
+            "Drive": "Cloud storage for all your files",
+            "Meet": "Video conferencing for high-quality meetings",
+            "Calendar": "Scheduling tool for organizing your time",
+            "Chat": "Messaging for team collaboration",
+            "AI": "AI assistant across WorkSuite",
+            "Docs": "Word processor for collaborative documents",
+            "Sheets": "Spreadsheets for data analysis",
+            "Slides": "Presentation app for creating slideshows",
+            "Videos": "AI-powered video creation tool",
+            "Sites": "Website builder for project hubs",
+            "Forms": "Survey and quiz creation tool",
+            "Notebook": "AI-powered notebook for document analysis",
+            "Store": "E-commerce platform for selling products",
+            "Accounts": "User account management and permissions",
+            "Storage": "Secure cloud storage and file management"
         };
 
         // Add hover functionality to show tool descriptions
@@ -2567,6 +3245,17 @@
 
             tool.addEventListener('mouseenter', () => {
                 tool.setAttribute('title', toolFunctionalities[toolName]);
+            });
+        });
+
+        // Improve touch experience for interactive elements
+        document.querySelectorAll('.feature-card, .use-case-card, .tool').forEach(element => {
+            element.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            
+            element.addEventListener('touchend', function() {
+                this.style.transform = '';
             });
         });
 
@@ -2585,10 +3274,21 @@
                 cloudEmails: cloudEmails
             });
             
-            alert('Thank you for signing up for the WorkSuite newsletter!');
-            document.getElementById('newsletterForm').reset();
-            document.getElementById('country').value = 'India'; // Reset to default
+            // Show success state
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+            button.textContent = 'Subscribed!';
+            button.style.backgroundColor = '#34a853';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.backgroundColor = '';
+                document.getElementById('newsletterForm').reset();
+                document.getElementById('country').value = 'India'; // Reset to default
+            }, 2000);
         });
+
+        
     </script>
 </body>
 </html>
