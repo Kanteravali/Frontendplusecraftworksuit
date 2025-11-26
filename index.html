@@ -1394,6 +1394,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            
         }
 
         .contact-item {
@@ -2270,6 +2271,459 @@
                 width: 45%;
             }
         }
+
+
+
+         /* Terms Modal Styles */
+    #termsModal .modal-content {
+        background-color: #fff;
+        margin: 5% auto;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 700px;
+        max-height: 85vh;
+        overflow-y: auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        animation: slideIn 0.3s;
+    }
+
+    #termsModal .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 30px;
+        border-bottom: 1px solid #e0e0e0;
+        background-color: #f8f9fa;
+        border-radius: 12px 12px 0 0;
+    }
+
+    #termsModal .modal-header h2 {
+        color: #2c3e50;
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    #termsModal .close-modal {
+        font-size: 28px;
+        font-weight: bold;
+        color: #7f8c8d;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    #termsModal .close-modal:hover {
+        color: #e74c3c;
+    }
+
+    #termsModal .modal-body {
+        padding: 30px;
+        color: #2c3e50;
+        line-height: 1.6;
+    }
+
+    #termsModal .terms-content p {
+        margin-bottom: 20px;
+        font-size: 16px;
+        color: #555;
+    }
+
+    #termsModal .modal-footer {
+        padding: 20px 30px;
+        border-top: 1px solid #e0e0e0;
+        background-color: #f8f9fa;
+        border-radius: 0 0 12px 12px;
+        text-align: center;
+    }
+
+    #termsModal .btn-agree {
+        padding: 12px 40px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: background-color 0.3s;
+    }
+
+    #termsModal .btn-Decline {
+        padding: 12px 40px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: background-color 0.3s;
+    }
+
+
+
+    #termsModal .btn-agree:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Modal Overlay */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        animation: fadeIn 0.3s;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+        from { transform: translateY(-50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        #termsModal .modal-content {
+            width: 95%;
+            margin: 10% auto;
+        }
+        
+        #termsModal .modal-header {
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+        }
+    }
+
+
+    /* Cookie Modal Styles */
+    /* Cookie Modal Styles - Exact match to screenshot */
+    #cookieModal .modal-content {
+        background-color: #fff;
+        margin: 5% auto;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 600px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        animation: slideIn 0.3s;
+        border: 1px solid #e0e0e0;
+    }
+
+    #cookieModal .modal-body {
+        padding: 40px 30px 30px 30px;
+        color: #2c3e50;
+        line-height: 1.6;
+        text-align: center;
+    }
+
+    #cookieModal .cookie-content p {
+        margin-bottom: 0;
+        font-size: 16px;
+        color: #555;
+        line-height: 1.5;
+    }
+
+    #cookieModal .modal-footer {
+        padding: 0 30px 30px 30px;
+        background-color: #fff;
+        border-radius: 0 0 12px 12px;
+    }
+
+    #cookieModal .cookie-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        
+    }
+
+    #cookieModal .btn-reject,
+    #cookieModal .btn-settings,
+    #cookieModal .btn-accept {
+        padding: 12px 24px;
+        border: 2px solid;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s;
+        min-width: 120px;
+    }
+
+    #cookieModal .btn-reject {
+        background-color: transparent;
+        color: #666;
+        border-color: #ddd;
+    }
+
+    #cookieModal .btn-reject:hover {
+        background-color: #f8f9fa;
+        border-color: #999;
+    }
+
+    #cookieModal .btn-settings {
+        background-color: transparent;
+        color: #666;
+        border-color: #ddd;
+    }
+
+    #cookieModal .btn-settings:hover {
+        background-color: #f8f9fa;
+        border-color: #999;
+    }
+
+    #cookieModal .btn-accept {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+
+    #cookieModal .btn-accept:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+        transform: translateY(-1px);
+    }
+
+    /* Modal Overlay */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.3s;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+        from { transform: translateY(-20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        #cookieModal .modal-content {
+            width: 95%;
+            margin: 10% auto;
+        }
+        
+        #cookieModal .cookie-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        #cookieModal .btn-reject,
+        #cookieModal .btn-settings,
+        #cookieModal .btn-accept {
+            width: 100%;
+            max-width: 200px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        #cookieModal .modal-body {
+            padding: 30px 20px 20px 20px;
+        }
+        
+        #cookieModal .modal-footer {
+            padding: 0 20px 20px 20px;
+        }
+    }
+
+         /* Modal Styles of privacy policy */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        animation: fadeIn 0.3s;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 5% auto;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 800px;
+        max-height: 85vh;
+        overflow-y: auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        animation: slideIn 0.3s;
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 30px;
+        border-bottom: 1px solid #e0e0e0;
+        background-color: #f8f9fa;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .modal-header h2 {
+        color: #2c3e50;
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .close-modal {
+        font-size: 28px;
+        font-weight: bold;
+        color: #7f8c8d;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .close-modal:hover {
+        color: #e74c3c;
+    }
+
+    .modal-body {
+        padding: 30px;
+        color: #2c3e50;
+    }
+
+    .policy-section {
+        margin-bottom: 30px;
+    }
+
+    .policy-section h3 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 20px;
+        border-bottom: 1px solid #ecf0f1;
+        padding-bottom: 8px;
+    }
+
+    .policy-section h4 {
+        color: #2c3e50;
+        margin: 15px 0 8px;
+        font-size: 16px;
+    }
+
+    .policy-section p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+        color: #555;
+    }
+
+    .data-category {
+        margin-bottom: 20px;
+    }
+
+    .highlight-box {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #3498db;
+        margin: 20px 0;
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 30px;
+        border-top: 1px solid #e0e0e0;
+        background-color: #f8f9fa;
+        border-radius: 0 0 12px 12px;
+    }
+
+    .modal-footer p {
+        margin: 0;
+        color: #7f8c8d;
+        font-size: 14px;
+    }
+
+    .btn-close {
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .btn-close:hover {
+        background-color: #2980b9;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+        from { transform: translateY(-50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+        .footer-main {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .modal-content {
+            width: 95%;
+            margin: 10% auto;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .footer-main {
+            grid-template-columns: 1fr;
+        }
+        
+        .footer-bottom {
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+        
+        .footer-legal {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .modal-header {
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+        }
+        
+        .modal-footer {
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+
+
 
         @media (max-width: 576px) {
             h1 {
@@ -3444,11 +3898,11 @@
         <section id="FAQ">
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>What services does Pulse Craft offer?</span>
+                    <span>What services does PulseCraft Worksuite offer?</span>
                     <div class="chevron"></div>
                 </div>
                 <div class="faq-answer">
-                    <p>Pulse Craft specializes in web design and development, mobile app development, digital marketing, and branding solutions. We create custom digital experiences that help businesses grow and succeed online.</p>
+                    <p>PulseCraft Worksuite specializes in web design and development, mobile app development, digital marketing, and branding solutions. We create custom digital experiences that help businesses grow and succeed online.</p>
                 </div>
             </div>
 
@@ -3514,7 +3968,7 @@
 
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>How do I get started with Pulse Craft?</span>
+                    <span>How do I get started with PulseCraft Worksuite ?</span>
                     <div class="chevron"></div>
                 </div>
                 <div class="faq-answer">
@@ -3527,7 +3981,7 @@
     <!-- Newsletter Signup Section - UPDATED: Transparent background -->
     <section class="newsletter-section">
         <div class="newsletter-container">
-            <h1 class="newsletter-title">Sign up for the WorkSuite newsletter</h1>
+            <h1 class="newsletter-title">Sign up for the  Pulsecraft WorkSuite newsletter</h1>
             
             <form id="newsletterForm">
                 <div class="form-row">
@@ -3571,88 +4025,227 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-main">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <img class="logo-img" src="assets/logo.png" alt="Pulsecrafts Worksuite">
-                        <span>Pulsecrafts Worksuite</span>
-                    </div>
-                    <p class="footer-description">
-                        Empowering teams with innovative workspace solutions that drive productivity and collaboration. 
-                        Our all-in-one platform transforms how businesses work, communicate, and grow.
-                    </p>
-                    <div class="footer-newsletter">
-                        <h3>Stay Updated</h3>
-                        <div class="newsletter">
-                            <input type="email" placeholder="Enter your email">
-                            <button>Subscribe</button>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img class="logo-img" src="assets/logo.png" alt="Pulsecrafts Worksuite">
+                    <span>Pulsecrafts Worksuite</span>
                 </div>
-
-                <div class="footer-links">
-                    <h3 class="footer-heading">Services</h3>
-                    <a href="#keyFeatures">Full-Stack Development</a>
-                    <a href="#keyFeatures">AI & Machine Learning</a>
-                    <a href="#keyFeatures">DevOps & Cloud</a>
-                    <a href="#keyFeatures">Mobile Development</a>
-                    <a href="#keyFeatures">Technical Consulting</a>
-                </div>
-
-                <div class="footer-links">
-                    <h3 class="footer-heading">Company</h3>
-                    <a href="About.html">About</a>
-                    <a href="Features.html">Services</a>
-                    <a href="#use-cases">Industries</a>
-                    <a href="#">Product</a>
-                    <a href="Developer.html">Careers</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-
-                <div class="footer-contact">
-                    <h3 class="footer-heading">Contact Us</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Remote-First • Sheridan, Wyoming</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>US: +1 917 540 1361</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>India: +91 78478 13449</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>sales@pulsecrafts.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Mon - Fri: 9:00 AM - 6:00 PM EST</span>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <p class="footer-description">
+                    Empowering teams with innovative workspace solutions that drive productivity and collaboration. 
+                    Our all-in-one platform transforms how businesses work, communicate, and grow.
+                </p>
+                <div class="footer-newsletter">
+                    <h3>Stay Updated</h3>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Enter your email">
+                        <button>Subscribe</button>
                     </div>
                 </div>
             </div>
 
-            <div class="footer-bottom">
-                <div>© 2025 PulseCraft Worksuite Technologies. All rights reserved.</div>
-                <div class="footer-legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Cookie Policy</a>
-                    <a href="#">GDPR Compliance</a>
-                    <a href="#">Sitemap</a>
+            <div class="footer-links">
+                <h3 class="footer-heading">Platform</h3>
+                <p>Team Collaboration</p>
+                <p>Project Management</p>
+                <p>Workflow Automation</p>
+                <p>Performance Analytics</p>
+            </div>
+
+            <div class="footer-links">
+                <h3 class="footer-heading">Solutions</h3>
+                <p>Enterprise Worksuite</p>
+                <p>Remote Teams</p>
+                <p>Business Consulting</p>
+                <p>System Integration</p>
+            </div>
+
+            <div class="footer-links">
+                <h3 class="footer-heading">Resources</h3>
+                <p>Documentation</p>
+                <p>Video Tutorials</p>
+                <p>User Community</p>
+                <p>Training Webinars</p>
+            </div>
+
+            <div class="footer-links">
+                <h3 class="footer-heading">Support</h3>
+                <p>Help Center</p>
+                <p>System Status</p>
+                <p>Technical Support</p>
+                <p>Product Updates</p>
+            </div>
+
+            <div class="footer-contact">
+                <h3 class="footer-heading">Contact Us</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Remote-First • Sheridan, Wyoming</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>sales@pulsecrafts.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Mon - Fri: 9:00 AM - 6:00 PM EST</span>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
-    </footer>
+
+        <div class="footer-bottom">
+            <div>© 2025 PulseCraft Worksuite Technologies. All rights reserved.</div>
+            <div class="footer-legal">
+                <a href="#" class="privacy-policy-link">Privacy Policy</a>
+                <a href="#" class="terms-of-service-link">Terms of Service</a>
+                <a href="#" class="cookie-policy-link">Cookie Policy</a>
+                <a href="#">GDPR Compliance</a>
+                <a href="#">Sitemap</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Privacy Policy</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="policy-section">
+                    <h3>Personal Data Pulsecrafts Collects from You</h3>
+                    <p>At Pulsecrafts, we believe that you can have great products and great privacy. This means that we strive to <strong>collect only the personal data that we need</strong>. The personal data Pulsecrafts collects depends on how you interact with our services.</p>
+                    
+                    <p>When you create a Pulsecrafts account, purchase and/or activate a product or service, download a software update, connect to our services, contact us (including by social media), participate in an online survey, or otherwise interact with Pulsecrafts, we may collect a variety of information, including:</p>
+                    
+                    <div class="data-category">
+                        <h4>Account Information</h4>
+                        <p>Your Pulsecrafts account and related account details, including email address, devices registered, account status, and age.</p>
+                    </div>
+                    
+                    <div class="data-category">
+                        <h4>Device Information</h4>
+                        <p>Data from which your device could be identified, such as device serial number, or about your device, such as browser type.</p>
+                    </div>
+                    
+                    <div class="data-category">
+                        <h4>Contact Information</h4>
+                        <p>Data such as name, email address, physical address, phone number, or other contact information.</p>
+                    </div>
+                    
+                    <div class="data-category">
+                        <h4>Payment Information</h4>
+                        <p><strong>Data about your billing address and method of payment, such as bank details, credit, debit, or other payment card information.</strong></p>
+                    </div>
+                    
+                    <div class="data-category">
+                        <h4>Transaction Information</h4>
+                        <p>Data about purchases of Pulsecrafts products and services or transactions facilitated by Pulsecrafts, including purchases on our platforms.</p>
+                    </div>
+                    
+                    <div class="data-category">
+                        <h4>Fraud Prevention Information</h4>
+                        <p>Data used to help identify and prevent fraud, including a device trust score.</p>
+                    </div>
+                    
+                    <div class="data-category">
+                        <h4>Usage Data</h4>
+                        <p>Data about your activity on and use of our offerings, such as app launches within our services, including browsing history; search history; product interaction; crash data, performance and other diagnostic data; and other usage data.</p>
+                    </div>
+                    
+                    <div class="data-category">
+                        <h4>Location Information</h4>
+                        <p>Precise location only to support services such as location-based features or where you agree for region-specific services, and coarse location.</p>
+                    </div>
+                </div>
+                
+                <div class="policy-section">
+                    <h3>How We Use Your Personal Data</h3>
+                    <p>Pulsecrafts uses personal data to power our services, to process your transactions, to communicate with you, for security and fraud prevention, and to comply with law. We may also use personal data for other purposes with your consent.</p>
+                    
+                    <div class="highlight-box">
+                        <p>We use your personal data only when we have a valid legal basis to do so. Depending on the circumstance, Pulsecrafts may rely on your consent or the fact that the processing is necessary to fulfill a contract with you, protect your vital interests or those of other persons, or to comply with law.</p>
+                    </div>
+                </div>
+                
+                <div class="policy-section">
+                    <h3>Our Commitment to Your Privacy</h3>
+                    <p>At Pulsecrafts, we design our products and services with your privacy in mind. We work hard to collect only the personal data we need and to be transparent about how we use it.</p>
+                    
+                    <p>We also give you control over your personal data with tools that let you access, correct, delete, or transfer your data. And we build security into every product and service from the start to help protect your personal data.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                
+                <button class="btn-close">Close</button>
+            </div>
+        </div>
+    </div>
+
+<!----- model section of Terms of Services---->
+
+    <div id="termsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Terms and Conditions</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="terms-content">
+                <p>Please read these terms and Conditions carefully before clicking "I Agree" button, your access to and use of the Service is conditional on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.</p>
+                
+                <p>By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service. Our Service as a whole is protected by copyright.</p>
+                
+                <p>When you create an account with us, you must provide us information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.</p>
+                
+                <p>You are responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password. You agree not to disclose your password to any third party.</p>
+                
+                <p>The materials on Pulsecrafts Worksuite's website are provided on an 'as is' basis. Pulsecrafts Worksuite makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+                
+                <p>Further, Pulsecrafts Worksuite does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.</p>
+                
+                <p>In no event shall Pulsecrafts Worksuite or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Pulsecrafts Worksuite's website, even if Pulsecrafts Worksuite or a Pulsecrafts Worksuite authorized representative has been notified orally or in writing of the possibility of such damage.</p>
+                
+                <p>Pulsecrafts Worksuite may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service.</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="agree-section">
+                <button class="btn-agree">I AGREE</button>
+                <button class="btn-Decline">Decline</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--------------ction of cookie policy          -->
+<!-- Add this modal HTML right before the closing </footer> tag -->
+<div id="cookieModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="cookie-content">
+                <p>We use cookies on our website to give you the most relevant experience by remembering your preferences and repeat visits. By clicking "Accept", you consent to the use of ALL the cookies. You may visit Cookie settings to manage which cookies are used.</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="cookie-buttons">
+                <button class="btn-accept">Accept</button>
+                <button class="btn-reject">Reject</button>
+                <button class="btn-settings">Cookie settings</button>
+            </div>
+        </div>
+    </div>
+</div>
+</footer>
 
     <!-- Modal Sections -->
     <div class="modal" id="demoModal">
@@ -4514,6 +5107,152 @@
         }
 
         console.log('WorkSuite application initialized successfully');
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('privacyModal');
+        const privacyLink = document.querySelector('.privacy-policy-link');
+        const closeModal = document.querySelector('.close-modal');
+        const btnClose = document.querySelector('.btn-close');
+        
+        // Open modal when Privacy Policy link is clicked
+        privacyLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+        
+        // Close modal when X is clicked
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        });
+        
+        // Close modal when Close button is clicked
+        btnClose.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        });
+        
+        // Close modal when clicking outside the modal content
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        });
+    });
+
+//cookie policy//
+       document.addEventListener('DOMContentLoaded', function() {
+        const cookieModal = document.getElementById('cookieModal');
+        const cookieLink = document.querySelector('.cookie-policy-link');
+        const btnAccept = cookieModal.querySelector('.btn-accept');
+        const btnReject = cookieModal.querySelector('.btn-reject');
+        const btnSettings = cookieModal.querySelector('.btn-settings');
+        
+        // Open modal when Cookie Policy link is clicked
+        cookieLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            cookieModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Handle Accept button
+        btnAccept.addEventListener('click', function() {
+            cookieModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            // Set cookie acceptance
+            document.cookie = "cookie_consent=accepted; max-age=31536000; path=/";
+            alert('Thank you for accepting our cookies!');
+        });
+        
+        // Handle Reject button
+        btnReject.addEventListener('click', function() {
+            cookieModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            // Set cookie rejection
+            document.cookie = "cookie_consent=rejected; max-age=31536000; path=/";
+            alert('You have rejected non-essential cookies.');
+        });
+        
+        // Handle Settings button
+        btnSettings.addEventListener('click', function() {
+            alert('Cookie settings panel would open here with individual cookie controls.');
+            // You can implement detailed cookie settings here
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === cookieModal) {
+                cookieModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && cookieModal.style.display === 'block') {
+                cookieModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+
+
+////Terms of services///
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const termsModal = document.getElementById('termsModal');
+        const termsLink = document.querySelector('.terms-of-service-link');
+        const closeModal = termsModal.querySelector('.close-modal');
+        const btnAgree = termsModal.querySelector('.btn-agree');
+        
+        // Open modal when Terms of Service link is clicked
+        termsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            termsModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Close modal when X is clicked
+        closeModal.addEventListener('click', function() {
+            termsModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when Agree button is clicked
+        btnAgree.addEventListener('click', function() {
+            termsModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            alert('Thank you for accepting our Terms and Conditions!');
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === termsModal) {
+                termsModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && termsModal.style.display === 'block') {
+                termsModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+
     </script>
 </body>
 </html>
