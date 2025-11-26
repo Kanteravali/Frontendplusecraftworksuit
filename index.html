@@ -2072,6 +2072,16 @@
             .workspace-features {
                 grid-template-columns: 1fr;
             }
+             .pricing-section{
+                flex-direction:column;
+                width: 100%;
+                align-items: center;
+
+            }
+            .plan-card{
+                flex-direction:column;
+                width: 45%;
+            }
         }
 
         @media (max-width: 768px) {
@@ -2250,6 +2260,15 @@
                 border-radius: 8px;
                 padding: 14px;
             }
+             .pricing-section{
+                flex-direction:column;
+                width: 100%;
+                align-items: center;
+            }
+            .plan-card{
+                flex-direction:column;
+                width: 45%;
+            }
         }
 
         @media (max-width: 576px) {
@@ -2363,9 +2382,18 @@
                 height: 60px;
                 font-size: 28px;
             }
+             .pricing-section{
+                flex-direction:column;
+                width: 100%;
+                align-items: center;
+            }
+            .plan-card{
+                flex-direction:column;
+                width: 100%;
+            }
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: 480px) {
             .container {
                 padding: 0 15px;
             }
@@ -2388,6 +2416,16 @@
             
             .tools-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+           
+            .pricing-section{
+                flex-direction:column;
+                width: 100%;
+                align-items: center;
+            }
+            .plan-card{
+                flex-direction:column;
+                width: 100%;
             }
         }
         
@@ -2925,11 +2963,11 @@
                     <div class="plan-header">
                         <div class="plan-title" style="justify-content: center">Starter</div>
                         <div class="plan-price">
-                            <span  class="current-price">₹16.65 INR</span>
-                            <span class="original-price"></span>
+                            <span  class="current-price">₹223 INR</span><br>
+                            <span class="original-price"><strike>₹500 INR</strike></span>
                         </div>
-                        <div class="plan-period">per user/month, One<br>
-                            year commitment
+                        <div class="plan-period">per user/month<br>
+                        
                         </div>
                     </div>
                     <div class="plan-body">
@@ -2988,11 +3026,11 @@
                     <div class="plan-header">
                         <div class="plan-title">Standard</div>
                         <div class="plan-price">
-                            <span class="current-price">₹900 INR</span>
-                            <span class="original-price"></span>
+                            <span  class="current-price">₹446 INR</span><br>
+                            <span class="original-price"><strike>₹600 INR</strike></span>
                         </div>
-                        <div class="plan-period">per user/month ,One<br>
-                            year commitment
+                        <div class="plan-period">per user/month<br>
+                            
                         </div>
                     </div>
                     <div class="plan-body">
@@ -3040,10 +3078,11 @@
                     <div class="plan-header">
                         <div class="plan-title">Plus</div>
                         <div class="plan-price">
-                            <span class="current-price">₹1700 INR</span>
+                            <span  class="current-price">₹1516 INR</span><br>
+                            <span class="original-price"><strike>₹1900 INR</strike></span>
                         </div>
-                        <div  class="plan-period">per user/month,one<br>
-                            year commitment
+                        <div  class="plan-period">per user/month<br>
+                            
                         </div>
                     </div>
 
